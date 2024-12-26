@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { userState } from "../../store/userSlice";
 import { Link } from "react-router-dom";
 
-const BookkingDetailBox = (rowData) => {
+const InvoiceDetailBox = (rowData) => {
   const user = useSelector(userState);
   const {claimReferenceNumber, insurance, passengerContactNumber,passengerEmail,passengerName,
     typeOfTransfer, specialRequirements, bookerContact,bookerName
@@ -85,4 +85,4 @@ const BookkingDetailBox = (rowData) => {
   );
 };
 
-export default BookkingDetailBox;
+export default InvoiceDetailBox;

@@ -1,7 +1,7 @@
 // HomePage.js
 import React, { useEffect, useState } from "react";
 import Layout from "../dashboard/Layout";
-import PaymentsTable from "../dashboard/components/PaymentsTable";
+import InvoiceTable from "../dashboard/components/InvoicesTable";
 import Breadcrumb from "../dashboard/components/Breadcrumb";
 import MobilePaymentsTable from "../dashboard/components/MobilePaymentsTable";
 
@@ -34,7 +34,7 @@ const HomePage = () => {
           <div className="mb-4">
             <Breadcrumb pages={[]} page="Invoices" />
           </div>
-          {isMobile ? <MobilePaymentsTable /> : <PaymentsTable />}
+          {isMobile ? <MobilePaymentsTable /> : <InvoiceTable />}
         </div>
       }
     />

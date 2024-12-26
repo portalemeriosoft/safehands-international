@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/PrivateRoutes";
 import Error from "../pages/NotFound";
 import Home from "../pages/Home";
 import Invoices from "../pages/Invoices.jsx";
+import InvoiceDetail from "./components/InvoiceDetail.jsx";
 import Bookings from "../pages/Bookings.jsx";
 import Orders from "../pages/Orders";
 import DeclinedOrders from "../pages/DeclinedOrders";
@@ -22,7 +23,6 @@ import LocationMap from "../pages/LocationMap";
 import LocationMapUpdate from "../pages/LocationMapUpdate";
 import Terms from "../pages/Terms";
 import axios from "axios";
-
 import PageSpinner from "./components/PageSpinner";
 import { useDispatch } from "react-redux";
 import { setIsAuth, setUser } from "../store/userSlice";
@@ -32,7 +32,7 @@ import Order from "./../pages/Order";
 import Profile from "./../pages/Profile";
 import ProfileEdit from "./../pages/ProfileEdit";
 import UserDetail from "./../pages/UserDetail";
-import Invoice from "./components/Invoice.jsx"
+// import Invoices from "./components/Invoices.jsx"
 import SpecificRequest from "./components/SpecificRequest.jsx"
 import BookingDetail from "./components/BookingDetail.jsx";
 
@@ -103,6 +103,7 @@ const App = () => {
           <Route element={<SpecificRequest />} path="/requestDetails" exact />
           <Route element={<DeclinedOrders />} path="/declined-orders" exact />
           <Route element={<Invoices />} path="/invoices" />
+          <Route element={<InvoiceDetail />} path="/invoice" />
           <Route element={<Bookings />} path="/bookings" />
           <Route element={<BookingDetail />} path="/booking" />
           <Route element={<Customers />} path="/users" />
@@ -121,7 +122,7 @@ const App = () => {
         <Route element={<Page />} path="/temp" />
         <Route element={<SignupDriver />} path="/driver/signup" />
         <Route element={<LoginDriver />} path="/driver/login" />
-        <Route element={<Invoice />} path="/invoice" />
+        <Route element={<Invoices />} path="/invoices" />
       </Routes>
     </Router>
   );

@@ -58,7 +58,7 @@ const Home = () => {
             
 
             {(customersCount !== null) ? (
-              <NavLink to="/customers" className="md:mx-2 my-2">
+              <NavLink to="/users" className="md:mx-2 my-2">
                 <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
                   <div className="">
                     <UsersIcon className="block h-6 w-6" aria-hidden="true" />
@@ -73,7 +73,7 @@ const Home = () => {
               <CardSkeleton />
             )}
              {(declinedOrdersCount !== null) ? (
-              <NavLink to="/declined-orders" className="md:mx-2 my-2">
+              <NavLink to="/requests" className="md:mx-2 my-2">
                 <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
                   <div className="">
                     <DocumentArrowDownIcon
@@ -91,7 +91,7 @@ const Home = () => {
               <CardSkeleton />
             )}
             {(ordersCount !== null) ? (
-              <NavLink to="/orders" className="md:mx-2 my-2">
+              <NavLink to="/bookings" className="md:mx-2 my-2">
                 <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
                   <div className="">
                     <IdentificationIcon
@@ -110,7 +110,7 @@ const Home = () => {
             )}
 
             {(paymentsCount !== null) ? (
-              <NavLink to="/payments" className="md:mx-2 my-2">
+              <NavLink to="/invoices" className="md:mx-2 my-2">
                 <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
                   <div className="">
                     <ClipboardDocumentIcon

@@ -6,10 +6,9 @@ import { paymentsPath } from "../../api/path";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setPayments, paymentsState } from "../../store/paymentsSlice";
-import Moment from "moment";
 import Order from "./Order";
 import { Link } from "react-router-dom";
-import bookings from "../../utils/bookings.json"
+import invoices from "../../utils/invoices.json"
 import { useNavigate } from "react-router-dom";
 
 const ColourCellRenderer = (props) => (
@@ -19,32 +18,18 @@ const ColourCellRenderer = (props) => (
 );
 
 
-const PaymentsTable = () => {
+const InvoicesTable = () => {
   const navigate = useNavigate();
   const orders = useSelector(paymentsState);
-  const dispatch = useDispatch();
-
   const orderId = useState(null);
   const gridRef = useRef();
 
-  useEffect(() => {
-    axios
-      .get(paymentsPath)
-      .then(({ data }) => {
-        dispatch(setPayments(data.data));
-      })
-      .catch(function (error) {
-        if (error.response) {
-          console.log(error.response.data.message);
-        }
-      });
-  }, []);
-
-  let bookingRow = null;
+  
+  let invoiceRow = null;
 
 
   if (orders) {
-    bookingRow = bookings.map((booking) => ({
+    invoiceRow = invoices.map((booking) => ({
       claimReferenceNumber: booking.claimReferenceNumber,
       insurance: booking.insuranceOrClientReference,
       passengerName: booking.leadPassenger.name,
@@ -83,17 +68,16 @@ const PaymentsTable = () => {
     { field: "bookerContact" },
   ]);
 
-  console.log(bookings)
   const onRowClicked = (event) => {
     const clickedRowData = { ...event.data };
 
-    navigate('/booking', { state: { data: clickedRowData } });
+    navigate('/invoice', { state: { data: clickedRowData } });
   }
 
   return (
     <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
       <AgGridReact
-        rowData={bookingRow}
+        rowData={invoiceRow}
         columnDefs={colDefs}
         ref={gridRef}
         pagination={true}
@@ -106,4 +90,4 @@ const PaymentsTable = () => {
   );
 };
 
-export default PaymentsTable;
+export default InvoicesTable;

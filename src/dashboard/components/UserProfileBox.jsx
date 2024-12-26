@@ -40,6 +40,8 @@ const ProfileBox = () => {
     return <>Loading..</>;
   }
 
+  console.log(user)
+
   return (
     <>
       <div className="booking-details border-5">
@@ -106,13 +108,31 @@ const ProfileBox = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Phone</div>
             <div>
-              {user.phone &&
-                displayPhoneNumber(user.dialling_code, user.phone)}
+              {/* {user.role} */}
+              123456789
+            </div>
+          </div>
+        </div>
+        <div className="booking-item">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>Role</div>
+            <div>
+              {/* {user.role} */}
+              Customer
+            </div>
+          </div>
+        </div>
+        <div className="booking-item">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>Status</div>
+            <div>
+              {/* {user.role} */}
+              Active
             </div>
           </div>
         </div>
 
-        {user.role !== 1 && (
+        {/* {user.role !== 1 && (
           <div className="booking-item">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>Contact priority</div>
@@ -120,19 +140,7 @@ const ProfileBox = () => {
             </div>
           </div>
         )}
-
-        {user.role !== 1 && (
-          <div className="booking-item">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>Billing address</div>
-              <div>
-                {user.billing_address
-                  ? displayBillingAddress(user.billing_address)
-                  : "NA"}
-              </div>
-            </div>
-          </div>
-        )}
+         */}
       </div>
       
       <div className="flex justify-end pt-2">

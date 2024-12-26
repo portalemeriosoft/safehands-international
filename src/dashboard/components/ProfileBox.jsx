@@ -42,12 +42,12 @@ const ProfileBox = () => {
               )}
             </div>
             <div className="flex md:justify-end md:items-end justify-start space-x-2">
-              <Link
+              {/* <Link
                 to={`/user/${btoa(0)}/location/update`}
                 className="md:ml-1 rounded-full bg-stone-200 px-3 p-1 text-xs font-semibold text-black shadow-sm hover:bg-stone-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Update Location
-              </Link>
+              </Link> */}
               <button
                 onClick={() => updatePasswordDisplay[1](true)}
                 type="button"
@@ -55,13 +55,13 @@ const ProfileBox = () => {
               >
                 Update Password
               </button>
-              <button
+              {/* <button
                 onClick={() => updateAvailabilityDisplay[1](true)}
                 type="button"
                 className="md:ml-1 rounded-full bg-stone-200 px-3 p-1 text-xs font-semibold text-black shadow-sm hover:bg-stone-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Update Availability
-              </button>
+              </button> */}
               {user.data.photo && (
                 <Link to={`/profile/edit/${btoa(0)}/photo`}>
                   <CameraIcon
@@ -94,6 +94,7 @@ const ProfileBox = () => {
             <div>
               {user.data.phone &&
                 displayPhoneNumber(user.data.dialling_code, user.data.phone)}
+                +92123456789
             </div>
           </div>
         </div>
@@ -115,7 +116,7 @@ const ProfileBox = () => {
 
         
 
-        <div className="booking-item">
+        {/* <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Account type</div>
             <div>
@@ -128,16 +129,16 @@ const ProfileBox = () => {
                 : "Not Available"}
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="booking-item">
+        {/* <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Account balance</div>
             <div>
               0
             </div>
           </div>
-        </div>
+        </div> */}
 
         {user.data.role === 2 && (
           <div className="booking-item">
@@ -165,7 +166,7 @@ const ProfileBox = () => {
           </div>
         )}
 
-        <div className="booking-item">
+        {/* <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Location</div>
             <div>
@@ -183,7 +184,7 @@ const ProfileBox = () => {
               )}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="flex justify-end pt-2">

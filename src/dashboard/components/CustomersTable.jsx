@@ -7,7 +7,9 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setCustomers, customersState } from "../../store/customersSlice";
 import { Link } from "react-router-dom";
-import { displayPhoneNumber, displayBillingAddress } from './../../utils'
+import { displayPhoneNumber } from './../../utils'
+import users from './../../utils/users.json';
+
 
 const CustomersTable = () => {
   const customers = useSelector(customersState);
@@ -43,7 +45,7 @@ const CustomersTable = () => {
         minWidth: 250,
       },
       {
-        colId: "contactPriority",
+        colId: "role",
         minWidth: 150,
       },
       {
@@ -51,26 +53,25 @@ const CustomersTable = () => {
         minWidth: 80,
       },
       {
-        colId: "billingAddress",
+        colId: "status",
         minWidth: 350,
       },
     ],
   };
 
   if (customers) {
-    customerRow = customers.map((customer) => ({
+    customerRow = users.map((customer) => ({
       id: customer,
       name: customer.name,
       email: customer.email,
       phone: customer.phone,
-      contactPriority: customer.contact_priority,
-      orders: customer.orders,
-      billingAddress: customer.billing_address,
+      role: customer.user_role,
+      status: 'Active',
     }));
   }
 
   const userLinkRenderer = (props) => {
-    console.log(props.data.id)
+    console.log(props.data)
     return (
       <Link className="text-blue-600 py-5"
         to={"/user/" + props.data.id.code}  
@@ -82,10 +83,7 @@ const CustomersTable = () => {
     displayPhoneNumber(props.data.id.dialling_code, props.data.id.phone)
   ); 
 
-  const userAddressRenderer = (props) => (
-    (props.data.id.billing_address) ? 
-    displayBillingAddress(props.data.id.billing_address) : ''
-  ); 
+  
 
 
 
@@ -94,13 +92,12 @@ const CustomersTable = () => {
     { field: "name", cellRenderer: userLinkRenderer },
     { field: "email" },
     { field: "phone", cellRenderer: userPhoneRenderer },
-    { field: "contactPriority" },
-    { field: "orders" },
-    { field: "billingAddress", cellRenderer: userAddressRenderer },
+    { field: "role" },
+    { field: "status" },
   ]);
 
   return (
-    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 237px)' }}>
+    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
       <AgGridReact
         rowData={customerRow}
         columnDefs={colDefs}

@@ -27,11 +27,11 @@ const Orders = () => {
 
   return (
     <Layout
-      title="Orders"
+      title="Requests"
       content={
         <div>
           <div className="mb-4">
-            <Breadcrumb pages={[]} page="Orders" />
+            <Breadcrumb pages={[]} page="Requests" />
           </div>
           {isMobile ? <MobileOrdersTable /> : <OrdersTable />}
         </div>

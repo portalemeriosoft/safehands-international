@@ -10,7 +10,7 @@ import Breadcrumb from "../dashboard/components/Breadcrumb";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-export default function Order() {
+export default function  Order() {
   const orders = useSelector(ordersState);
   const [order, setOrder] = useState(null);
   const dispatch = useDispatch();

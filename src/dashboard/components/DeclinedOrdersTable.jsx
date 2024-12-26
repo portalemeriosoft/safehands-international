@@ -74,7 +74,7 @@ const OrdersTable = () => {
   ]);
 
   return (
-    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 237px)' }}>
+    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
       <AgGridReact
         rowData={orderRow}
         columnDefs={colDefs}

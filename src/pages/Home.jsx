@@ -1,10 +1,10 @@
 import Layout from "../dashboard/Layout";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  ShoppingCartIcon,
-  ChatBubbleLeftRightIcon,
+  IdentificationIcon,
+  DocumentArrowDownIcon,
   UsersIcon,
-  CurrencyPoundIcon,
+  ClipboardDocumentIcon,
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -55,34 +55,53 @@ const Home = () => {
       content={
         <div>
           <div className="grid md:grid-cols-4 md:gap-4">
-            {(ordersCount !== null) ? (
-              <NavLink to="/orders" className="md:mx-2 my-2">
-                <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
-                  <div className="">
-                    <ShoppingCartIcon
-                      className="block h-6 w-6"
-                      aria-hidden="true"
-                    />
-                    <p>Orders</p>
-                  </div>
-                  <div className=" text-end height-full text-blue-600 text-4xl font-semibold my-auto">
-                    {ordersCount}
-                  </div>
-                </div>
-              </NavLink>
-            ) : (
-              <CardSkeleton />
-            )}
+            
 
             {(customersCount !== null) ? (
               <NavLink to="/customers" className="md:mx-2 my-2">
                 <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
                   <div className="">
                     <UsersIcon className="block h-6 w-6" aria-hidden="true" />
-                    <p>Customers</p>
+                    <p>Users</p>
                   </div>
                   <div className=" text-end height-full text-blue-600 text-4xl font-semibold my-auto">
                     {customersCount}
+                  </div>
+                </div>
+              </NavLink>
+            ) : (
+              <CardSkeleton />
+            )}
+             {(declinedOrdersCount !== null) ? (
+              <NavLink to="/declined-orders" className="md:mx-2 my-2">
+                <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
+                  <div className="">
+                    <DocumentArrowDownIcon
+                      className="block h-6 w-6"
+                      aria-hidden="true"
+                    />
+                    <p>Requests</p>
+                  </div>
+                  <div className=" text-end height-full text-blue-600 text-4xl font-semibold my-auto">
+                    {declinedOrdersCount}
+                  </div>
+                </div>
+              </NavLink>
+            ) : (
+              <CardSkeleton />
+            )}
+            {(ordersCount !== null) ? (
+              <NavLink to="/orders" className="md:mx-2 my-2">
+                <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
+                  <div className="">
+                    <IdentificationIcon
+                      className="block h-6 w-6"
+                      aria-hidden="true"
+                    />
+                    <p>Bookings</p>
+                  </div>
+                  <div className=" text-end height-full text-blue-600 text-4xl font-semibold my-auto">
+                    {ordersCount}
                   </div>
                 </div>
               </NavLink>
@@ -94,11 +113,11 @@ const Home = () => {
               <NavLink to="/payments" className="md:mx-2 my-2">
                 <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
                   <div className="">
-                    <CurrencyPoundIcon
+                    <ClipboardDocumentIcon
                       className="block h-6 w-6"
                       aria-hidden="true"
                     />
-                    <p>Payments</p>
+                    <p>Invoices</p>
                   </div>
                   <div className=" text-end height-full text-blue-600 text-4xl font-semibold my-auto">
                     {paymentsCount}
@@ -109,24 +128,7 @@ const Home = () => {
               <CardSkeleton />
             )}
 
-            {(declinedOrdersCount !== null) ? (
-              <NavLink to="/declined-orders" className="md:mx-2 my-2">
-                <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
-                  <div className="">
-                    <ChatBubbleLeftRightIcon
-                      className="block h-6 w-6"
-                      aria-hidden="true"
-                    />
-                    <p>Declined Orders</p>
-                  </div>
-                  <div className=" text-end height-full text-blue-600 text-4xl font-semibold my-auto">
-                    {declinedOrdersCount}
-                  </div>
-                </div>
-              </NavLink>
-            ) : (
-              <CardSkeleton />
-            )}
+           
 
           </div>
         </div>

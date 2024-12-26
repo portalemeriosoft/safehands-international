@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/PrivateRoutes";
 import Error from "../pages/NotFound";
 import Home from "../pages/Home";
-import Payments from "../pages/Payments";
+import Invoices from "../pages/Invoices.jsx";
+import Bookings from "../pages/Bookings.jsx";
 import Orders from "../pages/Orders";
 import DeclinedOrders from "../pages/DeclinedOrders";
 import Customers from "../pages/Customers";
@@ -31,6 +32,9 @@ import Order from "./../pages/Order";
 import Profile from "./../pages/Profile";
 import ProfileEdit from "./../pages/ProfileEdit";
 import UserDetail from "./../pages/UserDetail";
+import Invoice from "./components/Invoice.jsx"
+import SpecificRequest from "./components/SpecificRequest.jsx"
+import BookingDetail from "./components/BookingDetail.jsx";
 
 if ("geolocation" in navigator) {
   // Request the user's current location
@@ -95,18 +99,20 @@ const App = () => {
           <Route element={<Map />} path="/map" exact />
           <Route element={<LocationMap />} path="/user/:id/location" exact />
           <Route element={<LocationMapUpdate />} path="/user/:id/location/update" exact />
-          <Route element={<Orders />} path="/orders" exact />
+          <Route element={<Orders />} path="/requests" exact />
+          <Route element={<SpecificRequest />} path="/requestDetails" exact />
           <Route element={<DeclinedOrders />} path="/declined-orders" exact />
-          <Route element={<Payments />} path="/payments" />
-          <Route element={<Customers />} path="/customers" />
+          <Route element={<Invoices />} path="/invoices" />
+          <Route element={<Bookings />} path="/bookings" />
+          <Route element={<BookingDetail />} path="/booking" />
+          <Route element={<Customers />} path="/users" />
           <Route element={<Order />} path="/order/:orderId" />
           <Route element={<Profile />} path="/profile" />
           <Route element={<UserDetail />} path="/user/:id" />
           <Route element={<ProfileEdit />} path="/profile/edit/:id/:type" />
           <Route element={<Terms />} path="/terms" />
           <Route element={<Logout />} path="/logout" />
-          <Route element={<Error />} path="*" />
-        </Route>
+          <Route element={<Error />} path="*" /></Route>
         <Route element={<ForgotPassword />} path="/password/reset" />
         <Route element={<ResetPassword />} path="/password/update/:token" />
         <Route element={<Admin />} path="/admin" />
@@ -115,6 +121,7 @@ const App = () => {
         <Route element={<Page />} path="/temp" />
         <Route element={<SignupDriver />} path="/driver/signup" />
         <Route element={<LoginDriver />} path="/driver/login" />
+        <Route element={<Invoice />} path="/invoice" />
       </Routes>
     </Router>
   );

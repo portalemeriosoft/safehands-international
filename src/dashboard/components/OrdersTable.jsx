@@ -8,8 +8,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setOrders, ordersState } from "../../store/ordersSlice";
 import Moment from "moment";
 import Order from "./Order";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getOrderStatus } from "../../utils";
+import requests from "../../utils/requests.json"
 
 const ColourCellRenderer = (props) => (
   <Link className="text-blue-600 py-5"
@@ -18,6 +19,7 @@ const ColourCellRenderer = (props) => (
 );
 
 const OrdersTable = () => {
+  const navigate = useNavigate();
   const orders = useSelector(ordersState);
   const dispatch = useDispatch();
 
@@ -37,18 +39,20 @@ const OrdersTable = () => {
       });
   }, []);
 
-  let orderRow = null;
+  let requestRow = null;
 
 
   if (orders) {
-    orderRow = orders.map((order) => ({
-      id: order.id,
-      service: order.service.description,
-      customer: order.customer.name,
-      missionDate: Moment(order.start_task_datetime).format("DD-MMM-YY h:mm A"),
-      total: "£" + order.payment.payable_amount,
-      paid: "£" + order.payment.amount_paid,
-      status: getOrderStatus(order.status),
+    requestRow = requests.map((request) => ({
+      id: request.id,
+      dateOfTransfer: request.dateOfTransfer,
+      pickUpTime: Moment(request.pickupTime).format("DD-MMM-YY h:mm A"),
+      flightNumber: request.flightNumber,
+      from: request.from,
+      to: request.to,
+      typeOfVehicle: request.typeOfVehicle,
+      numberOfPassengers: request.numberOfPassengers,
+      numberOfSuitcase: request.numberOfSuitcases,
     }));
   }
 
@@ -64,24 +68,33 @@ const OrdersTable = () => {
   };
 
   const [colDefs, setColDefs] = useState([
-    { field: "id", hide: true },
-    { field: "service", cellRenderer: ColourCellRenderer },
-    { field: "customer" },
-    { field: "missionDate" },
-    { field: "total" },
-    { field: "paid" },
-    { field: "status" },
+    { field: "id", hide : true},
+    { field: "dateOfTransfer"},
+    { field: "pickUpTime" },
+    { field: "flightNumber" },
+    { field: "from" },
+    { field: "to" },
+    { field: "typeOfVehicle" },
+    { field: "numberOfPassengers" },
+    { field: "numberOfSuitcase" },
   ]);
 
+  const onRowClicked = (event)=>{
+    const clickedRowData = event.data;
+    console.log(clickedRowData)
+    navigate('/requestDetails', { state: {data: clickedRowData}} );
+  }
+
   return (
-    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 237px)' }}>
+    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
       <AgGridReact
-        rowData={orderRow}
+        rowData={requestRow}
         columnDefs={colDefs}
         ref={gridRef}
         pagination={true}
         rowSelection={"single"}
         autoSizeStrategy={autoSizeStrategy}
+        onRowClicked={onRowClicked}
       />
       {orderId[0] && <Order orderId={orderId} />}
     </div>

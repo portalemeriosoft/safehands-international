@@ -1,6 +1,6 @@
 // HomePage.js
 import React, { useEffect, useState } from "react";
-import Layout from "./../dashboard/Layout";
+import Layout from "../dashboard/Layout";
 import PaymentsTable from "../dashboard/components/PaymentsTable";
 import Breadcrumb from "../dashboard/components/Breadcrumb";
 import MobilePaymentsTable from "../dashboard/components/MobilePaymentsTable";
@@ -28,11 +28,11 @@ const HomePage = () => {
 
   return (
     <Layout
-      title="Payments"
+      title="Invoices"
       content={
         <div>
           <div className="mb-4">
-            <Breadcrumb pages={[]} page="Payments" />
+            <Breadcrumb pages={[]} page="Invoices" />
           </div>
           {isMobile ? <MobilePaymentsTable /> : <PaymentsTable />}
         </div>

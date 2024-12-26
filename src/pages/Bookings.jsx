@@ -1,10 +1,11 @@
+// HomePage.js
 import React, { useEffect, useState } from "react";
-import Layout from "./../dashboard/Layout";
-import CustomersTable from "./../dashboard/components/CustomersTable";
+import Layout from "../dashboard/Layout";
+import PaymentsTable from "../dashboard/components/PaymentsTable";
 import Breadcrumb from "../dashboard/components/Breadcrumb";
-import MobileCustomersTable from "../dashboard/components/MobileCustomersTable";
+import MobilePaymentsTable from "../dashboard/components/MobilePaymentsTable";
 
-const Customers = () => {
+const HomePage = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -27,17 +28,17 @@ const Customers = () => {
 
   return (
     <Layout
-      title="Users"
+      title="Bookings"
       content={
         <div>
           <div className="mb-4">
-            <Breadcrumb pages={[]} page="Users" />
+            <Breadcrumb pages={[]} page="Bookings" />
           </div>
-          {isMobile ? <MobileCustomersTable /> : <CustomersTable />}
+          {isMobile ? <MobilePaymentsTable /> : <PaymentsTable />}
         </div>
       }
     />
   );
 };
 
-export default Customers;
+export default HomePage;

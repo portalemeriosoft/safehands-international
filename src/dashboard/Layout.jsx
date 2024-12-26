@@ -61,9 +61,10 @@ export default function Layout({ content, title }) {
     ];
     navigation = [
       { name: "Dashboard", href: "/", current: true },
-      { name: "Orders", href: "/orders", current: false },
-      { name: "Customers", href: "/customers", current: false },
-      { name: "Payments", href: "/payments", current: false },
+      { name: "Users", href: "/users", current: false },
+      { name: "Requests", href: "/requests", current: false },
+      { name: "Bookings", href: "/bookings", current: false },
+      { name: "Invoices", href: "/invoices", current: false },
     ];
   }
 
@@ -101,7 +102,7 @@ export default function Layout({ content, title }) {
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="flex h-16 items-center justify-between">
+                <div className="flex h-24 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <NavLink
@@ -112,7 +113,7 @@ export default function Layout({ content, title }) {
                         }
                       >
                         <img
-                          className="h-12 w-12"
+                          className="h-12 "
                           src={process.env.PUBLIC_URL + "/images/logo.png"}
                           alt="MIV Removals"
                         />

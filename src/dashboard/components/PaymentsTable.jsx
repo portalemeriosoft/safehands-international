@@ -9,20 +9,24 @@ import { setPayments, paymentsState } from "../../store/paymentsSlice";
 import Moment from "moment";
 import Order from "./Order";
 import { Link } from "react-router-dom";
+import bookings from "../../utils/bookings.json"
+import { useNavigate } from "react-router-dom";
 
 const ColourCellRenderer = (props) => (
   <Link className="text-blue-600 py-5"
-    to={"/order/" + props.data.id}  
+    to={"/order/" + props.data.id}
   >{props.value}</Link>
 );
 
+
 const PaymentsTable = () => {
+  const navigate = useNavigate();
   const orders = useSelector(paymentsState);
   const dispatch = useDispatch();
 
   const orderId = useState(null);
   const gridRef = useRef();
-  
+
   useEffect(() => {
     axios
       .get(paymentsPath)
@@ -36,17 +40,21 @@ const PaymentsTable = () => {
       });
   }, []);
 
-  let orderRow = null;
+  let bookingRow = null;
+
+  console.log(bookings)
 
   if (orders) {
-    orderRow = orders.map((order) => ({
-      id: order.id,
-      customer: order.customer,
-      total: order.total_amount,
-      paid: "£" + order.amount,
-      transactions: order.total_transactions,
-      date: Moment(order.created_at).format("DD-MMM-YY h:mm A"),
-      description: order.description,
+    bookingRow = bookings.map((booking) => ({
+      claimReferenceNumber: booking.claimReferenceNumber,
+      insurance: booking.insuranceOrClientReference,
+      passengerName: booking.leadPassenger.name,
+      passengerEmail: booking.leadPassenger.email,
+      passengerContactNumber: booking.leadPassenger.contactNumber,
+      typeOfTransfer: booking.typeOfTransfer,
+      specialRequirements: booking.specialRequirements,
+      bookerName: booking.bookerDetails.name,
+      bookerContact: booking.bookerDetails.contactDetails,
     }));
   }
 
@@ -63,23 +71,32 @@ const PaymentsTable = () => {
 
   const [colDefs, setColDefs] = useState([
     { field: "id", hide: true },
-    { field: "customer" },
-    { field: "total" },
-    { field: "paid" },
-    { field: "transactions" },
-    { field: "date" },
-    { field: "description" },
+    { field: "claimReferenceNumber" },
+    { field: "insurance" },
+    { field: "passengerName" },
+    { field: "passengerEmail" },
+    { field: "passengerContactNumber" },
+    { field: "typeOfTransfer" },
+    { field: "specialRequirements" },
+    { field: "bookerName" },
+    { field: "bookerContact" },
   ]);
+  const onRowClicked = (event) => {
+    const clickedRowData = event.data;
+
+    navigate('/booking', { state: { data: clickedRowData } });
+  }
 
   return (
-    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 237px)' }}>
+    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
       <AgGridReact
-        rowData={orderRow}
+        rowData={bookingRow}
         columnDefs={colDefs}
         ref={gridRef}
         pagination={true}
         rowSelection={"single"}
         autoSizeStrategy={autoSizeStrategy}
+        onRowClicked={onRowClicked}
       />
       {orderId[0] && <Order orderId={orderId} />}
     </div>

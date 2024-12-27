@@ -28,6 +28,8 @@ const Orders = () => {
   return (
     <Layout
       title="Requests"
+      addBtnTxt = "Add a request"
+      addBtnPath = "/request-detail"
       content={
         <div>
           <div className="mb-4">

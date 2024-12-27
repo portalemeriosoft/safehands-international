@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 import { userState } from "../store/userSlice";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 let navigation = [];
 
@@ -26,7 +26,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Layout({ content, title }) {
+export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
+  const navigate = useNavigate()
   const user = useSelector(userState);
   console.log(user);
   if (user && user.data && user.data.role === 1) {
@@ -115,7 +116,7 @@ export default function Layout({ content, title }) {
                         <img
                           className="h-12 "
                           src={process.env.PUBLIC_URL + "/images/logo.png"}
-                          alt="MIV Removals"
+                          alt="Safehands International"
                         />
                       </NavLink>
                     </div>
@@ -160,13 +161,13 @@ export default function Layout({ content, title }) {
                           {user.data.name}
                         </span>
                         <span className="leading-3 block text-xs text-right text-stone-300">
-                        {user.data.role && user.data.role === 1
-                        ? "Admin"
-                        : user.data.role && user.data.role === 2
-                        ? "Driver"
-                        : user.data.role && user.data.role === 3
-                        ? "Customer"
-                        : "Account type: Not Available"}  
+                          {user.data.role && user.data.role === 1
+                            ? "Admin"
+                            : user.data.role && user.data.role === 2
+                              ? "Driver"
+                              : user.data.role && user.data.role === 3
+                                ? "Customer"
+                                : "Account type: Not Available"}
                         </span>
                       </div>
                       <Menu as="div" className="relative ml-3">
@@ -183,11 +184,11 @@ export default function Layout({ content, title }) {
                             ) : (
                               <span className="profile-photo">
                                 {
-                                  (user.data.name.substring(0, 1)+
-                                  user.data.name.substring(
-                                    user.data.name.indexOf(" ")+1,
-                                    user.data.name.indexOf(" ") + 2
-                                  ))
+                                  (user.data.name.substring(0, 1) +
+                                    user.data.name.substring(
+                                      user.data.name.indexOf(" ") + 1,
+                                      user.data.name.indexOf(" ") + 2
+                                    ))
                                 }
                               </span>
                             )}
@@ -320,10 +321,15 @@ export default function Layout({ content, title }) {
         </Disclosure>
 
         <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex justify-between items-center">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
               {title}
             </h1>
+            {addBtnTxt && addBtnPath ? (
+              <button
+              className="rounded-full bg-violet-950 px-5 p-2.5  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              onClick={() => navigate(addBtnPath)}>{addBtnTxt}</button>
+            ) : null}
           </div>
         </header>
         <main>

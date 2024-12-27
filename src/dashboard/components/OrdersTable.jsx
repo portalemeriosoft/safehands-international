@@ -82,7 +82,7 @@ const OrdersTable = () => {
   const onRowClicked = (event)=>{
     const clickedRowData = event.data;
     console.log(clickedRowData)
-    navigate('/requestDetails', { state: {data: clickedRowData}} );
+    navigate('/request', { state: {data: clickedRowData}} );
   }
 
   return (

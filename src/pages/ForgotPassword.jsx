@@ -55,7 +55,7 @@ export default function Login() {
           <img
             className="mx-auto h-16 w-auto"
             src={process.env.PUBLIC_URL + "/images/logo.png"}
-            alt="MIV Removals"
+            alt="Safehands International"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Forgot your password

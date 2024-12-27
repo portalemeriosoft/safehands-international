@@ -34,7 +34,9 @@ import ProfileEdit from "./../pages/ProfileEdit";
 import UserDetail from "./../pages/UserDetail";
 // import Invoices from "./components/Invoices.jsx"
 import SpecificRequest from "./components/SpecificRequest.jsx"
-import BookingDetail from "./components/BookingDetail.jsx";
+import Booking from "./components/Booking.jsx";
+import RequestDetail from "../pages/RequestDetail.jsx";
+import BookingDetail from "../pages/BookingDetail.jsx";
 
 if ("geolocation" in navigator) {
   // Request the user's current location
@@ -100,12 +102,14 @@ const App = () => {
           <Route element={<LocationMap />} path="/user/:id/location" exact />
           <Route element={<LocationMapUpdate />} path="/user/:id/location/update" exact />
           <Route element={<Orders />} path="/requests" exact />
-          <Route element={<SpecificRequest />} path="/requestDetails" exact />
+          <Route element={<SpecificRequest />} path="/request" exact />
+          <Route element={<RequestDetail />} path="/request-detail" exact />
           <Route element={<DeclinedOrders />} path="/declined-orders" exact />
           <Route element={<Invoices />} path="/invoices" />
           <Route element={<InvoiceDetail />} path="/invoice" />
           <Route element={<Bookings />} path="/bookings" />
-          <Route element={<BookingDetail />} path="/booking" />
+          <Route element={<Booking />} path="/booking" />
+          <Route element={<BookingDetail />} path="/booking-detail" />
           <Route element={<Customers />} path="/users" />
           <Route element={<Order />} path="/order/:orderId" />
           <Route element={<Profile />} path="/profile" />

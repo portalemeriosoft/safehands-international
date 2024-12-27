@@ -29,6 +29,8 @@ const HomePage = () => {
   return (
     <Layout
       title="Bookings"
+      addBtnTxt = "Add a booking"
+      addBtnPath = "/booking-detail"
       content={
         <div>
           <div className="mb-4">

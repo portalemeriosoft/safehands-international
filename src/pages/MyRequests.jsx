@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import Layout from "./../dashboard/Layout";
-import CustomersTable from "./../dashboard/components/CustomersTable";
+import Layout from "../dashboard/Layout";
+import OrdersTable from "../dashboard/components/OrdersTable";
+import MobileOrdersTable from "../dashboard/components/MobileOrdersTable";
 import Breadcrumb from "../dashboard/components/Breadcrumb";
-import MobileCustomersTable from "../dashboard/components/MobileCustomersTable";
+import React, { useEffect, useState } from "react";
 
-const Customers = () => {
+const MyRequests = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -27,19 +27,19 @@ const Customers = () => {
 
   return (
     <Layout
-      title="Users"
-      addBtnTxt = "Add new user"
-      addBtnPath = "/user/signup"
+      title="My Requests"
+      addBtnTxt = "Request a Quote"
+      addBtnPath = "/Request-quote"
       content={
         <div>
           <div className="mb-4">
-            <Breadcrumb pages={[]} page="Users" />
+            <Breadcrumb pages={[]} page="My Requests" />
           </div>
-          {isMobile ? <MobileCustomersTable /> : <CustomersTable />}
+          {isMobile ? <MobileOrdersTable /> : <OrdersTable />}
         </div>
       }
     />
   );
 };
 
-export default Customers;
+export default MyRequests;

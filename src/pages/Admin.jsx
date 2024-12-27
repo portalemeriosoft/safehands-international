@@ -175,7 +175,7 @@ export default function Admin() {
               </button>
             </div>
           </form>
-          <Link
+          {/* <Link
             to="/login"
             className="text-sm text-end block mt-3 font-semibold text-indigo-600 hover:text-indigo-500"
           >
@@ -184,7 +184,7 @@ export default function Admin() {
                     className="inline-block h-6 w-6 pr-0"
                     aria-hidden="true"
                   />
-          </Link>
+          </Link> */}
         </div>
       </div>
       <Footer />

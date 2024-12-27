@@ -90,9 +90,9 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
       },
     ];
     navigation = [
-      { name: "Orders", href: "/orders", current: false },
-      { name: "Declined Orders", href: "/declined-orders", current: false },
-      { name: "Payments", href: "/payments", current: false },
+      { name: "My Requests", href: "/my-requests", current: false },
+      { name: "My Bookings", href: "/bookings", current: false },
+      { name: "Invoices", href: "/invoices", current: false },
     ];
   }
 
@@ -103,14 +103,14 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
           {({ open }) => (
             <>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="flex h-24 items-center justify-between">
+                <div className="flex h-20 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <NavLink
                         to={
                           user && user.data && user.data.role === 1
                             ? "/"
-                            : "/orders"
+                            : "/my-requests"
                         }
                       >
                         <img

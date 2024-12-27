@@ -157,7 +157,7 @@ const RequestDetailBox = () => {
               <button
                 type="text"
                 className="ml-2 mt-2 rounded-full bg-violet-950 px-10 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                  Save
+                  Submit
               </button>
             </div>
           </Form>

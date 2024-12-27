@@ -8,7 +8,7 @@
         "to": "Atlantis The Palm Hotel, Dubai",
         "typeOfVehicle": "SUV",
         "numberOfPassengers": 4,
-        "numberOfSuitcases": 3
+        "status": "Pending"
     },
     {
         "id": 1,
@@ -19,7 +19,7 @@
         "to": "The Ritz London",
         "typeOfVehicle": "Luxury Sedan",
         "numberOfPassengers": 2,
-        "numberOfSuitcases": 2
+        "status": "Approved"
     },
     {
         "id": 2,
@@ -30,7 +30,7 @@
         "to": "Times Square, New York",
         "typeOfVehicle": "Van",
         "numberOfPassengers": 6,
-        "numberOfSuitcases": 8
+        "status": "Accepted"
     },
     {
         "id": 3,
@@ -41,7 +41,7 @@
         "to": "Sydney Opera House",
         "typeOfVehicle": "SUV",
         "numberOfPassengers": 3,
-        "numberOfSuitcases": 4
+        "status": "Accepted"
     },
     {
         "id": 4,
@@ -52,7 +52,7 @@
         "to": "Eiffel Tower, Paris",
         "typeOfVehicle": "Minibus",
         "numberOfPassengers": 8,
-        "numberOfSuitcases": 10
+        "status": "Accepted"
     },
     {
         "id": 5,
@@ -63,7 +63,7 @@
         "to": "CN Tower, Toronto",
         "typeOfVehicle": "Compact Car",
         "numberOfPassengers": 2,
-        "numberOfSuitcases": 1
+        "status": "Accepted"
     },
     {
         "id": 6,
@@ -74,7 +74,7 @@
         "to": "Marina Bay Sands, Singapore",
         "typeOfVehicle": "Luxury SUV",
         "numberOfPassengers": 4,
-        "numberOfSuitcases": 3
+        "status": "Pending"
     },
     {
         "id": 7,
@@ -85,7 +85,7 @@
         "to": "The Pearl, Doha",
         "typeOfVehicle": "Executive Sedan",
         "numberOfPassengers": 3,
-        "numberOfSuitcases": 5
+        "status": "Accepted"
     },
     {
         "id": 8,
@@ -96,7 +96,7 @@
         "to": "Hollywood Boulevard",
         "typeOfVehicle": "Electric Vehicle",
         "numberOfPassengers": 2,
-        "numberOfSuitcases": 2
+        "status": "Approved"
     },
     {
         "id": 9,
@@ -107,6 +107,6 @@
         "to": "Shinjuku, Tokyo",
         "typeOfVehicle": "Premium Van",
         "numberOfPassengers": 5,
-        "numberOfSuitcases": 2
+        "status": "Approved"
     }
 ]

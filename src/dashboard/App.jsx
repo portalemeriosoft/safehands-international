@@ -103,7 +103,7 @@ const App = () => {
           <Route element={<LocationMapUpdate />} path="/user/:id/location/update" exact />
           <Route element={<Orders />} path="/requests" exact />
           <Route element={<SpecificRequest />} path="/request" exact />
-          <Route element={<RequestDetail />} path="/request-detail" exact />
+          <Route element={<RequestDetail />} path="/request-quote" exact />
           <Route element={<DeclinedOrders />} path="/declined-orders" exact />
           <Route element={<Invoices />} path="/invoices" />
           <Route element={<InvoiceDetail />} path="/invoice" />

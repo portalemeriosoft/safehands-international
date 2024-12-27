@@ -114,7 +114,7 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
                         }
                       >
                         <img
-                          className="h-12 "
+                          className="h-11 "
                           src={process.env.PUBLIC_URL + "/images/logo.png"}
                           alt="Safehands International"
                         />
@@ -327,7 +327,7 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
             </h1>
             {addBtnTxt && addBtnPath ? (
               <button
-              className="rounded-full bg-violet-950 px-5 p-2.5  text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-full bg-violet-950 px-3 py-1.5  text-xs font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               onClick={() => navigate(addBtnPath)}>{addBtnTxt}</button>
             ) : null}
           </div>

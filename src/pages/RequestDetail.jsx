@@ -7,10 +7,10 @@ export default function RequestDetail() {
   const pages = [];
 
   return (
-    <Layout title="Add Request" content={
+    <Layout title="Request a Quote" content={
       <> 
          <div className="mb-4">
-         <Breadcrumb pages={pages} page="Add Request"/>
+         <Breadcrumb pages={pages} page="Request Quote"/>
          </div>
          <RequestDetailBox />
       </>

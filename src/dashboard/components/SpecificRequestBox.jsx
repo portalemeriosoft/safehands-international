@@ -14,6 +14,7 @@ const SpecificRequestBox = (rowData) => {
   const {dateOfTransfer, pickUpTime, flightNumber, from, to, typeOfVehicle , numberOfPassengers , numberOfSuitcase} = rowData.rowData
 
   return (
+    
     <>
       <div className="booking-details border-5">
         <div className="booking-item">
@@ -81,3 +82,4 @@ const SpecificRequestBox = (rowData) => {
 };
 
 export default SpecificRequestBox;
+

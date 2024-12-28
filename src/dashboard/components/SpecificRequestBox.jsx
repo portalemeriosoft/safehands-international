@@ -17,6 +17,18 @@ const SpecificRequestBox = (rowData) => {
     
     <>
       <div className="booking-details border-5">
+        
+        {(user && user.data && user.data.role !== 1) && (
+
+          <div className="booking-item">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>Quote Amount</div>
+              <div>AED 250</div>
+            </div>
+          </div>
+
+        )}
+
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Date Of Transfer</div>
@@ -69,11 +81,19 @@ const SpecificRequestBox = (rowData) => {
       </div>
 
       <div className="flex justify-end pt-2">
+      {(user && user.data && user.data.role === 1) ? (
         <Link
-          className="rounded-full bg-violet-950 px-3 py-1.5  text-xs font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
+          className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
           >
           Submit Quote
         </Link>
+      ) : (
+        <Link
+          className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
+          >
+          Accept Quotation
+        </Link>
+      )}
       </div>
 
 

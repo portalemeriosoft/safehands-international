@@ -37,29 +37,30 @@ import UserDetail from "./../pages/UserDetail";
 import SpecificRequest from "./components/SpecificRequest.jsx"
 import Booking from "./components/Booking.jsx";
 import RequestDetail from "../pages/RequestDetail.jsx";
+import NewBookingDetail from "../pages/NewBookingDetail.jsx";
 import BookingDetail from "../pages/BookingDetail.jsx";
 import CO2EmissionsCalculator from "../pages/CO2EmissionsCalculator.jsx";
 
-if ("geolocation" in navigator) {
-  // Request the user's current location
-  navigator.geolocation.getCurrentPosition(
-    function(position) {
-      // Success callback
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+// if ("geolocation" in navigator) {
+//   // Request the user's current location
+//   navigator.geolocation.getCurrentPosition(
+//     function(position) {
+//       // Success callback
+//       const latitude = position.coords.latitude;
+//       const longitude = position.coords.longitude;
       
-      localStorage.setItem('latitude', latitude)
-      localStorage.setItem('longitude', longitude)
-    },
-    function(error) {
-      // Error callback
-      console.error("Error getting location:", error.message);
-    }
-  );
-} else {
-  // Geolocation is not supported
-  console.error("Geolocation is not supported by this browser.");
-}
+//       localStorage.setItem('latitude', latitude)
+//       localStorage.setItem('longitude', longitude)
+//     },
+//     function(error) {
+//       // Error callback
+//       console.error("Error getting location:", error.message);
+//     }
+//   );
+// } else {
+//   // Geolocation is not supported
+//   console.error("Geolocation is not supported by this browser.");
+// }
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -107,6 +108,7 @@ const App = () => {
           <Route element={<MyRequests />} path="/my-requests" exact />
           <Route element={<SpecificRequest />} path="/request" exact />
           <Route element={<RequestDetail />} path="/request-quote" exact />
+          <Route element={<NewBookingDetail />} path="/booking-request" exact />
           <Route element={<DeclinedOrders />} path="/declined-orders" exact />
           <Route element={<Invoices />} path="/invoices" />
           <Route element={<InvoiceDetail />} path="/invoice" />

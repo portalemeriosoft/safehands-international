@@ -29,7 +29,7 @@ const MyRequests = () => {
     <Layout
       title="My Requests"
       addBtnTxt = "Request a Quote"
-      addBtnPath = "/Request-quote"
+      addBtnPath = "/request-quote"
       content={
         <div>
           <div className="mb-4">

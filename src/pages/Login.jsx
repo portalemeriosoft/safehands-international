@@ -47,9 +47,9 @@ export default function Login() {
         dispatch(setUser(data.data.user));
         dispatch(setIsAuth());
         setLoading(false);
-        
+
         navigate("/my-requests");
-        
+
       })
       .catch(function (error) {
         if (error.response) {
@@ -108,13 +108,16 @@ export default function Login() {
                 >
                   Password
                 </label>
-                <div className="text-sm">
-                  <NavLink
-                    to="/password/reset"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
-                    Forgot password?
-                  </NavLink>
+                <div>
+
+                  <div className="text-sm">
+                    <NavLink
+                      to="/password/reset"
+                      className="font-semibold text-indigo-600 hover:text-indigo-500"
+                    >
+                      Forgot password?
+                    </NavLink>
+                  </div>
                 </div>
               </div>
               <div className="mt-2">
@@ -132,6 +135,14 @@ export default function Login() {
                 />
               </div>
             </div>
+            {/* <div className="text-sm">
+              <NavLink
+                to="/password/reset"
+                className="font-semibold text-indigo-600 hover:text-indigo-500"
+              >
+                Forgot password?
+              </NavLink>
+            </div> */}
             {error && error !== "" && (
               <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                 <span className="font-medium">

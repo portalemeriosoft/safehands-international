@@ -10,11 +10,11 @@ export default function Booking() {
   const pages = [];
 
   return (
-    <Layout title="Booking"
+    <Layout title="Booking Detail"
      content={
       <> 
          <div className="mb-4">
-         <Breadcrumb pages={pages} page="Booking"/>
+         <Breadcrumb pages={pages} page="Booking Detail"/>
          </div>
          <BookkingDetailBox rowData ={data} />
       </>

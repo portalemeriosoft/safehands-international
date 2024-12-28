@@ -32,6 +32,7 @@ const InvoicesTable = () => {
     invoiceRow = invoices.map((booking) => ({
       claimReferenceNumber: booking.claimReferenceNumber,
       insurance: booking.insuranceOrClientReference,
+      Amount: "AED 250",
       passengerName: booking.leadPassenger.name,
       passengerEmail: booking.leadPassenger.email,
       passengerContactNumber: booking.leadPassenger.contactNumber,
@@ -48,21 +49,22 @@ const InvoicesTable = () => {
     type: "fitGridWidth",
     defaultMinWidth: 120,
     columnLimits: [
-      {
-        colId: "service",
-        minWidth: 290,
-      },
+      // {
+      //   colId: "amount",
+      //   minWidth: 140,
+      // },
     ],
   };
 
   const [colDefs, setColDefs] = useState([
     { field: "id", hide: true },
-    { field: "claimReferenceNumber" },
+    { field: "claimReferenceNumber" , hide: true},
     { field: "insurance" },
+    { field: "amount" },
     { field: "passengerName" },
-    { field: "passengerEmail" },
+    { field: "passengerEmail" , hide: true},
     { field: "passengerContactNumber" },
-    { field: "typeOfTransfer" },
+    { field: "typeOfTransfer" , hide: true},
     { field: "specialRequirements" },
     { field: "bookerName" },
     { field: "bookerContact" },

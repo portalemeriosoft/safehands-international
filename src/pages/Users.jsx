@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Layout from "./../dashboard/Layout";
-import CustomersTable from "./../dashboard/components/CustomersTable";
+import Layout from "../dashboard/Layout";
+import CustomersTable from "../dashboard/components/CustomersTable";
 import Breadcrumb from "../dashboard/components/Breadcrumb";
 import MobileCustomersTable from "../dashboard/components/MobileCustomersTable";
 
-const Customers = () => {
+const Users = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -42,4 +42,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default Users;

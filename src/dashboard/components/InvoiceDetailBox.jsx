@@ -72,13 +72,13 @@ const InvoiceDetailBox = (rowData) => {
         </div>
       </div>
 
-      {/* <div className="flex justify-end pt-2">
+      <div className="flex justify-end pt-2">
         <Link
           className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
           >
-          Edit Request
+          Print Invoice
         </Link>
-      </div> */}
+      </div>
 
 
     </>

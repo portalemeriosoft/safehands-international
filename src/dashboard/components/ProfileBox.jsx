@@ -21,6 +21,7 @@ const ProfileBox = () => {
             <div>
               {user.data.photo ? (
                 <img
+                  alt="profile"
                   src={user.data.photo}
                   className="border-white border-2 md:w-40 md:h-40 w-full h-full rounded-full shadow"
                 />
@@ -98,6 +99,26 @@ const ProfileBox = () => {
             </div>
           </div>
         </div>
+
+        <div className="booking-item">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>Country</div>
+            <div>
+              United Arab Emirates
+            </div>
+          </div>
+        </div>
+
+        {(user && user.data && user.data.role === 1) && (
+          <div className="booking-item">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>Role</div>
+              <div>
+                Admin
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* {user.data.role !== 1 && (
           <div className="booking-item">

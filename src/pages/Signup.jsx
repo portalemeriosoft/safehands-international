@@ -144,6 +144,55 @@ export default function Admin() {
                   </div>
                 </div>
 
+
+                <div className="md:flex md:space-x-4">
+                  <div className="country w-full md:mt-0 mt-3">
+                    <label
+                      htmlFor="country"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Country
+                    </label>
+                    <Field
+                      id="country"
+                      name="country"
+                      type="text"
+                      onChange={(e) => {
+                        handleChange(e);
+                        setError("");
+                      }}
+                      autoComplete="country"
+                      className="block w-full rounded-md border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6"
+                    />
+                    {errors.name && touched.name && (
+                      <ErrorLabel errMsg={errors.name} />
+                    )}
+                  </div>
+
+                  <div className="phone w-full md:mt-0 mt-3">
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Phone number
+                    </label>
+                    <Field
+                      id="phone"
+                      name="phone"
+                      type="phone"
+                      onChange={(e) => {
+                        handleChange(e);
+                        setError("");
+                      }}
+                      autoComplete="phone"
+                      className="block w-full rounded-md border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6"
+                    />
+                    {errors.email && touched.email && (
+                      <ErrorLabel errMsg={errors.email} />
+                    )}
+                  </div>
+                </div>
+
                 <div className="md:flex md:space-x-4">
                   <div className="pass w-full md:mt-0 mt-3">
                     <div className="flex items-center justify-between">
@@ -234,7 +283,7 @@ export default function Admin() {
                   <div className="w-full md:mt-0 mt-3">
                     <div className="flex items-center justify-between">
                       <label className="block text-sm font-medium leading-6 text-gray-900">
-                        Select profile
+                        Select role
                       </label>
                     </div>
                     <Field

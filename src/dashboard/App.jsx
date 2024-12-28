@@ -11,7 +11,7 @@ import MyBookings from "../pages/MyBookings.jsx";
 import Requests from "../pages/Requests.jsx";
 import MyRequests from "../pages/MyRequests";
 import DeclinedOrders from "../pages/DeclinedOrders";
-import Customers from "../pages/Customers";
+import Users from "../pages/Users.jsx";
 import Login from "../pages/Login";
 import ResetPassword from "../pages/ResetPassword";
 import ForgotPassword from "../pages/ForgotPassword";
@@ -117,7 +117,7 @@ const App = () => {
           <Route element={<MyBookings />} path="/my-bookings" />
           <Route element={<Booking />} path="/booking" />
           <Route element={<BookingDetail />} path="/booking-detail" />
-          <Route element={<Customers />} path="/users" />
+          <Route element={<Users />} path="/users" />
           <Route element={<Order />} path="/order/:orderId" />
           <Route element={<Profile />} path="/profile" />
           <Route element={<UserDetail />} path="/user/:id" />

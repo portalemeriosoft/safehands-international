@@ -45,16 +45,16 @@ const CustomersTable = () => {
         minWidth: 250,
       },
       {
+        colId: "country",
+        minWidth: 250,
+      },
+      {
         colId: "role",
         minWidth: 150,
       },
       {
-        colId: "orders",
-        minWidth: 80,
-      },
-      {
         colId: "status",
-        minWidth: 350,
+        minWidth: 150,
       },
     ],
   };
@@ -65,6 +65,7 @@ const CustomersTable = () => {
       name: customer.name,
       email: customer.email,
       phone: customer.phone,
+      country: 'United Arab Emirates',
       role: customer.user_role,
       status: 'Active',
     }));
@@ -91,6 +92,7 @@ const CustomersTable = () => {
     { field: "id", hide: true },
     { field: "name", cellRenderer: userLinkRenderer },
     { field: "email" },
+    { field: "country" },
     { field: "phone", cellRenderer: userPhoneRenderer },
     { field: "role" },
     { field: "status" },

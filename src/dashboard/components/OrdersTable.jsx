@@ -50,9 +50,7 @@ const OrdersTable = () => {
       flightNumber: request.flightNumber,
       from: request.from,
       to: request.to,
-      typeOfVehicle: request.typeOfVehicle,
-      numberOfPassengers: request.numberOfPassengers,
-      numberOfSuitcase: request.numberOfSuitcases,
+      status: request.status,
     }));
   }
 
@@ -74,9 +72,7 @@ const OrdersTable = () => {
     { field: "flightNumber" },
     { field: "from" },
     { field: "to" },
-    { field: "typeOfVehicle" },
-    { field: "numberOfPassengers" },
-    { field: "numberOfSuitcase" },
+    { field: "status" },
   ]);
 
   const onRowClicked = (event)=>{

@@ -7,14 +7,15 @@ import Home from "../pages/Home";
 import Invoices from "../pages/Invoices.jsx";
 import InvoiceDetail from "./components/InvoiceDetail.jsx";
 import Bookings from "../pages/Bookings.jsx";
-import Orders from "../pages/Orders";
+import Requests from "../pages/Requests.jsx";
+import MyRequests from "../pages/MyRequests";
 import DeclinedOrders from "../pages/DeclinedOrders";
 import Customers from "../pages/Customers";
 import Login from "../pages/Login";
 import ResetPassword from "../pages/ResetPassword";
 import ForgotPassword from "../pages/ForgotPassword";
 import Admin from "../pages/Admin";
-import Signup from "../pages/Signup";
+import UserRegister from "../pages/UserRegister";
 import Page from "../pages/Page";
 import SignupDriver from "../pages/SignupDriver";
 import LoginDriver from "../pages/LoginDriver";
@@ -101,7 +102,8 @@ const App = () => {
           <Route element={<Map />} path="/map" exact />
           <Route element={<LocationMap />} path="/user/:id/location" exact />
           <Route element={<LocationMapUpdate />} path="/user/:id/location/update" exact />
-          <Route element={<Orders />} path="/requests" exact />
+          <Route element={<Requests />} path="/requests" exact />
+          <Route element={<MyRequests />} path="/my-requests" exact />
           <Route element={<SpecificRequest />} path="/request" exact />
           <Route element={<RequestDetail />} path="/request-quote" exact />
           <Route element={<DeclinedOrders />} path="/declined-orders" exact />
@@ -117,14 +119,15 @@ const App = () => {
           <Route element={<ProfileEdit />} path="/profile/edit/:id/:type" />
           <Route element={<Terms />} path="/terms" />
           <Route element={<Logout />} path="/logout" />
+          <Route element={<UserRegister />} path="/user/signup" />
           <Route element={<Error />} path="*" /></Route>
         <Route element={<ForgotPassword />} path="/password/reset" />
         <Route element={<ResetPassword />} path="/password/update/:token" />
         <Route element={<Admin />} path="/admin" />
-        <Route element={<Signup />} path="/signup" />
+        
         <Route element={<Login />} path="/login" />
         <Route element={<Page />} path="/temp" />
-        <Route element={<SignupDriver />} path="/driver/signup" />
+        {/* <Route element={<SignupDriver />} path="/driver/signup" /> */}
         <Route element={<LoginDriver />} path="/driver/login" />
         <Route element={<Invoices />} path="/invoices" />
       </Routes>

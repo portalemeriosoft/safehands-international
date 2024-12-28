@@ -1,5 +1,6 @@
 import ProfileBoxEditPic from "../dashboard/components/ProfileBoxEditPic";
-import ProfileBoxEdit from "../dashboard/components/ProfileBoxEdit";
+// import ProfileBoxEdit from "../dashboard/components/ProfileBoxEdit";
+import Signup from "../pages/Signup";
 import Layout from "../dashboard/Layout";
 import Breadcrumb from "../dashboard/components/Breadcrumb";
 import { useParams } from "react-router-dom";
@@ -21,7 +22,8 @@ export default function Profile() {
             <Breadcrumb pages={pages} page={"Edit Profile " + title} />
           </div>
 
-          {type === "photo" ? <ProfileBoxEditPic /> : <ProfileBoxEdit />}
+          {type === "photo" ? <ProfileBoxEditPic /> : <Signup />}
+          {/* {type === "photo" ? <ProfileBoxEditPic /> : <ProfileBoxEdit />} */}
         </>
       }
     />

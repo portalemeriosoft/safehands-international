@@ -4,7 +4,7 @@ import MobileOrdersTable from "../dashboard/components/MobileOrdersTable";
 import Breadcrumb from "../dashboard/components/Breadcrumb";
 import React, { useEffect, useState } from "react";
 
-const Orders = () => {
+const Requests = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -28,8 +28,6 @@ const Orders = () => {
   return (
     <Layout
       title="Requests"
-      addBtnTxt = "Request a Quote"
-      addBtnPath = "/Request-quote"
       content={
         <div>
           <div className="mb-4">
@@ -42,4 +40,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default Requests;

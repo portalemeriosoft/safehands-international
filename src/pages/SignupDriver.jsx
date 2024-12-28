@@ -95,7 +95,7 @@ export default function Admin() {
             alt="Safehands International"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Driver Signup
+            Admin Signup
           </h2>
         </div>
 
@@ -278,7 +278,7 @@ export default function Admin() {
           </Formik>
 
           <div className="flex justify-end">
-            <Link
+            {/* <Link
               to="/driver/login"
               className="text-sm inline-block mt-3 font-semibold text-indigo-600 hover:text-indigo-500"
             >
@@ -287,7 +287,7 @@ export default function Admin() {
                 className="inline-block h-6 w-6 pr-0"
                 aria-hidden="true"
               />
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

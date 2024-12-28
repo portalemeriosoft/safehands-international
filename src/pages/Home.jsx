@@ -25,7 +25,7 @@ const Home = () => {
   const navigate = useNavigate();
   
   if(user.data.role !== 1){
-    navigate("/orders");
+    navigate("/my-requests");
   }
 
   useEffect(() => {

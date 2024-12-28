@@ -84,22 +84,10 @@ export default function Admin() {
       });
   };
 
-  return user.isAuth ? (
-    <Navigate to="/" state={{ from: location }} replace />
-  ) : (
+  return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-16 w-auto"
-            src={process.env.PUBLIC_URL + "/images/logo.png"}
-            alt="Safehands International"
-          />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Create your account
-          </h2>
-        </div>
-
+      <div className="flex min-h-full flex-1 flex-col justify-start px-6 py-6 lg:px-8">
+        
         <div className="mt-10 sm:mx-auto md:w-6/12 md:max-w-6/12">
           <Formik
             initialValues={initialValues}
@@ -251,7 +239,7 @@ export default function Admin() {
                     </div>
                     <Field
                       type="radio"
-                      id="role_driver"
+                      id="role_admin"
                       name="role"
                       value="2"
                       className="hidden peer"
@@ -261,11 +249,11 @@ export default function Admin() {
                       }}
                     />
                     <label
-                      htmlFor="role_driver"
+                      htmlFor="role_admin"
                       className="inline-flex items-center justify-between w-full p-2.5 text-gray-500 bg-white ring-1 ring-inset ring-gray-300 rounded-md cursor-pointer dark:hover:text-gray-300 dark:ring-gray-700 dark:peer-checked:text-blue-500 peer-checked:ring-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 "
                     >
                       <div className="block sm:text-sm sm:leading-6">
-                        <div>Driver</div>
+                        <div>Admin</div>
                       </div>
                       <svg
                         className="w-4 h-4 ms-3 rtl:rotate-180"
@@ -367,7 +355,7 @@ export default function Admin() {
             )}
           </Formik>
 
-          <div className="flex justify-end">
+          {/* <div className="flex justify-end">
             <Link
               to="/login"
               className="text-sm inline-block mt-3 font-semibold text-indigo-600 hover:text-indigo-500"
@@ -378,10 +366,10 @@ export default function Admin() {
                 aria-hidden="true"
               />
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

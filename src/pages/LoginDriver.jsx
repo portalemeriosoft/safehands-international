@@ -176,7 +176,7 @@ export default function Admin() {
             </div>
           </form>
           <Link
-            to="/driver/signup"
+            to="/user/signup"
             className="text-sm text-end block mt-3 font-semibold text-indigo-600 hover:text-indigo-500"
           >
             Create your driver profile here

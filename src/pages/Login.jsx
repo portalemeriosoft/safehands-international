@@ -48,7 +48,7 @@ export default function Login() {
         dispatch(setIsAuth());
         setLoading(false);
         
-        navigate("/orders");
+        navigate("/my-requests");
         
       })
       .catch(function (error) {
@@ -60,7 +60,7 @@ export default function Login() {
   };
 
   return user.isAuth ? (
-    <Navigate to="/orders" state={{ from: location }} replace />
+    <Navigate to="/my-requests" state={{ from: location }} replace />
   ) : (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -177,7 +177,7 @@ export default function Login() {
               </button>
             </div>
           </form>
-          <Link
+          {/* <Link
             to="/signup"
             className="text-sm text-end block mt-3 font-semibold text-indigo-600 hover:text-indigo-500"
           >
@@ -186,7 +186,7 @@ export default function Login() {
                     className="inline-block h-6 w-6 pr-0"
                     aria-hidden="true"
                   />
-          </Link>
+          </Link> */}
         </div>
       </div>
       <Footer />

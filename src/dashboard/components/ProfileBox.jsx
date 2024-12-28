@@ -99,7 +99,7 @@ const ProfileBox = () => {
           </div>
         </div>
 
-        {user.data.role !== 1 && (
+        {/* {user.data.role !== 1 && (
           <div className="booking-item">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>Contact priority</div>
@@ -112,7 +112,7 @@ const ProfileBox = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
         
 
@@ -153,7 +153,7 @@ const ProfileBox = () => {
           </div>
         )}
 
-        {user.data.role !== 1 && (
+        {/* {user.data.role !== 1 && (
           <div className="booking-item">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>Billing address</div>
@@ -164,7 +164,7 @@ const ProfileBox = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
 
         {/* <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -94,6 +94,7 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
       { name: "Requests", href: "/requests", current: false },
       { name: "Bookings", href: "/bookings", current: false },
       { name: "Invoices", href: "/invoices", current: false },
+      { name: "CO₂ Emission Report", href: "/co2-emission-calculator", current: false },
     ];
   }
 

@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import Invoices from "../pages/Invoices.jsx";
 import InvoiceDetail from "./components/InvoiceDetail.jsx";
 import Bookings from "../pages/Bookings.jsx";
+import MyBookings from "../pages/MyBookings.jsx";
 import Requests from "../pages/Requests.jsx";
 import MyRequests from "../pages/MyRequests";
 import DeclinedOrders from "../pages/DeclinedOrders";
@@ -113,6 +114,7 @@ const App = () => {
           <Route element={<Invoices />} path="/invoices" />
           <Route element={<InvoiceDetail />} path="/invoice" />
           <Route element={<Bookings />} path="/bookings" />
+          <Route element={<MyBookings />} path="/my-bookings" />
           <Route element={<Booking />} path="/booking" />
           <Route element={<BookingDetail />} path="/booking-detail" />
           <Route element={<Customers />} path="/users" />

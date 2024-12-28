@@ -120,7 +120,7 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
     ];
     navigation = [
       { name: "My Requests", href: "/my-requests", current: false },
-      { name: "My Bookings", href: "/bookings", current: false },
+      { name: "My Bookings", href: "/my-bookings", current: false },
       { name: "Invoices", href: "/invoices", current: false },
     ];
   }

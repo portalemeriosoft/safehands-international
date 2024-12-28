@@ -1,11 +1,11 @@
-// Bookings.js
+// HomePage.js
 import React, { useEffect, useState } from "react";
 import Layout from "../dashboard/Layout";
 import PaymentsTable from "../dashboard/components/PaymentsTable";
 import Breadcrumb from "../dashboard/components/Breadcrumb";
 import MobilePaymentsTable from "../dashboard/components/MobilePaymentsTable";
 
-const Bookings = () => {
+const MyBookings = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -28,13 +28,13 @@ const Bookings = () => {
 
   return (
     <Layout
-      title="Bookings"
-      // addBtnTxt = "Add a booking"
-      // addBtnPath = "/booking-detail"
+      title="My Bookings"
+      addBtnTxt = "Add new booking"
+      addBtnPath = "/booking-detail"
       content={
         <div>
           <div className="mb-4">
-            <Breadcrumb pages={[]} page="Bookings" />
+            <Breadcrumb pages={[]} page="My Bookings" />
           </div>
           {isMobile ? <MobilePaymentsTable /> : <PaymentsTable />}
         </div>
@@ -43,4 +43,4 @@ const Bookings = () => {
   );
 };
 
-export default Bookings;
+export default MyBookings;

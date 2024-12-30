@@ -69,7 +69,7 @@ export default function Admin() {
             alt="Safehands International"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Admin Dashboard
+            Admin Login
           </h2>
         </div>
 

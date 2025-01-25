@@ -11,9 +11,6 @@ import FormControl from '@mui/material/FormControl';
 const BookingDetailBox = () => {
   return (
     <>
-      {/* <div>
-          
-        </div> */}
       <Formik>
         <Form>
           <div className="max-w-xxl p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -21,7 +18,6 @@ const BookingDetailBox = () => {
               <div className="relative z-0 w-full mb-5 group">
                 <Field
                   type="text"
-
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=""
                 />
@@ -48,17 +44,18 @@ const BookingDetailBox = () => {
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-5 group">
                 <Field
-                  type="number"
+                  type="text"
 
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=""
+                  placeholder=" "
                 />
                 <label
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
-                  Passenger Age
+                  Passenger Name
                 </label>
               </div>
+
               <div className="grid md:grid-cols-1 md:gap-6">
                 <div className="relative z-0 w-full mb-5 group">
                   <Field
@@ -76,6 +73,37 @@ const BookingDetailBox = () => {
             </div>
 
             <div className="grid md:grid-cols-2 md:gap-6">
+              <div className="relative z-0 w-full mb-5 group">
+                <Field
+                  type="number"
+
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=""
+                />
+                <label
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Passenger Age
+                </label>
+              </div>
+
+              <div className="relative z-0 w-full mb-5 group">
+                <Field
+                  type="text"
+
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
+                <label
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >
+                  Number Of Passengers
+                </label>
+              </div>
+
+            </div>
+            <div className="grid md:grid-cols-2 md:gap-6">
+
               <div className="grid md:grid-cols-2 md:gap-6">
 
                 <div className="grid md:grid-cols-1 md:gap-6">
@@ -99,7 +127,6 @@ const BookingDetailBox = () => {
                   <div className="relative z-0 w-full mb-5 group">
                     <Field
                       as="select"
-                      // name="age"
                       className="block w-full appearance-none bg-transparent border-b-2 border-gray-300 py-2.5 ps-0 pe-4 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-0 focus:border-blue-600"
                       defaultValue=""
                     >
@@ -134,39 +161,16 @@ const BookingDetailBox = () => {
                   </div>
                 </div>
               </div>
-              <div className="relative z-0 w-full mb-5 group">
-                <Field
-                  type="text"
-
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                />
-                <label
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Number Of Passengers
-                </label>
-              </div>
 
             </div>
 
 
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-5 group">
-                {/* <Field
-                  type="text"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                />
-                <label
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Type Of Transfer
-                </label> */}
+
 
                 <Field
                   as="select"
-                  // name="age"
                   className="block w-full appearance-none bg-transparent border-b-2 border-gray-300 py-2.5 ps-0 pe-4 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-0 focus:border-blue-600"
                   defaultValue=""
                 >
@@ -184,7 +188,7 @@ const BookingDetailBox = () => {
                 >
                   Type of transfer
                 </label>
-                <div className="absolute inset-y-0 right-0 flex items-center  pointer-events-none">
+                {/* <div className="absolute inset-y-0 right-0 flex items-center  pointer-events-none">
                   <svg
                     className="w-4 h-4 text-gray-400"
                     fill="none"
@@ -199,11 +203,11 @@ const BookingDetailBox = () => {
                       d="M19 9l-7 7-7-7"
                     ></path>
                   </svg>
-                </div>
+                </div> */}
               </div>
               <div className="relative z-0 w-full mb-5 group">
-                <Field
-                  type="text"
+                {/* <Field
+                  type="checkbox"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                 />
@@ -211,37 +215,254 @@ const BookingDetailBox = () => {
                   className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Special Requirements
-                </label>
+                </label> */}
+                <div className="space-y-6">
+                  <div className="flex gap-3">
+                    <div className="flex h-5 shrink-0 items-center">
+                      <div className="group grid size-4 grid-cols-1">
+                        <input
+                          id="filter-mobile-color-0"
+                          name="color[]"
+                          value="white"
+                          type="checkbox"
+                          className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
+                        />
+                        <svg
+                          className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                        >
+                          <path
+                            className="opacity-0 group-has-checked:opacity-100"
+                            d="M3 8L6 11L11 3.5"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            className="opacity-0 group-has-indeterminate:opacity-100"
+                            d="M3 7H11"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <label
+                      htmlFor="filter-mobile-color-0"
+                      className="min-w-0 flex-1 text-gray-500 text-sm"
+                    >
+                      Do you have any special requirements?
+                    </label>
+                  </div>
+                </div>
+                <div className="space-y-6 mt-3">
+                  <div className="flex items-center gap-6">
+                    {/* First Checkbox */}
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-5 shrink-0 items-center">
+                        <div className="group grid size-4 grid-cols-1">
+                          <input
+                            id="filter-mobile-color-0"
+                            name="color[]"
+                            value="white"
+                            type="checkbox"
+                            className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
+                          />
+                          <svg
+                            className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25"
+                            viewBox="0 0 14 14"
+                            fill="none"
+                          >
+                            <path
+                              className="opacity-0 group-has-checked:opacity-100"
+                              d="M3 8L6 11L11 3.5"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              className="opacity-0 group-has-indeterminate:opacity-100"
+                              d="M3 7H11"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      <label htmlFor="filter-mobile-color-0" className="text-gray-500 text-sm">
+                        Specialist luggage
+                      </label>
+                    </div>
+
+                    {/* Second Checkbox */}
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-5 shrink-0 items-center">
+                        <div className="group grid size-4 grid-cols-1">
+                          <input
+                            id="filter-mobile-color-1"
+                            name="color[]"
+                            value="medical"
+                            type="checkbox"
+                            className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
+                          />
+                          <svg
+                            className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25"
+                            viewBox="0 0 14 14"
+                            fill="none"
+                          >
+                            <path
+                              className="opacity-0 group-has-checked:opacity-100"
+                              d="M3 8L6 11L11 3.5"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              className="opacity-0 group-has-indeterminate:opacity-100"
+                              d="M3 7H11"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      <label htmlFor="filter-mobile-color-1" className="text-gray-500 text-sm">
+                        Medical requirements
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <fieldset>
+                  <div className="mt-3 flex items-center gap-x-6">
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="push-everything"
+                        name="push-notifications"
+                        type="radio"
+                        defaultChecked
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="push-everything" className="block text-sm  text-gray-500">
+                        Skis
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="push-email"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="push-email" className="block text-sm  text-gray-500">
+                        Wheel chair
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="push-nothing"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="push-nothing" className="block text-sm  text-gray-500">
+                        Large cases
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="push-other"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="push-other" className="block text-sm  text-gray-500">
+                        Other
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="col-span-full mt-3">
+                  <label for="about" class="block text-sm/6  text-gray-500">Other specialist luggage requirements</label>
+                  <div class="mt-2">
+                    <textarea
+                      name="about"
+                      id="about"
+                      rows="3"
+                      class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                    /></div>
+                </div>
+                <fieldset>
+                  <div className="mt-3 flex items-center gap-x-6">
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="push-broken-leg"
+                        name="push-notifications"
+                        type="radio"
+                        defaultChecked
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="push-broken-leg" className="block text-sm  text-gray-500">
+                        Broken leg
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="push-broken-hand"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="push-broken-hand" className="block text-sm  text-gray-500">
+                        Broken hand
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="push-mobility"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="push-mobility" className="block text-sm  text-gray-500">
+                        mobility issue
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="push-m-other"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="push-m-other" className="block text-sm  text-gray-500">
+                        Other
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="col-span-full mt-3">
+                  <label for="about" class="block text-sm/6  text-gray-500">Other medical requirements</label>
+                  <div class="mt-2">
+                    <textarea
+                      name="about"
+                      id="about"
+                      rows="3"
+                      class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                    /></div>
+                </div>
+
+
+
+
+
               </div>
             </div>
-            <div className="grid md:grid-cols-2 md:gap-6">
-              <div className="relative z-0 w-full mb-5 group">
-                <Field
-                  type="text"
 
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                />
-                <label
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Booker Name
-                </label>
-              </div>
-              <div className="relative z-0 w-full mb-5 group">
-                <Field
-                  type="text"
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                />
-                <label
-
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Booker Contact
-                </label>
-              </div>
-            </div>
 
             <hr className="mt-4 mb-8" />
             <div className="grid md:grid-cols-2 md:gap-6">
@@ -310,17 +531,42 @@ const BookingDetailBox = () => {
                 </div>
               </div>
               <div className="grid md:grid-cols-1 md:gap-6">
+
                 <div className="relative z-0 w-full mb-5 group">
+
+
                   <Field
-                    type="tel"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=""
-                  />
+                    as="select"
+                    className="block w-full appearance-none bg-transparent border-b-2 border-gray-300 py-2.5 ps-0 pe-4 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-0 focus:border-blue-600"
+                    defaultValue=""
+                  >
+                    <option value="10">saloon - Sedan</option>
+                    <option value="20">estate - Station Wagon</option>
+                    <option value="30">8 Seater -- Large Minivan</option>
+                    <option value="30">Executive Car</option>
+                    <option >Executive Minivan</option>
+                  </Field>
                   <label
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
-                    Type Of Vehicle
+                    Type of Vehicle
                   </label>
+                  <div className="absolute inset-y-0 right-0 flex items-center  pointer-events-none">
+                    <svg
+                      className="w-4 h-4 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>

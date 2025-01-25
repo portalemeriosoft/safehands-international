@@ -158,16 +158,27 @@ const RequestDetailBox = () => {
               </div>
             </div>
             <div className="grid md:grid-cols-1 md:gap-6 my-3.5">
-              <FormGroup>
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label={
-                    <div className="text-sm text-gray-600 ">
-                      Please note any cancellation for a transfer booked in the UK less than 6 hours before the scheduled pick-up time will incur the full charges quoted. For transfers booked anywhere else in the world, any cancellation less than 48 hours before the scheduled pick-up time will incur the full charges quoted.
+              <div className="flex items-center gap-3">
+                    <div className="flex h-5 shrink-0 items-center">
+                    <div className="flex h-5 shrink-0 items-center">
+                        <div className="group grid size-4 grid-cols-1">
+                          <input
+                            id="policy-1"
+                            name="color[]"
+                            value="medical"
+                            type="checkbox"
+                             className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
+                          />
+                        </div>
+                      </div>
                     </div>
-                  }
-                />
-              </FormGroup>
+                    <label
+                      htmlFor="policy-1"
+                      className="min-w-0 flex-1 text-gray-500 text-sm"
+                    >
+                      Please note any cancellation for a transfer booked in the UK less than 6 hours before the scheduled pick-up time will incur the full charges quoted. For transfers booked anywhere else in the world, any cancellation less than 48 hours before the scheduled pick-up time will incur the full charges quoted.
+                    </label>
+                  </div>
             </div>
 
           </div>

@@ -161,30 +161,7 @@ const BookingDetailBox = () => {
                   </div>
                 </div>
               </div>
-              <div className="relative z-0 w-full mb-5 group">
-
-
-                <Field
-                  as="select"
-                  className="block w-full appearance-none bg-transparent border-b-2 border-gray-300 py-2.5 ps-0 pe-4 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-0 focus:border-blue-600"
-                  defaultValue=""
-                >
-                  {/* <option value="" disabled hidden>
-                    Insurance
-                  </option> */}
-                  <option value="10">saloon - Sedan</option>
-                  <option value="20">estate - Station Wagon</option>
-                  <option value="30">8 Seater -- Large Minivan</option>
-                  <option value="30">Executive Car</option>
-                  <option >Executive Minivan</option>
-                </Field>
-                <label
-                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Type of transfer
-                </label>
-
-              </div>
+             
 
             </div>
 
@@ -204,14 +181,14 @@ const BookingDetailBox = () => {
                 <div className="space-y-6">
                   <div className="flex gap-3">
                     <div className="flex h-5 shrink-0 items-center">
-                    <div className="flex h-5 shrink-0 items-center">
+                      <div className="flex h-5 shrink-0 items-center">
                         <div className="group grid size-4 grid-cols-1">
                           <input
                             id="filter-mobile-color"
                             name="color[]"
                             value="medical"
                             type="checkbox"
-                             className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
+                            className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
                           />
                         </div>
                       </div>
@@ -229,17 +206,17 @@ const BookingDetailBox = () => {
                     {/* First Checkbox */}
                     <div className="flex items-center gap-3">
                       <div className="flex h-5 shrink-0 items-center">
-                      <div className="flex h-5 shrink-0 items-center">
-                        <div className="group grid size-4 grid-cols-1">
-                          <input
-                            id="filter-mobile-color-0"
-                            name="color[]"
-                            value="medical"
-                            type="checkbox"
-                             className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
-                          />
+                        <div className="flex h-5 shrink-0 items-center">
+                          <div className="group grid size-4 grid-cols-1">
+                            <input
+                              id="filter-mobile-color-0"
+                              name="color[]"
+                              value="medical"
+                              type="checkbox"
+                              className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
+                            />
+                          </div>
                         </div>
-                      </div>
                       </div>
                       <label htmlFor="filter-mobile-color-0" className="text-gray-500 text-sm">
                         Specialist luggage
@@ -255,7 +232,7 @@ const BookingDetailBox = () => {
                             name="color[]"
                             value="medical"
                             type="checkbox"
-                             className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
+                            className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
                           />
                         </div>
                       </div>
@@ -386,6 +363,269 @@ const BookingDetailBox = () => {
                 </div>
               </div>
             </div>
+            <div className="grid md:grid-cols-2 md:gap-6">
+              <div className="relative z-0 w-full mb-5 group">
+                <div className="space-y-6">
+                  <div className="flex gap-3">
+                    <div className="flex h-5 shrink-0 items-center">
+                      <div className="flex h-5 shrink-0 items-center">
+                        {/* <div className="group grid size-4 grid-cols-1">
+                          <input
+                            id="filter-mobile-color"
+                            name="color[]"
+                            value="medical"
+                            type="checkbox"
+                             className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
+                          />
+                        </div> */}
+                      </div>
+                    </div>
+                    <label
+                      htmlFor="filter-mobile-color"
+                      className="min-w-0 flex-1 text-gray-500 text-sm"
+                    >
+                      Type of transfer
+                    </label>
+                  </div>
+                </div>
+                <div className="space-y-6 mt-3">
+                  <div className="flex items-center gap-6">
+                    {/* First Checkbox */}
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-5 shrink-0 items-center">
+                        <div className="flex h-5 shrink-0 items-center">
+                          <div className="group grid size-4 grid-cols-1">
+                            <input
+                              id="mobile-color"
+                              name="color[]"
+                              value="medical"
+                              type="checkbox"
+                              className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <label htmlFor="mobile-color" className="text-gray-500 text-sm">
+                        Medical
+                      </label>
+                    </div>
+
+                    {/* Second Checkbox */}
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-5 shrink-0 items-center">
+                        <div className="group grid size-4 grid-cols-1">
+                          <input
+                            id="mobile-color-0"
+                            name="color[]"
+                            value="medical"
+                            type="checkbox"
+                            className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
+                          />
+                        </div>
+                      </div>
+                      <label htmlFor="mobile-color-0" className="text-gray-500 text-sm">
+                        Non medical
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-5 shrink-0 items-center">
+                        <div className="group grid size-4 grid-cols-1">
+                          <input
+                            id="mobile-color-1"
+                            name="color[]"
+                            value="medical"
+                            type="checkbox"
+                            className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
+                          />
+                        </div>
+                      </div>
+                      <label htmlFor="mobile-color-1" className="text-gray-500 text-sm">
+                        Curtailment
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <fieldset>
+                  <div className="mt-3 flex items-center gap-x-6">
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="medical-option-1"
+                        name="push-notifications"
+                        type="radio"
+                        defaultChecked
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="medical-option-1" className="block text-sm  text-gray-500">
+                        Option 1
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="medical-option-2"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="medical-option-2" className="block text-sm  text-gray-500">
+                        Option 2
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="medical-option-3"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="medical-option-3" className="block text-sm  text-gray-500">
+                        Option 3
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="medical-option-4"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="medical-option-4" className="block text-sm  text-gray-500">
+                        Other
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="col-span-full mt-3">
+                  <label for="about" class="block text-sm/6  text-gray-500">Other Medical requirements</label>
+                  <div class="mt-2">
+                    <textarea
+                      name="about"
+                      id="about"
+                      rows="3"
+                      class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                    /></div>
+                </div>
+                <fieldset>
+                  <div className="mt-3 flex items-center gap-x-6">
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="non-medical-option-1"
+                        name="push-notifications"
+                        type="radio"
+                        defaultChecked
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="non-medical-option-1" className="block text-sm  text-gray-500">
+                        Option 1
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="non-medical-option-2"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="non-medical-option-2" className="block text-sm  text-gray-500">
+                        Option 2
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="non-medical-option-3"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="non-medical-option-3" className="block text-sm  text-gray-500">
+                        Option 3
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="non-medical-option-other"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="non-medical-option-other" className="block text-sm  text-gray-500">
+                        Other
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="col-span-full mt-3">
+                  <label for="about" class="block text-sm/6  text-gray-500">Other Non medical requirements</label>
+                  <div class="mt-2">
+                    <textarea
+                      name="about"
+                      id="about"
+                      rows="3"
+                      class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                    /></div>
+                </div>
+                <fieldset>
+                  <div className="mt-3 flex items-center gap-x-6">
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="curtailment-option-1"
+                        name="push-notifications"
+                        type="radio"
+                        defaultChecked
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="curtailment-option-1" className="block text-sm  text-gray-500">
+                        Option 1
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="curtailment-option-2"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="curtailment-option-2" className="block text-sm  text-gray-500">
+                        Option 2
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="curtailment-option-3"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="curtailment-option-3" className="block text-sm  text-gray-500">
+                        Option 3
+                      </label>
+                    </div>
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        id="curtailment-option-4"
+                        name="push-notifications"
+                        type="radio"
+                        className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                      />
+                      <label htmlFor="curtailment-option-4" className="block text-sm  text-gray-500">
+                        Other
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="col-span-full mt-3">
+                  <label for="about" class="block text-sm/6  text-gray-500">Other Curtailment requirements</label>
+                  <div class="mt-2">
+                    <textarea
+                      name="about"
+                      id="about"
+                      rows="3"
+                      class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                    /></div>
+                </div>
+              </div>
+            </div>
+
             <hr className="mt-4 mb-8" />
             <div className="grid md:grid-cols-2 md:gap-6">
               <div className="relative z-0 w-full mb-5 group">
@@ -613,26 +853,26 @@ const BookingDetailBox = () => {
 
             <div className="grid md:grid-cols-1 md:gap-6 my-3.5">
               <div className="flex items-center gap-3">
-                    <div className="flex h-5 shrink-0 items-center">
-                    <div className="flex h-5 shrink-0 items-center">
-                        <div className="group grid size-4 grid-cols-1">
-                          <input
-                            id="policy-1"
-                            name="color[]"
-                            value="medical"
-                            type="checkbox"
-                             className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
-                          />
-                        </div>
-                      </div>
+                <div className="flex h-5 shrink-0 items-center">
+                  <div className="flex h-5 shrink-0 items-center">
+                    <div className="group grid size-4 grid-cols-1">
+                      <input
+                        id="policy-1"
+                        name="color[]"
+                        value="medical"
+                        type="checkbox"
+                        className="outline-gray-400 border border-gray-300 rounded-sm accent-indigo-600"
+                      />
                     </div>
-                    <label
-                      htmlFor="policy-1"
-                      className="min-w-0 flex-1 text-gray-500 text-sm"
-                    >
-                      Please note any cancellation for a transfer booked in the UK less than 6 hours before the scheduled pick-up time will incur the full charges quoted. For transfers booked anywhere else in the world, any cancellation less than 48 hours before the scheduled pick-up time will incur the full charges quoted.
-                    </label>
                   </div>
+                </div>
+                <label
+                  htmlFor="policy-1"
+                  className="min-w-0 flex-1 text-gray-500 text-sm"
+                >
+                  Please note any cancellation for a transfer booked in the UK less than 6 hours before the scheduled pick-up time will incur the full charges quoted. For transfers booked anywhere else in the world, any cancellation less than 48 hours before the scheduled pick-up time will incur the full charges quoted.
+                </label>
+              </div>
             </div>
 
 

@@ -24,12 +24,12 @@ const BookingDetailBox = () => {
     date_of_transfer: '',
     pick_up_time: '',
     number_of_suitcase: '',
-    from_1: '',
-    from_2: '',
-    from_3: '',
-    to_1: '',
-    to_2: '',
-    to_3: '',
+    pick_up_1: '',
+    pick_up_2: '',
+    pick_up_3: '',
+    drop_off_1: '',
+    drop_off_2: '',
+    drop_off_3: '',
 
     // contact_priority: user.data.contact_priority,
     // country_code: c_code,
@@ -345,13 +345,13 @@ const BookingDetailBox = () => {
                             {(values && values.specialist_luggage && values.s_requirements.includes('other')) && (
                               <>
                                 <div className="col-span-full mt-3">
-                                  <label htmlFor="about" class="block text-sm/6  text-gray-500">Other specialist luggage requirements</label>
-                                  <div class="">
+                                  <label htmlFor="about" className="block text-sm/6  text-gray-500">Other specialist luggage requirements</label>
+                                  <div className="">
                                     <textarea
                                       name="about"
                                       id="about"
                                       rows="3"
-                                      class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
                                     /></div>
                                 </div>
                               </>
@@ -419,14 +419,14 @@ const BookingDetailBox = () => {
 
                           {(values && values.m_requirement.includes("other") && (
                             <>
-                              <div class="col-span-full mt-3">
-                                <label for="about" class="block text-sm/6  text-gray-500">Other medical requirements</label>
-                                <div class="">
+                              <div className="col-span-full mt-3">
+                                <label for="about" className="block text-sm/6  text-gray-500">Other medical requirements</label>
+                                <div className="">
                                   <textarea
                                     name="about"
                                     id="about"
                                     rows="3"
-                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
                                   /></div>
                               </div>
                             </>
@@ -582,14 +582,14 @@ const BookingDetailBox = () => {
                           </fieldset>
                           {values && values.tt_medical.includes("other") && (
                             <>
-                              <div class="col-span-full mt-3">
-                                <label for="about" class="block text-sm/6  text-gray-500">Other Medical requirements</label>
-                                <div class="">
+                              <div className="col-span-full mt-3">
+                                <label for="about" className="block text-sm/6  text-gray-500">Other Medical requirements</label>
+                                <div className="">
                                   <textarea
                                     name="about"
                                     id="about"
                                     rows="3"
-                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
                                   /></div>
                               </div>
                             </>
@@ -599,150 +599,150 @@ const BookingDetailBox = () => {
                     )}
                     {(values && values.type_of_transfer.includes("non medical")) && (
                       <>
-                      <div>
-                        <fieldset className="mb-3">
-                          <h4 className="mt-4 text-sm text-gray-500">Non Medical</h4>
-                          <div className=" flex items-center gap-x-6">
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="non-medical-option-1"
-                                name="tt_non_medical"
-                                value="Option 1"
-                                type="radio"
-                                defaultChecked
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="non-medical-option-1" className="block text-sm  text-gray-500">
-                                Option 1
-                              </label>
+                        <div>
+                          <fieldset className="mb-3">
+                            <h4 className="mt-4 text-sm text-gray-500">Non Medical</h4>
+                            <div className=" flex items-center gap-x-6">
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="non-medical-option-1"
+                                  name="tt_non_medical"
+                                  value="Option 1"
+                                  type="radio"
+                                  defaultChecked
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="non-medical-option-1" className="block text-sm  text-gray-500">
+                                  Option 1
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="non-medical-option-2"
+                                  name="tt_non_medical"
+                                  value="Option 2"
+                                  type="radio"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="non-medical-option-2" className="block text-sm  text-gray-500">
+                                  Option 2
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="non-medical-option-3"
+                                  name="tt_non_medical"
+                                  value="Option 3"
+                                  type="radio"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="non-medical-option-3" className="block text-sm  text-gray-500">
+                                  Option 3
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="non-medical-option-other"
+                                  name="tt_non_medical"
+                                  value="other"
+                                  type="radio"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="non-medical-option-other" className="block text-sm  text-gray-500">
+                                  Other
+                                </label>
+                              </div>
                             </div>
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="non-medical-option-2"
-                                name="tt_non_medical"
-                                value="Option 2"
-                                type="radio"
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="non-medical-option-2" className="block text-sm  text-gray-500">
-                                Option 2
-                              </label>
-                            </div>
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="non-medical-option-3"
-                                name="tt_non_medical"
-                                value="Option 3"
-                                type="radio"
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="non-medical-option-3" className="block text-sm  text-gray-500">
-                                Option 3
-                              </label>
-                            </div>
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="non-medical-option-other"
-                                name="tt_non_medical"
-                                value="other"
-                                type="radio"
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="non-medical-option-other" className="block text-sm  text-gray-500">
-                                Other
-                              </label>
-                            </div>
-                          </div>
-                        </fieldset>
-                        {values && values.tt_non_medical.includes("other") && (
-                          <>
-                            <div class="col-span-full mt-3">
-                              <label for="about" class="block text-sm/6  text-gray-500">Other Non medical requirements</label>
-                              <div class="">
-                                <textarea
-                                  name="about"
-                                  id="about"
-                                  rows="3"
-                                  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-                                /></div>
-                            </div>
-                          </>
-                        )}
+                          </fieldset>
+                          {values && values.tt_non_medical.includes("other") && (
+                            <>
+                              <div className="col-span-full mt-3">
+                                <label for="about" className="block text-sm/6  text-gray-500">Other Non medical requirements</label>
+                                <div className="">
+                                  <textarea
+                                    name="about"
+                                    id="about"
+                                    rows="3"
+                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                                  /></div>
+                              </div>
+                            </>
+                          )}
                         </div>
                       </>
                     )}
                     {(values && values.type_of_transfer.includes("curtailment")) && (
                       <>
-                      <div>
-                        <fieldset className="mb-3">
-                          <h4 className="mt-4 text-sm text-gray-500">Curtailment</h4>
-                          <div className=" flex items-center gap-x-6">
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="curtailment-option-1"
-                                name="tt_curtailment"
-                                value="Option 1"
-                                type="radio"
-                                defaultChecked
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="curtailment-option-1" className="block text-sm  text-gray-500">
-                                Option 1
-                              </label>
+                        <div>
+                          <fieldset className="mb-3">
+                            <h4 className="mt-4 text-sm text-gray-500">Curtailment</h4>
+                            <div className=" flex items-center gap-x-6">
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="curtailment-option-1"
+                                  name="tt_curtailment"
+                                  value="Option 1"
+                                  type="radio"
+                                  defaultChecked
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="curtailment-option-1" className="block text-sm  text-gray-500">
+                                  Option 1
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="curtailment-option-2"
+                                  name="tt_curtailment"
+                                  value="Option 2"
+                                  type="radio"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="curtailment-option-2" className="block text-sm  text-gray-500">
+                                  Option 2
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="curtailment-option-3"
+                                  name="tt_curtailment"
+                                  value="Option 3"
+                                  type="radio"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="curtailment-option-3" className="block text-sm  text-gray-500">
+                                  Option 3
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="curtailment-option-4"
+                                  name="tt_curtailment"
+                                  value="other"
+                                  type="radio"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="curtailment-option-4" className="block text-sm  text-gray-500">
+                                  Other
+                                </label>
+                              </div>
                             </div>
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="curtailment-option-2"
-                                name="tt_curtailment"
-                                value="Option 2"
-                                type="radio"
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="curtailment-option-2" className="block text-sm  text-gray-500">
-                                Option 2
-                              </label>
-                            </div>
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="curtailment-option-3"
-                                name="tt_curtailment"
-                                value="Option 3"
-                                type="radio"
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="curtailment-option-3" className="block text-sm  text-gray-500">
-                                Option 3
-                              </label>
-                            </div>
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="curtailment-option-4"
-                                name="tt_curtailment"
-                                value="other"
-                                type="radio"
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="curtailment-option-4" className="block text-sm  text-gray-500">
-                                Other
-                              </label>
-                            </div>
-                          </div>
-                        </fieldset>
-                        {values && values.tt_curtailment.includes("other") && (
-                          <>
-                            <div class="col-span-full mt-3">
-                              <label for="about" class="block text-sm/6  text-gray-500">Other Curtailment requirements</label>
-                              <div class="">
-                                <textarea
-                                  name="about"
-                                  id="about"
-                                  rows="3"
-                                  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-                                /></div>
-                            </div>
-                          </>
-                        )}
-                      </div>
+                          </fieldset>
+                          {values && values.tt_curtailment.includes("other") && (
+                            <>
+                              <div className="col-span-full mt-3">
+                                <label for="about" className="block text-sm/6  text-gray-500">Other Curtailment requirements</label>
+                                <div className="">
+                                  <textarea
+                                    name="about"
+                                    id="about"
+                                    rows="3"
+                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                                  /></div>
+                              </div>
+                            </>
+                          )}
+                        </div>
                       </>
                     )}
                   </div>
@@ -858,7 +858,7 @@ const BookingDetailBox = () => {
               <div className="grid md:grid-cols-2 md:gap-6">
                 <div className="relative z-0 w-full mb-5 group">
                   <Field
-                    name="from_1"
+                    name="pick_up_1"
                     type="text"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
@@ -866,79 +866,90 @@ const BookingDetailBox = () => {
                   <label
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
-                    From
+                    Pick Up (1)
                   </label>
                 </div>
                 <div className="relative z-0 w-full mb-5 group">
                   <Field
                     type="text"
-                    name="to_1"
+                    name="drop_off_1"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                   />
                   <label
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
-                    To
+                    Drop Off (1)
                   </label>
                 </div>
               </div>
-              <div className="grid md:grid-cols-2 md:gap-6">
-                <div className="relative z-0 w-full mb-5 group">
-                  <Field
-                    name="from_2"
-                    type="text"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                  />
-                  <label
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    From
-                  </label>
-                </div>
-                <div className="relative z-0 w-full mb-5 group">
-                  <Field
-                    type="text"
-                    name="to_2"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                  />
-                  <label
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    To
-                  </label>
-                </div>
-              </div>
-              <div className="grid md:grid-cols-2 md:gap-6">
-                <div className="relative z-0 w-full mb-5 group">
-                  <Field
-                    type="text"
-                    name="from_3"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=""
-                  />
-                  <label
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    From
-                  </label>
-                </div>
-                <div className="relative z-0 w-full mb-5 group">
-                  <Field
-                    type="text"
-                    name="to_3"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                  />
-                  <label
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    To
-                  </label>
-                </div>
-              </div>
+              {(values.pick_up_1 && values.drop_off_1) && (
+                <>
+                  <div className="grid md:grid-cols-2 md:gap-6">
+                    <div className="relative z-0 w-full mb-5 group">
+                      <Field
+                        name="pick_up_2"
+                        type="text"
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" "
+                      />
+                      <label
+                        className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      >
+                        Pick Up (2)
+                      </label>
+                    </div>
+                    <div className="relative z-0 w-full mb-5 group">
+                      <Field
+                        type="text"
+                        name="drop_off_2"
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" "
+                      />
+                      <label
+                        className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      >
+                        Drop Off (2)
+                      </label>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {(values.pick_up_2 && values.drop_off_2) && (
+                <>
+                  <div className="grid md:grid-cols-2 md:gap-6">
+                    <div className="relative z-0 w-full mb-5 group">
+                      <Field
+                        type="text"
+                        name="pick_up_3"
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=""
+                      />
+                      <label
+                        className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      >
+                        Pick Up (3)
+                      </label>
+                    </div>
+                    <div className="relative z-0 w-full mb-5 group">
+                      <Field
+                        type="text"
+                        name="drop_off_3"
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" "
+                      />
+                      <label
+                        className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      >
+                        Drop Off (3)
+                      </label>
+                    </div>
+                  </div>
+                </>
+              )}
+
+
               <div className="grid md:grid-cols-2 md:gap-6">
                 {/* <div className="relative z-0 w-full mb-5 group">
                 <Field

@@ -284,7 +284,7 @@ const BookingDetailBox = () => {
                         <>
                           <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
                             <fieldset className="mb-3">
-                              <h4 className="mt-4 text-sm text-gray-500">Specialist luggage</h4>
+                              <h4 className="text-sm text-black mb-2">Specialist luggage</h4>
                               <div className=" flex items-center gap-x-6">
                                 <div className="flex items-center gap-x-2">
                                   <Field
@@ -359,7 +359,7 @@ const BookingDetailBox = () => {
                       <>
                         <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
                           <fieldset className="mb-3">
-                            <h4 className="text-sm text-gray-500">Medical requirements</h4>
+                            <h4 className="text-sm text-black mb-2">Medical requirements</h4>
                             <div className=" flex items-center gap-x-6">
                               <div className="flex items-center gap-x-2">
                                 <Field
@@ -439,7 +439,7 @@ const BookingDetailBox = () => {
               <div className="grid md:grid-cols-1 md:gap-6">
                 <div className="relative z-0 w-full mb-5 group">
                   <div className="space-y-6">
-                    <div className="flex gap-3">
+                    <div className="  ">
                       <div className="flex h-5 shrink-0 items-center">
                         <div className="flex h-5 shrink-0 items-center">
                           {/* <div className="group grid size-4 grid-cols-1">
@@ -522,7 +522,7 @@ const BookingDetailBox = () => {
                       <>
                         <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
                           <fieldset className="mb-3">
-                            <h4 className="text-sm text-gray-500">Medical</h4>
+                            <h4 className="text-sm text-black mb-2">Medical</h4>
                             <div className=" flex items-center gap-x-6">
                               <div className="flex items-center gap-x-2">
                                 <Field
@@ -596,7 +596,7 @@ const BookingDetailBox = () => {
                       <>
                         <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
                           <fieldset className="mb-3">
-                            <h4 className="text-sm text-gray-500">Non Medical</h4>
+                            <h4 className="text-sm text-black mb-2">Non Medical</h4>
                             <div className=" flex items-center gap-x-6">
                               <div className="flex items-center gap-x-2">
                                 <Field
@@ -670,7 +670,7 @@ const BookingDetailBox = () => {
                       <>
                         <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
                           <fieldset className="mb-3">
-                            <h4 className="text-sm text-gray-500">Curtailment</h4>
+                            <h4 className="text-sm text-black mb-2">Curtailment</h4>
                             <div className=" flex items-center gap-x-6">
                               <div className="flex items-center gap-x-2">
                                 <Field

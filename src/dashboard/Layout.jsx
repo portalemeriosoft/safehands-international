@@ -57,7 +57,7 @@ const notifications = [
 export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
   const navigate = useNavigate()
   const user = useSelector(userState);
-  console.log(user);
+  // console.log(user);
   if (user && user.data && user.data.role === 1) {
     userNavigation = [
       {
@@ -190,13 +190,13 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
                         transition
                         className="w-64 absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                       >
-                        <div className="">
+                        <div>
                           {/* <MenuItem>
                             
                           </MenuItem> */}
                           <ul role="list" className="divide-y divide-gray-100 px-3 ">
-                            {notifications.map((person) => (
-                              <li key={person.email} className="flex justify-between gap-x-6 py-2">
+                            {notifications.map((person, index) => (
+                              <li key={index} className="flex justify-between gap-x-6 py-2">
                                 <div className="flex min-w-0 gap-x-4">
                                   {/* <img alt="" src={person.imageUrl} className="size-12 flex-none rounded-full bg-gray-50" /> */}
                                   <div className="min-w-0 flex-auto">

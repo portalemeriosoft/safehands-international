@@ -167,7 +167,6 @@ const BookingDetailBox = () => {
                         as="select"
                         name="insurance"
                         className="block w-full appearance-none bg-transparent border-b-2 border-gray-300 py-2.5 ps-0 pe-4 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-0 focus:border-blue-600"
-                        defaultValue=""
                       >
                         {/* <option value="" disabled hidden>
                         Insurance
@@ -205,7 +204,7 @@ const BookingDetailBox = () => {
               </div>
 
 
-              <div className="grid md:grid-cols-2 md:gap-6">
+              <div className="grid md:grid-cols-1 md:gap-6">
                 <div className="relative z-0 w-full mb-5 group">
                   {/* <Field
                   type="checkbox"
@@ -284,160 +283,165 @@ const BookingDetailBox = () => {
                       </div>
                     </div>
                   )}
-                  {(values && values.special_requirements == 'true' && values.specialist_luggage.includes('luggage')) &&
-                    (
-                      <>
-                        <fieldset className="mb-3">
-                          <h4 className="mt-4 text-sm text-gray-500">Specialist luggage</h4>
-                          <div className=" flex items-center gap-x-6">
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="push-everything"
-                                name="s_requirements"
-                                type="radio"
-                                value="skis"
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="push-everything" className="block text-sm  text-gray-500">
-                                Skis
-                              </label>
-                            </div>
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="push-email"
-                                name="s_requirements"
-                                type="radio"
-                                value="wheel chair"
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="push-email" className="block text-sm  text-gray-500">
-                                Wheel chair
-                              </label>
-                            </div>
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="push-nothing"
-                                name="s_requirements"
-                                value="large cases"
-                                type="radio"
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="push-nothing" className="block text-sm  text-gray-500">
-                                Large cases
-                              </label>
-                            </div>
-                            <div className="flex items-center gap-x-2">
-                              <Field
-                                id="push-other"
-                                name="s_requirements"
-                                type="radio"
-                                value="other"
-                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                              />
-                              <label htmlFor="push-other" className="block text-sm  text-gray-500">
-                                Other
-                              </label>
-                            </div>
-                          </div>
-                        </fieldset>
-
-                        {(values && values.specialist_luggage && values.s_requirements.includes('other')) && (
-                          <>
-                            <div className="col-span-full mt-3">
-                              <label htmlFor="about" class="block text-sm/6  text-gray-500">Other specialist luggage requirements</label>
-                              <div class="mt-2">
-                                <textarea
-                                  name="about"
-                                  id="about"
-                                  rows="3"
-                                  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-                                /></div>
-                            </div>
-                          </>
-                        )}
-
-                      </>
-                    )}
-
-                  {(values && values.special_requirements == 'true' && values.specialist_luggage.includes('medical')) && (
-                    <>
-                      <fieldset className="mb-3">
-                        <h4 className="mt-4 text-sm text-gray-500">Medical requirements</h4>
-                        <div className=" flex items-center gap-x-6">
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="push-broken-leg"
-                              name="m_requirement"
-                              type="radio"
-                              value="broken leg"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="push-broken-leg" className="block text-sm  text-gray-500">
-                              Broken leg
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="push-broken-hand"
-                              name="m_requirement"
-                              type="radio"
-                              value="broken hand"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="push-broken-hand" className="block text-sm  text-gray-500">
-                              Broken hand
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="push-mobility"
-                              name="m_requirement"
-                              type="radio"
-                              value="mobility issue"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="push-mobility" className="block text-sm  text-gray-500">
-                              mobility issue
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="push-m-other"
-                              name="m_requirement"
-                              value="other"
-                              type="radio"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="push-m-other" className="block text-sm  text-gray-500">
-                              Other
-                            </label>
-                          </div>
-                        </div>
-                      </fieldset>
-
-                      {(values && values.m_requirement.includes("other") && (
+                  <div className="flex gap-20">
+                    {(values && values.special_requirements == 'true' && values.specialist_luggage.includes('luggage')) &&
+                      (
                         <>
-                          <div class="col-span-full mt-3">
-                            <label for="about" class="block text-sm/6  text-gray-500">Other medical requirements</label>
-                            <div class="mt-2">
-                              <textarea
-                                name="about"
-                                id="about"
-                                rows="3"
-                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-                              /></div>
+                          <div>
+                            <fieldset className="mb-3">
+                              <h4 className="mt-4 text-sm text-gray-500">Specialist luggage</h4>
+                              <div className=" flex items-center gap-x-6">
+                                <div className="flex items-center gap-x-2">
+                                  <Field
+                                    id="push-everything"
+                                    name="s_requirements"
+                                    type="radio"
+                                    value="skis"
+                                    className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                  />
+                                  <label htmlFor="push-everything" className="block text-sm  text-gray-500">
+                                    Skis
+                                  </label>
+                                </div>
+                                <div className="flex items-center gap-x-2">
+                                  <Field
+                                    id="push-email"
+                                    name="s_requirements"
+                                    type="radio"
+                                    value="wheel chair"
+                                    className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                  />
+                                  <label htmlFor="push-email" className="block text-sm  text-gray-500">
+                                    Wheel chair
+                                  </label>
+                                </div>
+                                <div className="flex items-center gap-x-2">
+                                  <Field
+                                    id="push-nothing"
+                                    name="s_requirements"
+                                    value="large cases"
+                                    type="radio"
+                                    className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                  />
+                                  <label htmlFor="push-nothing" className="block text-sm  text-gray-500">
+                                    Large cases
+                                  </label>
+                                </div>
+                                <div className="flex items-center gap-x-2">
+                                  <Field
+                                    id="push-other"
+                                    name="s_requirements"
+                                    type="radio"
+                                    value="other"
+                                    className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                  />
+                                  <label htmlFor="push-other" className="block text-sm  text-gray-500">
+                                    Other
+                                  </label>
+                                </div>
+                              </div>
+                            </fieldset>
+
+                            {(values && values.specialist_luggage && values.s_requirements.includes('other')) && (
+                              <>
+                                <div className="col-span-full mt-3">
+                                  <label htmlFor="about" class="block text-sm/6  text-gray-500">Other specialist luggage requirements</label>
+                                  <div class="">
+                                    <textarea
+                                      name="about"
+                                      id="about"
+                                      rows="3"
+                                      class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                                    /></div>
+                                </div>
+                              </>
+                            )}
                           </div>
                         </>
-                      ))}
+                      )}
 
-                    </>
-                  )}
+                    {(values && values.special_requirements == 'true' && values.specialist_luggage.includes('medical')) && (
+                      <>
+                        <div>
+                          <fieldset className="mb-3">
+                            <h4 className="mt-4 text-sm text-gray-500">Medical requirements</h4>
+                            <div className=" flex items-center gap-x-6">
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="push-broken-leg"
+                                  name="m_requirement"
+                                  type="radio"
+                                  value="broken leg"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="push-broken-leg" className="block text-sm  text-gray-500">
+                                  Broken leg
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="push-broken-hand"
+                                  name="m_requirement"
+                                  type="radio"
+                                  value="broken hand"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="push-broken-hand" className="block text-sm  text-gray-500">
+                                  Broken hand
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="push-mobility"
+                                  name="m_requirement"
+                                  type="radio"
+                                  value="mobility issue"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="push-mobility" className="block text-sm  text-gray-500">
+                                  mobility issue
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="push-m-other"
+                                  name="m_requirement"
+                                  value="other"
+                                  type="radio"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="push-m-other" className="block text-sm  text-gray-500">
+                                  Other
+                                </label>
+                              </div>
+                            </div>
+                          </fieldset>
+
+                          {(values && values.m_requirement.includes("other") && (
+                            <>
+                              <div class="col-span-full mt-3">
+                                <label for="about" class="block text-sm/6  text-gray-500">Other medical requirements</label>
+                                <div class="">
+                                  <textarea
+                                    name="about"
+                                    id="about"
+                                    rows="3"
+                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                                  /></div>
+                              </div>
+                            </>
+                          ))}
+
+                        </div>
+                      </>
+                    )}
+                  </div>
 
 
 
                 </div>
               </div>
-              <div className="grid md:grid-cols-2 md:gap-6">
+              <div className="grid md:grid-cols-1 md:gap-6">
                 <div className="relative z-0 w-full mb-5 group">
                   <div className="space-y-6">
                     <div className="flex gap-3">
@@ -455,7 +459,7 @@ const BookingDetailBox = () => {
                         </div>
                       </div>
                       <label
-                        htmlFor="filter-mobile-color"
+                        htmlFor=""
                         className="min-w-0 flex-1 text-gray-500 text-sm">
                         Type of transfer
                       </label>
@@ -518,225 +522,230 @@ const BookingDetailBox = () => {
                       </div>
                     </div>
                   </div>
-                  {(values && values.type_of_transfer.includes("medical")) && (
-                    <>
-                      <fieldset className="mb-3">
-                        <h4 className="mt-4 text-sm text-gray-500">Medical</h4>
-                        <div className=" flex items-center gap-x-6">
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="medical-option-1"
-                              name="tt_medical"
-                              value="Option 1"
-                              type="radio"
-                              defaultChecked
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="medical-option-1" className="block text-sm  text-gray-500">
-                              Option 1
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="medical-option-2"
-                              name="tt_medical"
-                              value="Option 2"
-                              type="radio"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="medical-option-2" className="block text-sm  text-gray-500">
-                              Option 2
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="medical-option-3"
-                              name="tt_medical"
-                              value="Option 3"
-                              type="radio"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="medical-option-3" className="block text-sm  text-gray-500">
-                              Option 3
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="medical-option-4"
-                              name="tt_medical"
-                              value="other"
-                              type="radio"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="medical-option-4" className="block text-sm  text-gray-500">
-                              Other
-                            </label>
-                          </div>
+                  <div className="flex gap-x-20 flex-wrap">
+                    {(values && values.type_of_transfer.includes("medical")) && (
+                      <>
+                        <div>
+                          <fieldset className="mb-3">
+                            <h4 className="mt-4 text-sm text-gray-500">Medical</h4>
+                            <div className=" flex items-center gap-x-6">
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="medical-option-1"
+                                  name="tt_medical"
+                                  value="Option 1"
+                                  type="radio"
+                                  defaultChecked
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="medical-option-1" className="block text-sm  text-gray-500">
+                                  Option 1
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="medical-option-2"
+                                  name="tt_medical"
+                                  value="Option 2"
+                                  type="radio"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="medical-option-2" className="block text-sm  text-gray-500">
+                                  Option 2
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="medical-option-3"
+                                  name="tt_medical"
+                                  value="Option 3"
+                                  type="radio"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="medical-option-3" className="block text-sm  text-gray-500">
+                                  Option 3
+                                </label>
+                              </div>
+                              <div className="flex items-center gap-x-2">
+                                <Field
+                                  id="medical-option-4"
+                                  name="tt_medical"
+                                  value="other"
+                                  type="radio"
+                                  className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                                />
+                                <label htmlFor="medical-option-4" className="block text-sm  text-gray-500">
+                                  Other
+                                </label>
+                              </div>
+                            </div>
+                          </fieldset>
+                          {values && values.tt_medical.includes("other") && (
+                            <>
+                              <div class="col-span-full mt-3">
+                                <label for="about" class="block text-sm/6  text-gray-500">Other Medical requirements</label>
+                                <div class="">
+                                  <textarea
+                                    name="about"
+                                    id="about"
+                                    rows="3"
+                                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                                  /></div>
+                              </div>
+                            </>
+                          )}
                         </div>
-                      </fieldset>
-                      {values && values.tt_medical.includes("other") && (
-                        <>
-                          <div class="col-span-full mt-3">
-                            <label for="about" class="block text-sm/6  text-gray-500">Other Medical requirements</label>
-                            <div class="mt-2">
-                              <textarea
-                                name="about"
-                                id="about"
-                                rows="3"
-                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-                              /></div>
+                      </>
+                    )}
+                    {(values && values.type_of_transfer.includes("non medical")) && (
+                      <>
+                      <div>
+                        <fieldset className="mb-3">
+                          <h4 className="mt-4 text-sm text-gray-500">Non Medical</h4>
+                          <div className=" flex items-center gap-x-6">
+                            <div className="flex items-center gap-x-2">
+                              <Field
+                                id="non-medical-option-1"
+                                name="tt_non_medical"
+                                value="Option 1"
+                                type="radio"
+                                defaultChecked
+                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                              />
+                              <label htmlFor="non-medical-option-1" className="block text-sm  text-gray-500">
+                                Option 1
+                              </label>
+                            </div>
+                            <div className="flex items-center gap-x-2">
+                              <Field
+                                id="non-medical-option-2"
+                                name="tt_non_medical"
+                                value="Option 2"
+                                type="radio"
+                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                              />
+                              <label htmlFor="non-medical-option-2" className="block text-sm  text-gray-500">
+                                Option 2
+                              </label>
+                            </div>
+                            <div className="flex items-center gap-x-2">
+                              <Field
+                                id="non-medical-option-3"
+                                name="tt_non_medical"
+                                value="Option 3"
+                                type="radio"
+                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                              />
+                              <label htmlFor="non-medical-option-3" className="block text-sm  text-gray-500">
+                                Option 3
+                              </label>
+                            </div>
+                            <div className="flex items-center gap-x-2">
+                              <Field
+                                id="non-medical-option-other"
+                                name="tt_non_medical"
+                                value="other"
+                                type="radio"
+                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                              />
+                              <label htmlFor="non-medical-option-other" className="block text-sm  text-gray-500">
+                                Other
+                              </label>
+                            </div>
                           </div>
-                        </>
-                      )}
-
-                    </>
-                  )}
-                  {(values && values.type_of_transfer.includes("non medical")) && (
-                    <>
-                      <fieldset className="mb-3">
-                        <h4 className="mt-4 text-sm text-gray-500">Non Medical</h4>
-                        <div className=" flex items-center gap-x-6">
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="non-medical-option-1"
-                              name="tt_non_medical"
-                              value="Option 1"
-                              type="radio"
-                              defaultChecked
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="non-medical-option-1" className="block text-sm  text-gray-500">
-                              Option 1
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="non-medical-option-2"
-                              name="tt_non_medical"
-                              value="Option 2"
-                              type="radio"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="non-medical-option-2" className="block text-sm  text-gray-500">
-                              Option 2
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="non-medical-option-3"
-                              name="tt_non_medical"
-                              value="Option 3"
-                              type="radio"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="non-medical-option-3" className="block text-sm  text-gray-500">
-                              Option 3
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="non-medical-option-other"
-                              name="tt_non_medical"
-                              value="other"
-                              type="radio"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="non-medical-option-other" className="block text-sm  text-gray-500">
-                              Other
-                            </label>
-                          </div>
+                        </fieldset>
+                        {values && values.tt_non_medical.includes("other") && (
+                          <>
+                            <div class="col-span-full mt-3">
+                              <label for="about" class="block text-sm/6  text-gray-500">Other Non medical requirements</label>
+                              <div class="">
+                                <textarea
+                                  name="about"
+                                  id="about"
+                                  rows="3"
+                                  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                                /></div>
+                            </div>
+                          </>
+                        )}
                         </div>
-                      </fieldset>
-                      {values && values.tt_non_medical.includes("other") && (
-                        <>
-                          <div class="col-span-full mt-3">
-                            <label for="about" class="block text-sm/6  text-gray-500">Other Non medical requirements</label>
-                            <div class="mt-2">
-                              <textarea
-                                name="about"
-                                id="about"
-                                rows="3"
-                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-                              /></div>
+                      </>
+                    )}
+                    {(values && values.type_of_transfer.includes("curtailment")) && (
+                      <>
+                      <div>
+                        <fieldset className="mb-3">
+                          <h4 className="mt-4 text-sm text-gray-500">Curtailment</h4>
+                          <div className=" flex items-center gap-x-6">
+                            <div className="flex items-center gap-x-2">
+                              <Field
+                                id="curtailment-option-1"
+                                name="tt_curtailment"
+                                value="Option 1"
+                                type="radio"
+                                defaultChecked
+                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                              />
+                              <label htmlFor="curtailment-option-1" className="block text-sm  text-gray-500">
+                                Option 1
+                              </label>
+                            </div>
+                            <div className="flex items-center gap-x-2">
+                              <Field
+                                id="curtailment-option-2"
+                                name="tt_curtailment"
+                                value="Option 2"
+                                type="radio"
+                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                              />
+                              <label htmlFor="curtailment-option-2" className="block text-sm  text-gray-500">
+                                Option 2
+                              </label>
+                            </div>
+                            <div className="flex items-center gap-x-2">
+                              <Field
+                                id="curtailment-option-3"
+                                name="tt_curtailment"
+                                value="Option 3"
+                                type="radio"
+                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                              />
+                              <label htmlFor="curtailment-option-3" className="block text-sm  text-gray-500">
+                                Option 3
+                              </label>
+                            </div>
+                            <div className="flex items-center gap-x-2">
+                              <Field
+                                id="curtailment-option-4"
+                                name="tt_curtailment"
+                                value="other"
+                                type="radio"
+                                className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
+                              />
+                              <label htmlFor="curtailment-option-4" className="block text-sm  text-gray-500">
+                                Other
+                              </label>
+                            </div>
                           </div>
-                        </>
-                      )}
-
-                    </>
-                  )}
-                  {(values && values.type_of_transfer.includes("curtailment")) && (
-                    <>
-                      <fieldset className="mb-3">
-                        <h4 className="mt-4 text-sm text-gray-500">Curtailment</h4>
-                        <div className=" flex items-center gap-x-6">
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="curtailment-option-1"
-                              name="tt_curtailment"
-                              value="Option 1"
-                              type="radio"
-                              defaultChecked
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="curtailment-option-1" className="block text-sm  text-gray-500">
-                              Option 1
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="curtailment-option-2"
-                              name="tt_curtailment"
-                              value="Option 2"
-                              type="radio"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="curtailment-option-2" className="block text-sm  text-gray-500">
-                              Option 2
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="curtailment-option-3"
-                              name="tt_curtailment"
-                              value="Option 3"
-                              type="radio"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="curtailment-option-3" className="block text-sm  text-gray-500">
-                              Option 3
-                            </label>
-                          </div>
-                          <div className="flex items-center gap-x-2">
-                            <Field
-                              id="curtailment-option-4"
-                              name="tt_curtailment"
-                              value="other"
-                              type="radio"
-                              className="relative size-4 appearance-none rounded-full border border-gray-300 bg-white before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 forced-colors:appearance-auto forced-colors:before:hidden"
-                            />
-                            <label htmlFor="curtailment-option-4" className="block text-sm  text-gray-500">
-                              Other
-                            </label>
-                          </div>
-                        </div>
-                      </fieldset>
-                      {values && values.tt_curtailment.includes("other") && (
-                        <>
-                          <div class="col-span-full mt-3">
-                            <label for="about" class="block text-sm/6  text-gray-500">Other Curtailment requirements</label>
-                            <div class="mt-2">
-                              <textarea
-                                name="about"
-                                id="about"
-                                rows="3"
-                                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-                              /></div>
-                          </div>
-                        </>
-                      )}
-
-                    </>
-                  )}
+                        </fieldset>
+                        {values && values.tt_curtailment.includes("other") && (
+                          <>
+                            <div class="col-span-full mt-3">
+                              <label for="about" class="block text-sm/6  text-gray-500">Other Curtailment requirements</label>
+                              <div class="">
+                                <textarea
+                                  name="about"
+                                  id="about"
+                                  rows="3"
+                                  class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                                /></div>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -795,7 +804,7 @@ const BookingDetailBox = () => {
                 <div className="grid md:grid-cols-1 md:gap-6">
                   <div className="relative z-0 w-full mb-5 group">
                     <Field
-                    name="flight_number"
+                      name="flight_number"
                       type="tel"
                       className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=""
@@ -813,7 +822,6 @@ const BookingDetailBox = () => {
                     <Field
                       as="select"
                       className="block w-full appearance-none bg-transparent border-b-2 border-gray-300 py-2.5 ps-0 pe-4 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-0 focus:border-blue-600"
-                      defaultValue=""
                     >
                       <option value="10">saloon - Sedan</option>
                       <option value="20">estate - Station Wagon</option>
@@ -850,7 +858,7 @@ const BookingDetailBox = () => {
               <div className="grid md:grid-cols-2 md:gap-6">
                 <div className="relative z-0 w-full mb-5 group">
                   <Field
-                  name="from_1"
+                    name="from_1"
                     type="text"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
@@ -878,7 +886,7 @@ const BookingDetailBox = () => {
               <div className="grid md:grid-cols-2 md:gap-6">
                 <div className="relative z-0 w-full mb-5 group">
                   <Field
-                  name="from_2"
+                    name="from_2"
                     type="text"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "

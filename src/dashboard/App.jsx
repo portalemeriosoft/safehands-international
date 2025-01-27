@@ -20,9 +20,6 @@ import UserRegister from "../pages/UserRegister";
 import Page from "../pages/Page";
 import SignupDriver from "../pages/SignupDriver";
 import LoginDriver from "../pages/LoginDriver";
-import Map from "../pages/Map";
-import LocationMap from "../pages/LocationMap";
-import LocationMapUpdate from "../pages/LocationMapUpdate";
 import Terms from "../pages/Terms";
 import axios from "axios";
 import PageSpinner from "./components/PageSpinner";
@@ -34,34 +31,12 @@ import Order from "./../pages/Order";
 import Profile from "./../pages/Profile";
 import ProfileEdit from "./../pages/ProfileEdit";
 import UserDetail from "./../pages/UserDetail";
-// import Invoices from "./components/Invoices.jsx"
 import SpecificRequest from "./components/SpecificRequest.jsx"
 import Booking from "./components/Booking.jsx";
 import RequestDetail from "../pages/RequestDetail.jsx";
 import NewBookingDetail from "../pages/NewBookingDetail.jsx";
 import BookingDetail from "../pages/BookingDetail.jsx";
 import CO2EmissionsCalculator from "../pages/CO2EmissionsCalculator.jsx";
-
-// if ("geolocation" in navigator) {
-//   // Request the user's current location
-//   navigator.geolocation.getCurrentPosition(
-//     function(position) {
-//       // Success callback
-//       const latitude = position.coords.latitude;
-//       const longitude = position.coords.longitude;
-      
-//       localStorage.setItem('latitude', latitude)
-//       localStorage.setItem('longitude', longitude)
-//     },
-//     function(error) {
-//       // Error callback
-//       console.error("Error getting location:", error.message);
-//     }
-//   );
-// } else {
-//   // Geolocation is not supported
-//   console.error("Geolocation is not supported by this browser.");
-// }
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -102,9 +77,6 @@ const App = () => {
       <Routes>
         <Route element={<ProtectedRoute />}>
           <Route element={<Home />} path="/" exact />
-          <Route element={<Map />} path="/map" exact />
-          <Route element={<LocationMap />} path="/user/:id/location" exact />
-          <Route element={<LocationMapUpdate />} path="/user/:id/location/update" exact />
           <Route element={<Requests />} path="/requests" exact />
           <Route element={<MyRequests />} path="/my-requests" exact />
           <Route element={<SpecificRequest />} path="/request" exact />

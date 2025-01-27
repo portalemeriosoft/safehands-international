@@ -62,7 +62,7 @@ const BookingDetailBox = () => {
                   >
                     Booker Name
                   </label>
-                  {values.booker_name}
+                  {/* {values.booker_name} */}
                 </div>
                 <div className="relative z-0 w-full mb-5 group">
                   <Field
@@ -140,12 +140,10 @@ const BookingDetailBox = () => {
                 </div>
 
               </div>
+
+
               <div className="grid md:grid-cols-2 md:gap-6">
-
-                <div className="grid md:grid-cols-2 md:gap-6">
-
-                  <div className="grid md:grid-cols-1 md:gap-6">
-                    <div className="relative z-0 w-full mb-5 group">
+              <div className="relative z-0 w-full mb-5 group">
                       <input
                         type="text"
                         readOnly
@@ -160,9 +158,9 @@ const BookingDetailBox = () => {
                         Claim Reference Number
                       </label>
                     </div>
-                  </div>
-                  <div className="grid md:grid-cols-1 md:gap-6">
-                    <div className="relative z-0 w-full mb-5 group">
+
+                <div className="grid md:grid-cols-1 md:gap-6">
+                <div className="relative z-0 w-full mb-5 group">
                       <Field
                         as="select"
                         name="insurance"
@@ -197,10 +195,7 @@ const BookingDetailBox = () => {
                         </svg>
                       </div>
                     </div>
-                  </div>
                 </div>
-
-
               </div>
 
 
@@ -241,7 +236,7 @@ const BookingDetailBox = () => {
                   </div>
 
                   {(values.special_requirements && values.special_requirements == 'true') && (
-                    <div className="space-y-6 mt-3">
+                    <div className="space-y-6 mt-3 mb-4">
                       <div className="flex items-center gap-6">
                         {/* First Checkbox */}
                         <div className="flex items-center gap-3">
@@ -283,11 +278,11 @@ const BookingDetailBox = () => {
                       </div>
                     </div>
                   )}
-                  <div className="flex gap-20">
+                  <div className="grid md:grid-cols-2 md:gap-6">
                     {(values && values.special_requirements == 'true' && values.specialist_luggage.includes('luggage')) &&
                       (
                         <>
-                          <div>
+                          <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
                             <fieldset className="mb-3">
                               <h4 className="mt-4 text-sm text-gray-500">Specialist luggage</h4>
                               <div className=" flex items-center gap-x-6">
@@ -362,9 +357,9 @@ const BookingDetailBox = () => {
 
                     {(values && values.special_requirements == 'true' && values.specialist_luggage.includes('medical')) && (
                       <>
-                        <div>
+                        <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
                           <fieldset className="mb-3">
-                            <h4 className="mt-4 text-sm text-gray-500">Medical requirements</h4>
+                            <h4 className="text-sm text-gray-500">Medical requirements</h4>
                             <div className=" flex items-center gap-x-6">
                               <div className="flex items-center gap-x-2">
                                 <Field
@@ -465,7 +460,7 @@ const BookingDetailBox = () => {
                       </label>
                     </div>
                   </div>
-                  <div className="space-y-6 mt-3">
+                  <div className="space-y-6 mt-3 mb-4">
                     <div className="flex items-center gap-6">
                       {/* First Checkbox */}
                       <div className="flex items-center gap-3">
@@ -522,12 +517,12 @@ const BookingDetailBox = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex gap-x-20 flex-wrap">
+                  <div className=" grid md:grid-cols-2 md:gap-6">
                     {(values && values.type_of_transfer.includes("medical")) && (
                       <>
-                        <div>
+                        <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
                           <fieldset className="mb-3">
-                            <h4 className="mt-4 text-sm text-gray-500">Medical</h4>
+                            <h4 className="text-sm text-gray-500">Medical</h4>
                             <div className=" flex items-center gap-x-6">
                               <div className="flex items-center gap-x-2">
                                 <Field
@@ -599,9 +594,9 @@ const BookingDetailBox = () => {
                     )}
                     {(values && values.type_of_transfer.includes("non medical")) && (
                       <>
-                        <div>
+                        <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
                           <fieldset className="mb-3">
-                            <h4 className="mt-4 text-sm text-gray-500">Non Medical</h4>
+                            <h4 className="text-sm text-gray-500">Non Medical</h4>
                             <div className=" flex items-center gap-x-6">
                               <div className="flex items-center gap-x-2">
                                 <Field
@@ -673,9 +668,9 @@ const BookingDetailBox = () => {
                     )}
                     {(values && values.type_of_transfer.includes("curtailment")) && (
                       <>
-                        <div>
+                        <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
                           <fieldset className="mb-3">
-                            <h4 className="mt-4 text-sm text-gray-500">Curtailment</h4>
+                            <h4 className="text-sm text-gray-500">Curtailment</h4>
                             <div className=" flex items-center gap-x-6">
                               <div className="flex items-center gap-x-2">
                                 <Field

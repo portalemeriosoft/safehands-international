@@ -1,4 +1,5 @@
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from 'yup';
 
 
 
@@ -30,21 +31,38 @@ const BookingDetailBox = () => {
     drop_off_1: '',
     drop_off_2: '',
     drop_off_3: '',
+    type_of_vehicle: '',
+    claim_reference: '',
+    flight_number: '',
+  }
 
-    // contact_priority: user.data.contact_priority,
-    // country_code: c_code,
-    // phone: user.data.phone,
-    // address_line1: address_line1,
-    // address_line2: address_line2,
-    // city: city,
-    // zip_code: zip_code,
-  };
+  const SignupSchema = Yup.object().shape({
+    booker_name: Yup.string().required('Booker Name is required'),
+    booker_email: Yup.string().email("Invalid Email").required('Booker Email is required'),
+    passenger_name: Yup.string().required('Passenger Name is required'),
+    passenger_contact_number: Yup.number().required('Passenger Contact Number is required'),
+    passenger_age: Yup.number().required('Passenger Age is required'),
+    number_of_passengers: Yup.number().required('Number Of Passengers is required'),
+    date_of_transfer: Yup.string().required('Date Of Transfer is required'),
+    number_of_suitcase: Yup.number().required('Number Of Suitcase is required'),
+    pick_up_time: Yup.string().required('Pick Up Time is required'),
+    pick_up_1: Yup.string().required('Pick Up (1) is required'),
+    drop_off_1: Yup.string().required('Drop Off (1) is required'),
+    insurance: Yup.string().required('Insurance is required'),
+    type_of_vehicle: Yup.string().required('Type Of Vehicle is required'),
+    claim_reference: Yup.string().required('Claim Reference is required'),
+    flight_number: Yup.string().required('Flight Number is required'),
+  });
 
 
   return (
     <>
       <Formik
         initialValues={initialValues}
+        validationSchema={SignupSchema}
+        onSubmit={values => {
+          console.log(values);
+        }}
       >
         {({ values, errors, touched, handleChange }) => (
           <Form>
@@ -62,6 +80,11 @@ const BookingDetailBox = () => {
                   >
                     Booker Name
                   </label>
+                  <ErrorMessage
+                    name="booker_name"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
                   {/* {values.booker_name} */}
                 </div>
                 <div className="relative z-0 w-full mb-5 group">
@@ -76,6 +99,11 @@ const BookingDetailBox = () => {
                   >
                     Booker Email
                   </label>
+                  <ErrorMessage
+                    name="booker_email"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
                 </div>
               </div>
               <div className="grid md:grid-cols-2 md:gap-6">
@@ -91,6 +119,11 @@ const BookingDetailBox = () => {
                   >
                     Passenger Name
                   </label>
+                  <ErrorMessage
+                    name="passenger_name"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
                 </div>
 
                 <div className="grid md:grid-cols-1 md:gap-6">
@@ -106,6 +139,11 @@ const BookingDetailBox = () => {
                     >
                       Passenger Contact Number
                     </label>
+                    <ErrorMessage
+                      name="passenger_contact_number"
+                      component="div"
+                      className="mt-1 text-xs text-red-600 dark:text-red-500"
+                    />
                   </div>
                 </div>
               </div>
@@ -123,6 +161,11 @@ const BookingDetailBox = () => {
                   >
                     Passenger Age
                   </label>
+                  <ErrorMessage
+                    name="passenger_age"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
                 </div>
 
                 <div className="relative z-0 w-full mb-5 group">
@@ -137,64 +180,78 @@ const BookingDetailBox = () => {
                   >
                     Number Of Passengers
                   </label>
+                  <ErrorMessage
+                    name="number_of_passengers"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
                 </div>
 
               </div>
 
 
               <div className="grid md:grid-cols-2 md:gap-6">
-              <div className="relative z-0 w-full mb-5 group">
-                      <input
-                        type="text"
-                        readOnly
+                <div className="relative z-0 w-full mb-5 group">
+                  <Field
+                    type="text"
+                    name="claim_reference"
+                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                  />
+                  <label
 
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" "
-                      />
-                      <label
-
-                        className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                      >
-                        Claim Reference Number
-                      </label>
-                    </div>
+                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Claim Reference Number
+                  </label>
+                  <ErrorMessage
+                    name="claim_reference"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
+                </div>
 
                 <div className="grid md:grid-cols-1 md:gap-6">
-                <div className="relative z-0 w-full mb-5 group">
-                      <Field
-                        as="select"
-                        name="insurance"
-                        className="block w-full appearance-none bg-transparent border-b-2 border-gray-300 py-2.5 ps-0 pe-4 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-0 focus:border-blue-600"
-                      >
-                        {/* <option value="" disabled hidden>
+                  <div className="relative z-0 w-full mb-5 group">
+                    <Field
+                      as="select"
+                      name="insurance"
+                      className="block w-full appearance-none bg-transparent border-b-2 border-gray-300 py-2.5 ps-0 pe-4 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-0 focus:border-blue-600"
+                    >
+                      {/* <option value="" disabled hidden>
                         Insurance
                       </option> */}
-                        <option value="10">Ten</option>
-                        <option value="20">Twenty</option>
-                        <option value="30">Thirty</option>
-                      </Field>
-                      <label
-                        className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      <option value="10">Ten</option>
+                      <option value="20">Twenty</option>
+                      <option value="30">Thirty</option>
+                    </Field>
+                    <label
+                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    >
+                      Insurance
+                    </label>
+                    <div className="absolute inset-y-0 right-0 flex items-center  pointer-events-none">
+                      <svg
+                        className="w-4 h-4 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        Insurance
-                      </label>
-                      <div className="absolute inset-y-0 right-0 flex items-center  pointer-events-none">
-                        <svg
-                          className="w-4 h-4 text-gray-400"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 9l-7 7-7-7"
-                          ></path>
-                        </svg>
-                      </div>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
                     </div>
+                    <ErrorMessage
+                      name="insurance"
+                      component="div"
+                      className="mt-1 text-xs text-red-600 dark:text-red-500"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -415,10 +472,10 @@ const BookingDetailBox = () => {
                           {(values && values.m_requirement.includes("other") && (
                             <>
                               <div className="col-span-full mt-3">
-                                <label for="about" className="block text-sm/6  text-gray-500">Other medical requirements</label>
+                                <label htmlFor="about" className="block text-sm/6  text-gray-500">Other medical requirements</label>
                                 <div className="">
                                   <textarea
-                                    name="about"
+                                    name="m_requirement"
                                     id="about"
                                     rows="3"
                                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
@@ -578,7 +635,7 @@ const BookingDetailBox = () => {
                           {values && values.tt_medical.includes("other") && (
                             <>
                               <div className="col-span-full mt-3">
-                                <label for="about" className="block text-sm/6  text-gray-500">Other Medical requirements</label>
+                                <label htmlFor="about" className="block text-sm/6  text-gray-500">Other Medical requirements</label>
                                 <div className="">
                                   <textarea
                                     name="about"
@@ -652,7 +709,7 @@ const BookingDetailBox = () => {
                           {values && values.tt_non_medical.includes("other") && (
                             <>
                               <div className="col-span-full mt-3">
-                                <label for="about" className="block text-sm/6  text-gray-500">Other Non medical requirements</label>
+                                <label htmlFor="about" className="block text-sm/6  text-gray-500">Other Non medical requirements</label>
                                 <div className="">
                                   <textarea
                                     name="about"
@@ -726,7 +783,7 @@ const BookingDetailBox = () => {
                           {values && values.tt_curtailment.includes("other") && (
                             <>
                               <div className="col-span-full mt-3">
-                                <label for="about" className="block text-sm/6  text-gray-500">Other Curtailment requirements</label>
+                                <label htmlFor="about" className="block text-sm/6  text-gray-500">Other Curtailment requirements</label>
                                 <div className="">
                                   <textarea
                                     name="about"
@@ -748,7 +805,7 @@ const BookingDetailBox = () => {
               <div className="grid md:grid-cols-2 md:gap-6">
                 <div className="relative z-0 w-full mb-5 group">
                   <Field
-                    type="text"
+                    type="date"
                     name="date_of_transfer"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=""
@@ -758,6 +815,11 @@ const BookingDetailBox = () => {
                   >
                     Date Of Transfer
                   </label>
+                  <ErrorMessage
+                    name="date_of_transfer"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
                 </div>
                 <div className="relative z-0 w-full mb-5 group">
                   <Field
@@ -771,31 +833,31 @@ const BookingDetailBox = () => {
                   >
                     Pick Up Time
                   </label>
+                  <ErrorMessage
+                    name="pick_up_time"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
                 </div>
               </div>
 
               <div className="grid md:grid-cols-2 md:gap-6">
                 {/* <div className="grid md:grid-cols-2 md:gap-6">
-
                   <div className="grid md:grid-cols-1 md:gap-6">
                     <div className="relative z-0 w-full mb-5 group">
                       <input
                         type="text"
                         readOnly
-
                         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                         placeholder=" "
                       />
                       <label
-                        
-                        className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                      >
+                        className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Dialling code
                       </label>
                     </div>
                   </div>
                 </div> */}
-
                 <div className="grid md:grid-cols-1 md:gap-6">
                   <div className="relative z-0 w-full mb-5 group">
                     <Field
@@ -809,6 +871,11 @@ const BookingDetailBox = () => {
                     >
                       Flight Number
                     </label>
+                    <ErrorMessage
+                      name="flight_number"
+                      component="div"
+                      className="mt-1 text-xs text-red-600 dark:text-red-500"
+                    />
                   </div>
                 </div>
                 <div className="grid md:grid-cols-1 md:gap-6">
@@ -816,6 +883,7 @@ const BookingDetailBox = () => {
                   <div className="relative z-0 w-full mb-5 group">
                     <Field
                       as="select"
+                      name="type_of_vehicle"
                       className="block w-full appearance-none bg-transparent border-b-2 border-gray-300 py-2.5 ps-0 pe-4 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-0 focus:border-blue-600"
                     >
                       <option value="10">saloon - Sedan</option>
@@ -845,6 +913,11 @@ const BookingDetailBox = () => {
                         ></path>
                       </svg>
                     </div>
+                    <ErrorMessage
+                      name="type_of_vehicle"
+                      component="div"
+                      className="mt-1 text-xs text-red-600 dark:text-red-500"
+                    />
                   </div>
                 </div>
               </div>
@@ -863,6 +936,11 @@ const BookingDetailBox = () => {
                   >
                     Pick Up Location (1)
                   </label>
+                  <ErrorMessage
+                    name="pick_up_1"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
                 </div>
                 <div className="relative z-0 w-full mb-5 group">
                   <Field
@@ -876,6 +954,11 @@ const BookingDetailBox = () => {
                   >
                     Drop Off Location (1)
                   </label>
+                  <ErrorMessage
+                    name="drop_off_1"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
                 </div>
               </div>
               {(values.pick_up_1 && values.drop_off_1) && (
@@ -968,11 +1051,29 @@ const BookingDetailBox = () => {
                   />
 
                   <label
-
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Number Of Suitcase
                   </label>
+                  <ErrorMessage
+                    name="number_of_suitcase"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
+                </div>
+                <div className="relative z-0 w-full mb-5 mt-1 group">
+                  <Field
+                    type="file"
+                    name="file_1"
+                    className="block py-1.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0  appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                  />
+                  <ErrorMessage
+                    name="file_1"
+                    component="div"
+                    className="mt-1 text-xs text-red-600 dark:text-red-500"
+                  />
+
                 </div>
                 {/* <div className="relative z-0 w-full mb-5 group">
                 <Field
@@ -1020,7 +1121,7 @@ const BookingDetailBox = () => {
                 Cancel
               </button>
               <button
-                type="text"
+                type="submit"
                 className="ml-2 mt-2 rounded-full bg-violet-950 px-10 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 Submit
               </button>

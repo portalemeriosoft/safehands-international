@@ -1,8 +1,15 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from 'yup';
+import { requestQuotePath } from "./../../api/path";
+import axios from "axios";
+import { useState } from 'react';
+
 
 
 const RequestDetailBox = () => {
+
+const [loading, setLoading] = useState(false);
+
   let initialValues = {
     pick_up_1: '',
     pick_up_2: '',
@@ -20,6 +27,62 @@ const RequestDetailBox = () => {
     additional_detail: '',
   }
 
+  const handleRequestSubmit = (formValues) => {
+    
+    const pickup_locations = [
+      formValues.pick_up_1
+    ];
+
+    if(formValues.pick_up_2 != ''){
+      pickup_locations.push(formValues.pick_up_2)
+    }
+    
+    if(formValues.pick_up_2 != '' && formValues.pick_up_3 != ''){
+      pickup_locations.push(formValues.pick_up_3)
+    }
+
+    const dropOff_locations = [
+      formValues.drop_off_1
+    ];
+
+    if(formValues.drop_off_2 != ''){
+      pickup_locations.push(formValues.drop_off_2)
+    }
+    
+    if(formValues.drop_off_2 != '' && formValues.drop_off_3 != ''){
+      pickup_locations.push(formValues.drop_off_3)
+    }
+
+    console.log(formValues)
+    // return false;
+    const formdata = new FormData();
+    formdata.append("date_of_transfer", formValues.date_of_transfer);
+    formdata.append("pickup_time", formValues.pick_up_time);
+    formdata.append("flight", formValues.flight_number);
+    formdata.append("type_of_vehicle", formValues.type_of_vehicle);
+    formdata.append("pickup_locations", pickup_locations);
+    formdata.append("drop_off_locations", dropOff_locations);
+    formdata.append("no_of_passengers", formValues.number_of_passengers);
+    formdata.append("no_of_suitcases", formValues.number_of_suitcase);
+    formdata.append("additional_details", formValues.additional_detail);
+    formdata.append("terms_accepted", "true");
+
+    setLoading(true);
+    axios
+      .post(requestQuotePath, formdata)
+      .then(({ data }) => {
+        // toast.success("Information updated successfully");
+        setLoading(false);
+        console.log(data.data.user);
+        
+      })
+      .catch(function (error) {
+        if (error.response) {
+          setLoading(false);
+          console.log(error.response.data.message);
+        }
+      });
+  };
 
   const SignupSchema = Yup.object().shape({
     pick_up_1: Yup.string().required('Pick Up Location (1) is required'),
@@ -42,7 +105,7 @@ const RequestDetailBox = () => {
         initialValues={initialValues}
         validationSchema={SignupSchema}
         onSubmit={values => {
-          console.log(values);
+          handleRequestSubmit(values);
         }}
       >
         {({ values, error, touched, handlechange }) => (

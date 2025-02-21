@@ -2,7 +2,7 @@ import { AgGridReact } from "ag-grid-react"; // React Grid Logic
 import "ag-grid-community/styles/ag-grid.css"; // Core CSS
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Theme
 import { useEffect, useState, useRef } from "react";
-import { orderPath } from "../../api/path";
+import { requestAllQuotePath } from "../../api/path";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setOrders, ordersState } from "../../store/ordersSlice";
@@ -10,7 +10,7 @@ import Moment from "moment";
 import Order from "./Order";
 import { Link, useNavigate } from "react-router-dom";
 import { getOrderStatus } from "../../utils";
-import requests from "../../utils/requests.json"
+// import requests from "../../utils/requests.json"
 
 const ColourCellRenderer = (props) => (
   <Link className="text-blue-600 py-5"
@@ -28,8 +28,9 @@ const OrdersTable = () => {
 
   useEffect(() => {
     axios
-      .get(orderPath)
+      .get(requestAllQuotePath)
       .then(({ data }) => {
+        console.log(data)
         dispatch(setOrders(data.data));
       })
       .catch(function (error) {
@@ -41,16 +42,19 @@ const OrdersTable = () => {
 
   let requestRow = null;
 
-
+  console.log(orders)
   if (orders) {
-    requestRow = requests.map((request) => ({
+    requestRow = orders.map((request) => ({
       id: request.id,
-      dateOfTransfer: request.dateOfTransfer,
+      dateOfTransfer: request.date_of_transfer,
       pickUpTime: Moment(request.pickupTime).format("DD-MMM-YY h:mm A"),
-      flightNumber: request.flightNumber,
-      from: request.from,
-      to: request.to,
+      flightNumber: request.flight,
+      from: request.pickup_locations,
+      to: request.drop_off_locations,
       status: request.status,
+      numberOfSuitcase: request.no_of_suitcases,
+      numberOfPassengers: request.no_of_passengers,
+      typeOfVehicle: request.type_of_vehicle,
     }));
   }
 
@@ -73,6 +77,9 @@ const OrdersTable = () => {
     { field: "from" },
     { field: "to" },
     { field: "status" },
+    { field: "numberOfSuitcase", hide : true},
+    { field: "numberOfPassengers", hide : true},
+    { field: "typeOfVehicle", hide : true},
   ]);
 
   const onRowClicked = (event)=>{

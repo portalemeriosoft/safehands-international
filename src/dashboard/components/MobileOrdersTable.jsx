@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { FixedSizeList as List } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { orderPath } from "../../api/path";
+import { requestAllQuotePath } from "../../api/path";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setOrders, ordersState } from "../../store/ordersSlice";
@@ -38,9 +39,9 @@ const MobileOrdersTable = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get(orderPath)
+    axios.get(requestAllQuotePath)
       .then(({ data }) => {
+        console.log(data.data)
         dispatch(setOrders(data.data));
       })
       .catch(function (error) {

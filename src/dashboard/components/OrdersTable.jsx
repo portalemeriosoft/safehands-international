@@ -55,6 +55,8 @@ const OrdersTable = () => {
       numberOfSuitcase: request.no_of_suitcases,
       numberOfPassengers: request.no_of_passengers,
       typeOfVehicle: request.type_of_vehicle,
+      status: request.status,
+      amount: request.amount,
     }));
   }
 
@@ -80,6 +82,8 @@ const OrdersTable = () => {
     { field: "numberOfSuitcase", hide : true},
     { field: "numberOfPassengers", hide : true},
     { field: "typeOfVehicle", hide : true},
+    { field: "amount", hide : true},
+    { field: "status", hide : true},
   ]);
 
   const onRowClicked = (event)=>{

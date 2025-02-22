@@ -19,3 +19,4 @@ export const passwordChangePath = originServer + '/api/password/change';
 export const customerPhotoUploadPath = originServer + '/api/customer/uploadphoto';
 export const requestQuotePath = originServer + '/api/quote/request';
 export const requestAllQuotePath = originServer + '/api/quote/request-all';
+export const acceptQuoteRequestPath = originServer + '/api/quote/request/update';

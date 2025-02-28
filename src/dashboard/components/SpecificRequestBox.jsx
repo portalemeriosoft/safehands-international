@@ -1,11 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { acceptQuoteRequestPath } from "./../../api/path";
-
 import { Dialog, Transition } from "@headlessui/react";
 import { useSelector } from "react-redux";
 import { userState } from "../../store/userSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import UpdatePassword from "./UpdatePassword";
 import UpdateAvailability from "./UpdateAvailability";
@@ -16,8 +15,10 @@ const SpecificRequestBox = (rowData) => {
   const user = useSelector(userState);
   const [isOpen, setIsOpen] = useState(false);
   const [quote, setQuote] = useState("");
+  const navigate = useNavigate();
 
-  const { dateOfTransfer, pickUpTime, flightNumber, from, to, typeOfVehicle, numberOfPassengers, numberOfSuitcase, amount, status, id } = rowData.rowData
+
+  let { dateOfTransfer, pickUpTime, flightNumber, from, to, typeOfVehicle, numberOfPassengers, numberOfSuitcase, amount, status, id } = rowData.rowData
 
   const handleSubmit = () => {
     const formattedAmount = Number(quote);
@@ -28,7 +29,7 @@ const SpecificRequestBox = (rowData) => {
     }
 
     axios
-      .post(acceptQuoteRequestPath, { amount: formattedAmount, request_id : id })
+      .post(acceptQuoteRequestPath, { amount: formattedAmount, request_id: id })
       .then(({ data }) => {
         console.log(data);
         setIsOpen(false);
@@ -39,18 +40,23 @@ const SpecificRequestBox = (rowData) => {
   };
 
 
+  const acceptQuote = ()=>{
+    navigate("/booking-detail");
+    status = 2;
+  }
+
+
   return (
     <>
       <div className="booking-details border-5">
 
-        {(user && user.data && user.data.role !== 1) && (
-          <div className="booking-item">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>Quote Amount</div>
-              <div>AED {amount}</div>
-            </div>
+
+        <div className="booking-item">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>Quote Amount</div>
+            <div>AED {amount}</div>
           </div>
-        )}
+        </div>
 
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -111,98 +117,117 @@ const SpecificRequestBox = (rowData) => {
         </div>
       </div>
 
-      <div>
-        <div className="flex justify-end pt-2">
-          <button
-            className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
-            onClick={() => setIsOpen(true)}
-          >
-            Accept Quotation
-          </button>
-        </div>
-
-        <Transition.Root show={isOpen}>
-          <Dialog as="div" className="relative z-10" onClose={() => setIsOpen(false)}>
-            <Transition.Child
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
+      {(user && user.data && user.data.role === 1 && status === null) && (
+        <div>
+          <div className="flex justify-end pt-2">
+            <button
+              className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
+              onClick={() => setIsOpen(true)}
             >
-              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-            </Transition.Child>
+              Send Quote
+            </button>
+          </div>
+          <Transition.Root show={isOpen}>
+            <Dialog as="div" className="relative z-10" onClose={() => setIsOpen(false)}>
+              <Transition.Child
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+              </Transition.Child>
 
-            <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-              <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <Transition.Child
-                  enter="ease-out duration-300"
-                  enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                  enterTo="opacity-100 translate-y-0 sm:scale-100"
-                  leave="ease-in duration-200"
-                  leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                >
-                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                    <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                      <div>
-                        <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                          <Dialog.Title
-                            as="h2"
-                            className="text-xl mb-2 font-semibold leading-6 text-gray-900"
-                          >
-                            Give Quote
-                          </Dialog.Title>
-                          <hr />
-                          <div className="mt-2">
-                            <div className="mt-4">
-                              <label
-                                htmlFor="quote_input"
-                                className="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
-                              >
-                                Add a quote
-                              </label>
-                              <div className="relative">
-                                <input
-                                  type="number"
-                                  id="quote_input"
-                                  value={quote}
-                                  onChange={(e) => setQuote(e.target.value)}
-                                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                />
+              <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                  <Transition.Child
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    enterTo="opacity-100 translate-y-0 sm:scale-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  >
+                    <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                      <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                        <div>
+                          <div className="mt-3 text-center sm:mt-0 sm:text-left">
+                            <Dialog.Title
+                              as="h2"
+                              className="text-xl mb-2 font-semibold leading-6 text-gray-900"
+                            >
+                              Send  Quote
+                            </Dialog.Title>
+                           
+                            <div className="mt-2">
+                              <div className="mt-4">
+                             
+                                <div className="relative">
+                                  <input
+                                    type="number"
+                                    id="quote_input"
+                                    value={quote}
+                                    onChange={(e) => setQuote(e.target.value)}
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                      <button
-                        type="button"
-                        onClick={handleSubmit}
-                        className="inline-flex w-full justify-center rounded-full bg-violet-950 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-800 sm:ml-3 sm:w-auto"
-                      >
-                        Submit
-                      </button>
-                      <button
-                        type="button"
-                        className="mt-3 inline-flex w-full justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        Leave
-                      </button>
-                    </div>
-                  </Dialog.Panel>
-                </Transition.Child>
+                      <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button
+                          type="button"
+                          onClick={handleSubmit}
+                          className="inline-flex w-full justify-center rounded-full bg-violet-950 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-800 sm:ml-3 sm:w-auto"
+                        >
+                          Submit
+                        </button>
+                        <button
+                          type="button"
+                          className="mt-3 inline-flex w-full justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Leave
+                        </button>
+                      </div>
+                    </Dialog.Panel>
+                  </Transition.Child>
+                </div>
               </div>
-            </div>
-          </Dialog>
-        </Transition.Root>
-      </div>
+            </Dialog>
+          </Transition.Root>
+        </div>
+      )}
 
-
+      {(user && user.data && user.data.role === 3 && amount !== null) && (
+        <div>
+          <div className="flex justify-end pt-2">
+            <button
+              className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
+              onClick={acceptQuote}
+            >
+              Accept Quote
+            </button>
+          </div>
+        </div>
+      )}
+      {(user && user.data && user.data.role === 3 && status === 2) && (
+        <div>
+          <div className="flex justify-end pt-2">
+            <button
+              className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
+              onClick={acceptQuote}
+            >
+              Add Booking Details
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

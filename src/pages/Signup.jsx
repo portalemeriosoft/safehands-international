@@ -1,19 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  ArrowLongRightIcon,
-  EyeIcon,
-  EyeSlashIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowLongRightIcon, EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { useNavigate, useLocation, Navigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 import ErrorLabel from "./../dashboard/components/ErrorLabel";
-
 import { useSelector, useDispatch } from "react-redux";
 import { setIsAuth, setUser, userState } from "../store/userSlice";
 import { registerPath } from "../api/path";
 import Footer from "../dashboard/components/Footer";
-
 import { Formik, Field, Form } from "formik";
 
 export default function Admin() {
@@ -21,8 +15,8 @@ export default function Admin() {
   const [loading, setLoading] = useState(false);
 
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const [confirmPasswordVisibility, setConfirmPasswordVisibility] =
-    useState(false);
+  const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(false);
+  const [countries, setCountries] = useState([]);
 
   const user = useSelector(userState);
   const dispatch = useDispatch();
@@ -37,6 +31,17 @@ export default function Admin() {
     password_confirmation: "",
   };
 
+  // useEffect(() => {
+  //   fetch("https://restcountries.com/v3.1/all")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       const countryList = data.map((country) => country.name.common);
+  //       setCountries(countryList.sort()); 
+  //       console.log(countries)
+  //     });
+  //   }, []);
+    
   const userSchema = Yup.object().shape({
     name: Yup.string().required("Your name is Required!"),
     email: Yup.string().email().required("Your email is Required!"),
@@ -87,7 +92,7 @@ export default function Admin() {
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-start px-6 py-6 lg:px-8">
-        
+
         <div className="mt-10 sm:mx-auto md:w-6/12 md:max-w-6/12">
           <Formik
             initialValues={initialValues}
@@ -368,7 +373,7 @@ export default function Admin() {
                   </div>
                 </div>
 
-                      
+
                 <div className="flex justify-end submit-btn md:mt-0 mt-3">
                   <button
                     type="submit"

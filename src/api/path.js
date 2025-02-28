@@ -1,7 +1,7 @@
 const originServer = process.env.REACT_APP_ORIGIN;
 
 export const adminPath = originServer + '/api/login';
-export const loginPath = originServer + '/api/customer/login';
+export const loginPath = originServer + '/api/login';
 export const registerPath = originServer + '/api/customer/signup';
 export const getUserPath = originServer + '/api/user';
 export const getCustomerUserPath = originServer + '/api/customer/user';
@@ -20,3 +20,4 @@ export const customerPhotoUploadPath = originServer + '/api/customer/uploadphoto
 export const requestQuotePath = originServer + '/api/quote/request';
 export const requestAllQuotePath = originServer + '/api/quote/request-all';
 export const acceptQuoteRequestPath = originServer + '/api/quote/request/update';
+export const getAllUsers = originServer + '/api/users';

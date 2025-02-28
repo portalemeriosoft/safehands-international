@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { useSelector } from "react-redux";
 import { userState } from "./../../store/userSlice";
 import { Link } from "react-router-dom";
@@ -8,10 +7,12 @@ import UpdatePassword from "./UpdatePassword";
 import UpdateAvailability from "./UpdateAvailability";
 import { displayPhoneNumber, displayBillingAddress } from "./../../utils";
 
-const ProfileBox = () => {
+const ProfileBox = (userData) => {
   const user = useSelector(userState);
   const updatePasswordDisplay = useState(false);
   const updateAvailabilityDisplay = useState(false);
+  let {name, email, phone, country, role} = userData.userData;
+
 
   return (
     <>
@@ -78,14 +79,14 @@ const ProfileBox = () => {
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Name</div>
-            <div>{user.data.name}</div>
+            <div>{name}</div>
           </div>
         </div>
 
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Email</div>
-            <div>{user.data.email}</div>
+            <div>{email}</div>
           </div>
         </div>
 
@@ -95,7 +96,7 @@ const ProfileBox = () => {
             <div>
               {user.data.phone &&
                 displayPhoneNumber(user.data.dialling_code, user.data.phone)}
-                +92123456789
+                {phone}
             </div>
           </div>
         </div>
@@ -104,7 +105,7 @@ const ProfileBox = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Country</div>
             <div>
-              United Arab Emirates
+              {country}
             </div>
           </div>
         </div>
@@ -114,7 +115,7 @@ const ProfileBox = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>Role</div>
               <div>
-                Admin
+                {role}
               </div>
             </div>
           </div>

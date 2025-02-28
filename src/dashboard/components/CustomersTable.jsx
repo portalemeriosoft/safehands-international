@@ -2,11 +2,11 @@ import { AgGridReact } from "ag-grid-react"; // React Grid Logic
 import "ag-grid-community/styles/ag-grid.css"; // Core CSS
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Theme
 import { useEffect, useState, useCallback, useRef } from "react";
-import { customersPath } from "../../api/path";
+import { customersPath, getAllUsers } from "../../api/path";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setCustomers, customersState } from "../../store/customersSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { displayPhoneNumber } from './../../utils'
 import users from './../../utils/users.json';
 
@@ -14,6 +14,7 @@ import users from './../../utils/users.json';
 const CustomersTable = () => {
   const customers = useSelector(customersState);
   const dispatch = useDispatch();
+  const [allUsers, setAllUsers] = useState([]);
 
   const gridRef = useRef();
 
@@ -22,6 +23,19 @@ const CustomersTable = () => {
       .get(customersPath)
       .then(({ data }) => {
         dispatch(setCustomers(data.data));
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data.message);
+        }
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(getAllUsers)
+      .then(({ data }) => {
+        setAllUsers(data.data.users);
       })
       .catch(function (error) {
         if (error.response) {
@@ -59,32 +73,36 @@ const CustomersTable = () => {
     ],
   };
 
-  if (customers) {
-    customerRow = users.map((customer) => ({
-      id: customer,
-      name: customer.name,
-      email: customer.email,
-      phone: customer.phone,
-      country: 'United Arab Emirates',
-      role: customer.user_role,
-      status: 'Active',
-    }));
-  }
+
+  customerRow = allUsers.map((customer) => ({
+    id: customer.id,
+    name: customer.name,
+    email: customer.email,
+    phone: customer.phone,
+    country: customer.country,
+    role: customer.role,
+    status: customer.status,
+  }));
+
 
   const userLinkRenderer = (props) => {
-    console.log(props.data)
+
     return (
-      <Link className="text-blue-600 py-5"
-        to={"/user/" + props.data.id.code}  
-      >{props.value}</Link>
-    ); 
-  }
+      <Link
+        className="text-blue-600 py-5"
+        to={`/user/${props.data.id}`}
+        state={{ user: props.data }} 
+      >
+        {props.value}
+      </Link>
+    );
+  };
 
   const userPhoneRenderer = (props) => (
     displayPhoneNumber(props.data.id.dialling_code, props.data.id.phone)
-  ); 
+  );
 
-  
+
 
 
 
@@ -93,7 +111,7 @@ const CustomersTable = () => {
     { field: "name", cellRenderer: userLinkRenderer },
     { field: "email" },
     { field: "country" },
-    { field: "phone", cellRenderer: userPhoneRenderer },
+    { field: "phone" },
     { field: "role" },
     { field: "status" },
   ]);

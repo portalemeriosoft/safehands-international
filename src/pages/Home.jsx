@@ -8,8 +8,8 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { orderPath } from "../api/path";
-import CardSkeleton from "../dashboard/components/CardSkeleton";
+import { dashboardPath } from "../api/path";
+import CardSkeleton from "../dashboard/components/layout/CardSkeleton";
 
 import { useSelector } from "react-redux";
 import { userState } from "../store/userSlice";
@@ -19,27 +19,29 @@ const Home = () => {
   const [ordersCount, setOrdersCount] = useState(null);
   const [customersCount, setCustomersCount] = useState(null);
   const [paymentsCount, setPaymentsCount] = useState(null);
-  const [declinedOrdersCount, setDeclinedOrdersCount] = useState(null);
+  const [requestsCount, setRequestsCount] = useState(null);
 
   const user = useSelector(userState);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
-  if(user.data.role !== 1){
-    navigate("/my-requests");
-  }
+  // if(user.data.role !== 1){
+  //   navigate("/my-requests");
+  // }
 
   useEffect(() => {
 
     axios
-    .get(orderPath + "/count")
+    .get(dashboardPath + "/count")
     .then(({ data }) => {
       setOrdersCount(data.data.orders);
-      if(user.data.role === 1){
+      // if(user.data.role === 1){
         setCustomersCount(data.data.customers);
-      }
+      // }else{
+
+      // }
       
       setPaymentsCount(data.data.payments);
-      setDeclinedOrdersCount(data.data.declined_orders);
+      setRequestsCount(data.data.requests);
     })
     .catch(function (error) {
       if (error.response) {
@@ -59,10 +61,18 @@ const Home = () => {
 
             {(customersCount !== null) ? (
               <NavLink to="/users" className="md:mx-2 my-2">
-                <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
+                <div className="bg-cyan-50 rounded-lg px-5 py-5 flex justify-between">
                   <div className="">
-                    <UsersIcon className="block h-6 w-6" aria-hidden="true" />
-                    <p>Users</p>
+                    {(user.data.role === 1) ? (
+                      <UsersIcon className="block h-6 w-6" aria-hidden="true" />
+                    ) : (
+                    <DocumentArrowDownIcon
+                      className="block h-6 w-6"
+                      aria-hidden="true"
+                    />
+                    )}
+                    
+                    <p>{(user.data.role === 1)?'Users':'Pending Requests'}</p>
                   </div>
                   <div className=" text-end height-full text-blue-600 text-4xl font-semibold my-auto">
                     {customersCount}
@@ -72,7 +82,7 @@ const Home = () => {
             ) : (
               <CardSkeleton />
             )}
-             {(declinedOrdersCount !== null) ? (
+             {(requestsCount !== null) ? (
               <NavLink to="/requests" className="md:mx-2 my-2">
                 <div className="bg-cyan-50 rounded-lg px-5 py-5 grid grid-cols-2">
                   <div className="">
@@ -83,7 +93,7 @@ const Home = () => {
                     <p>Requests</p>
                   </div>
                   <div className=" text-end height-full text-blue-600 text-4xl font-semibold my-auto">
-                    {declinedOrdersCount}
+                    {requestsCount}
                   </div>
                 </div>
               </NavLink>

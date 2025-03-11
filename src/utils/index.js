@@ -68,19 +68,6 @@ export const time_display = (t) => {
     return time
 }
 
-export const getOrderStatus = statusId => {
-    let status;
-    switch (statusId) {
-        case 0: status = "Inactive"; break;
-        case 1: status = "Pending"; break;
-        case 2: status = "Active"; break;
-        case 3: status = "Declined"; break;
-        case 4: status = "Completed"; break;
-        case 5: status = "Cancelled"; break;
-        default: status = "";
-    }
-    return status;
-}
 
 export const displayPhoneNumber = (dialling_code, phone) => {
     let phoneNumber = dialling_code && "+" + dialling_code + " ";

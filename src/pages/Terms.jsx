@@ -1,7 +1,7 @@
 
-import TermBox from "../dashboard/components/TermBox";
+import TermBox from "../dashboard/components/layout/TermBox";
 import Layout from "../dashboard/Layout";
-import Breadcrumb from "../dashboard/components/Breadcrumb";
+import Breadcrumb from "../dashboard/components/layout/Breadcrumb";
 
 export default function Terms() {
           

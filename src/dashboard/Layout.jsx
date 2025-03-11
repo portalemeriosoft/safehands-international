@@ -139,7 +139,7 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
                         to={
                           user && user.data && user.data.role === 1
                             ? "/"
-                            : "/my-requests"
+                            : "/"
                         }
                       >
                         <img
@@ -240,9 +240,7 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
                           {user.data.role && user.data.role === 1
                             ? "Admin"
                             : user.data.role && user.data.role === 2
-                              ? "Driver"
-                              : user.data.role && user.data.role === 3
-                                ? "Customer"
+                              ? "Customer"
                                 : "Account type: Not Available"}
                         </span>
                       </div>

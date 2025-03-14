@@ -41,6 +41,7 @@ import Logout from "../pages/auth/Logout";
 
 import Profile from "./../pages/profile/Profile";
 import ProfileEdit from "./../pages/profile/ProfileEdit";
+import ProfileEditPhoto from "./../pages/profile/ProfileEditPhoto";
 
 import InvoiceDetail from "../pages/invoices/InvoiceDetail";
 import Invoices from "../pages/invoices/Invoices";
@@ -106,7 +107,7 @@ const App = () => {
           <Route element={<Profile />} path="/profile" />
           <Route element={<UserDetail />} path="/user/:id" />
           <Route element={<ProfileEdit />} path="/profile/edit" />
-          <Route element={<ProfileEdit />} path="/profile/edit/:id/:type" />
+          <Route element={<ProfileEditPhoto />} path="/profile/edit/:id/:type" />
           <Route element={<Terms />} path="/terms" />
           <Route element={<Logout />} path="/logout" />
           <Route element={<UserRegister />} path="/user/signup" />

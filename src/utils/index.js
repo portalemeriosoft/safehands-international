@@ -1,3 +1,4 @@
+import { allCountries } from "./countries";
 
 
 
@@ -74,6 +75,11 @@ export const displayPhoneNumber = (dialling_code, phone) => {
     phoneNumber += phone && phone;
     return phoneNumber;
 };
+
+export const displayCountry = (country_code) => {
+    const [country] = allCountries.filter((x) => x[1] === country_code);
+    return country[0];
+}
 
 export const displayBillingAddress = (billing_address) => {
     let address = billing_address.address;

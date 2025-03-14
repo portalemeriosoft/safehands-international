@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import UpdatePassword from "../profile/UpdatePassword";
 import UpdateAvailability from "../profile/UpdateAvailability";
-import { displayPhoneNumber } from "../../../utils";
+import { displayCountry, displayPhoneNumber } from "../../../utils";
 
 const ProfileBox = () => {
   const user = useSelector(userState);
@@ -91,7 +91,7 @@ const ProfileBox = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Country</div>
             <div>
-              {user.data.country}
+              {displayCountry(user.data.country)}
             </div>
           </div>
         </div>

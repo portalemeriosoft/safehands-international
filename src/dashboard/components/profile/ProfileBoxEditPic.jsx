@@ -5,14 +5,13 @@ import "cropperjs/dist/cropper.css";
 import axios from "axios";
 import { toast } from 'react-toastify';
 
-import { setIsAuth, setUser, userState } from "../../../store/userSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { setUser } from "../../../store/userSlice";
+import { useDispatch } from "react-redux";
 import { customerPhotoUploadPath } from "../../../api/path";
 
 
 export const ProfileBoxEditPic = () => {
   
-  const user = useSelector(userState);
   const [loading, setLoading] = useState(false);
   const defaultSrc = "";
   

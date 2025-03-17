@@ -9,6 +9,8 @@ import { setIsAuth, setUser, userState } from "../../store/userSlice";
 import { registerPath } from "../../api/path";
 import Footer from "../../dashboard/components/layout/Footer";
 import { Formik, Field, Form } from "formik";
+import { allCountries } from "../../utils/countries";
+import { getCountry, getDiallingCode } from "../../utils";
 
 export default function Admin() {
   const [error, setError] = useState(null);
@@ -16,36 +18,49 @@ export default function Admin() {
 
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [confirmPasswordVisibility, setConfirmPasswordVisibility] = useState(false);
-  const [countries, setCountries] = useState([]);
+  // const [countries, setCountries] = useState([]);
 
-  const user = useSelector(userState);
-  const dispatch = useDispatch();
+  // const user = useSelector(userState);
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
-  let location = useLocation();
+  // let location = useLocation();
+
+  const [diallingCode, setDiallingCode] = useState('');
+
+  const updateDiallingCode = (country_code) => { 
+    
+    if(country_code && country_code !== ''){
+      let [selectedCountry] = allCountries.filter((x) => x[1] === country_code);
+      setDiallingCode(selectedCountry[2]);
+      return selectedCountry;
+    }
+
+    setDiallingCode('');
+    return '';
+
+  };
+
 
   const initialValues = {
     name: "",
     email: "",
-    role: "",
+    country_code: "",
+    phone: "",
     password: "",
     password_confirmation: "",
+    role: "",
   };
-
-  // useEffect(() => {
-  //   fetch("https://restcountries.com/v3.1/all")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       const countryList = data.map((country) => country.name.common);
-  //       setCountries(countryList.sort()); 
-  //       console.log(countries)
-  //     });
-  //   }, []);
     
   const userSchema = Yup.object().shape({
-    name: Yup.string().required("Your name is Required!"),
-    email: Yup.string().email().required("Your email is Required!"),
-    role: Yup.string().required("Select any one profile!"),
+    name: Yup.string().required("Full name is Required!"),
+    email: Yup.string().email().required("Email is Required!"),
+    country_code: Yup.string().required("Country code is Required!"),
+    phone: Yup.string()
+    .matches(/^\d+$/, "Phone number must contain only digits.")
+    .min(6, "Phone number must be at least 6 digits.")
+    .max(11, "Phone number must be at most 11 digits.")
+    .required("Phone number is required!"),
+    role: Yup.string().required("Select any one role!"),
     password: Yup.string().min(8).required("Password field is Required!"),
     password_confirmation: Yup.string()
       .min(8)
@@ -67,17 +82,19 @@ export default function Admin() {
     for (const [key, value] of Object.entries(values)) {
       formData.append(key, value);
     }
-
+    formData.append('country', getCountry(values.country_code));
+    formData.append('dialling_code', getDiallingCode(values.country_code));
+    
     axios
       .post(registerPath, formData)
       .then(({ data }) => {
-        localStorage.setItem("token", data.data.token);
+        // localStorage.setItem("token", data.data.token);
 
-        axios.defaults.headers.common["Authorization"] =
-          "Bearer " + data.data.token;
+        // axios.defaults.headers.common["Authorization"] =
+          // "Bearer " + data.data.token;
 
-        dispatch(setUser(data.data.user));
-        dispatch(setIsAuth());
+        // dispatch(setUser(data.data.user));
+        // dispatch(setIsAuth());
         setLoading(false);
         navigate("/");
       })
@@ -151,7 +168,38 @@ export default function Admin() {
 
 
                 <div className="md:flex md:space-x-4">
-                  <div className="country w-full md:mt-0 mt-3">
+
+
+                <div className="full-name w-full md:mt-0 mt-3 mb-5">
+                  <label
+                    htmlFor="country_code"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Select your country
+                  </label>
+                  <Field 
+                    as="select" size="1"
+                    name="country_code"
+                    onChange={(e) => {
+                      handleChange(e);
+                      updateDiallingCode(e.target.value);
+                    }}
+                    id="country_code"
+                    className="block w-full rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6"
+                  >
+                    <option value="">Choose a country</option>
+                    {allCountries.map((country, ind) => (
+                      <option key={ind} value={country[1]}>
+                        {country[0]}
+                      </option>
+                    ))}
+                  </Field>
+                  {errors.country_code && (
+                    <ErrorLabel errMsg={errors.country_code} />
+                  )}
+                </div>
+
+                  {/* <div className="country w-full md:mt-0 mt-3">
                     <label
                       htmlFor="country"
                       className="block text-sm font-medium leading-6 text-gray-900"
@@ -172,28 +220,35 @@ export default function Admin() {
                     {errors.name && touched.name && (
                       <ErrorLabel errMsg={errors.name} />
                     )}
-                  </div>
+                  </div> */}
 
                   <div className="phone w-full md:mt-0 mt-3">
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-medium leading-6 text-gray-900"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
                       Phone number
                     </label>
-                    <Field
-                      id="phone"
-                      name="phone"
-                      type="phone"
-                      onChange={(e) => {
-                        handleChange(e);
-                        setError("");
-                      }}
-                      autoComplete="phone"
-                      className="block w-full rounded-md border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6"
-                    />
-                    {errors.email && touched.email && (
-                      <ErrorLabel errMsg={errors.email} />
+                    <div className="relative">
+                      
+                      <span className="absolute top-0 bottom-0 left-[10px] my-auto sm:text-sm sm:leading-6 h-full flex items-center border-r border-[#cecede] pr-2.5">{ (diallingCode) && '+'+diallingCode }</span>
+                      <Field
+                        id="phone"
+                        name="phone"
+                        type="phone"
+                        onChange={(e) => {
+                          handleChange(e);
+                          setError("");
+                        }}
+                        autoComplete="phone"
+                        className="block w-full rounded-md border-0 pr-2.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6"
+                        style={{
+                          paddingLeft: `${diallingCode.length+4}ch`, // Dynamic padding
+                        }}
+                      />
+                    </div>
+                    {errors.phone && touched.phone && (
+                      <ErrorLabel errMsg={errors.phone} />
                     )}
                   </div>
                 </div>
@@ -295,7 +350,7 @@ export default function Admin() {
                       type="radio"
                       id="role_admin"
                       name="role"
-                      value="2"
+                      value="1"
                       className="hidden peer"
                       onChange={(e) => {
                         handleChange(e);
@@ -340,7 +395,7 @@ export default function Admin() {
                       type="radio"
                       id="role_customer"
                       name="role"
-                      value="3"
+                      value="2"
                       className="hidden peer"
                       onChange={(e) => {
                         handleChange(e);
@@ -373,6 +428,11 @@ export default function Admin() {
                   </div>
                 </div>
 
+                <div>
+                  {(error && error !== '') && (
+                    <ErrorLabel errMsg={error} />
+                  )}
+                </div>
 
                 <div className="flex justify-end submit-btn md:mt-0 mt-3">
                   <button

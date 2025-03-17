@@ -45,6 +45,7 @@ import ProfileEditPhoto from "./../pages/profile/ProfileEditPhoto";
 
 import InvoiceDetail from "../pages/invoices/InvoiceDetail";
 import Invoices from "../pages/invoices/Invoices";
+import UserEdit from "../pages/profile/UserEdit.jsx";
 
 
 
@@ -108,6 +109,7 @@ const App = () => {
           <Route element={<UserDetail />} path="/user/:id" />
           <Route element={<ProfileEdit />} path="/profile/edit" />
           <Route element={<ProfileEditPhoto />} path="/profile/edit/:id/:type" />
+          <Route element={<UserEdit />} path="/user/edit/:id" />
           <Route element={<Terms />} path="/terms" />
           <Route element={<Logout />} path="/logout" />
           <Route element={<UserRegister />} path="/user/signup" />

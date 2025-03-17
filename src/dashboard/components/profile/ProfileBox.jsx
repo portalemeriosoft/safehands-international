@@ -1,27 +1,32 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { userState } from "../../../store/userSlice";
+
 import { Link } from "react-router-dom";
 import { CameraIcon } from "@heroicons/react/24/outline";
 import UpdatePassword from "../profile/UpdatePassword";
 import UpdateAvailability from "../profile/UpdateAvailability";
-import { displayCountry, displayPhoneNumber } from "../../../utils";
+import { getCountry, displayPhoneNumber } from "../../../utils";
 
-const ProfileBox = () => {
-  const user = useSelector(userState);
+import { userState } from "../../../store/userSlice";
+import { useSelector } from "react-redux";
+
+const ProfileBox = ({ userData }) => {
+
+  
   const updatePasswordDisplay = useState(false);
   const updateAvailabilityDisplay = useState(false);
 
+  const user = useSelector(userState);
+  
   return (
     <>
       <div className="booking-details border-5">
         <div className="booking-item rounded gradient-background">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              {user.data.photo ? (
+              {userData.photo ? (
                 <img
                   alt="profile"
-                  src={user.data.photo}
+                  src={userData.photo}
                   className="border-white border-2 md:w-40 md:h-40 w-full h-full rounded-full shadow"
                 />
               ) : (
@@ -51,7 +56,7 @@ const ProfileBox = () => {
                 Update Password
               </button>
             
-              {user.data.photo && (
+              {userData.photo && (
                 <Link to={`/profile/edit/${btoa(0)}/photo`}>
                   <CameraIcon
                     className="md:text-white text-black inline-block h-6 w-6"
@@ -66,14 +71,14 @@ const ProfileBox = () => {
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Name</div>
-            <div>{user.data.name}</div>
+            <div>{userData.name}</div>
           </div>
         </div>
 
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Email</div>
-            <div>{user.data.email}</div>
+            <div>{userData.email}</div>
           </div>
         </div>
 
@@ -81,8 +86,8 @@ const ProfileBox = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Phone</div>
             <div>
-              {user.data.phone &&
-                displayPhoneNumber(user.data.dialling_code, user.data.phone)}
+              {userData.phone &&
+                displayPhoneNumber(userData.dialling_code, userData.phone)}
             </div>
           </div>
         </div>
@@ -91,17 +96,17 @@ const ProfileBox = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Country</div>
             <div>
-              {displayCountry(user.data.country)}
+              {getCountry(userData.country)}
             </div>
           </div>
         </div>
 
-        {(user && user.data && user.data.role === 1) && (
+        {(userData && userData.role === 1) && (
           <div className="booking-item">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>Role</div>
               <div>
-                {user.data.role}
+                {(userData.role && userData.role === 1) ? 'Admin' : 'Customer'}
               </div>
             </div>
           </div>
@@ -112,12 +117,24 @@ const ProfileBox = () => {
       </div>
 
       <div className="flex justify-end pt-2">
-        <Link
-          className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
-          to={`/profile/edit`}
-        >
-          Edit Profile
-        </Link>
+        
+        {(userData.id !== user.data.id) ? (
+          <Link
+            className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
+            to={'/user/edit/'+userData.hash}
+          >
+            Edit User Profile
+          </Link>
+
+        ): (
+
+          <Link
+            className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
+            to={`/profile/edit`}
+          >
+            Edit Profile
+          </Link>
+        )}
         {/* <Link
           className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
           to={`/profile/edit/${btoa(0)}/basic`}
@@ -127,12 +144,12 @@ const ProfileBox = () => {
       </div>
 
       <UpdatePassword
-        user_id={user.data.id}
+        user_id={userData.id}
         updatePasswordDisplay={updatePasswordDisplay}
       />
 
       <UpdateAvailability
-        user_id={user.data.id}
+        user_id={userData.id}
         updateAvailabilityDisplay={updateAvailabilityDisplay}
       />
     </>

@@ -4,15 +4,17 @@ import { setIsAuth, setUser, userState } from "../../../store/userSlice";
 import { Formik, Field, Form } from "formik";
 import { allCountries } from "../../../utils/countries";
 import * as Yup from "yup";
-import ErrorLabel from "./../layout/ErrorLabel";
+import ErrorLabel from "../layout/ErrorLabel";
 import axios from "axios";
-import { profileUpdatePath } from "../../../api/path";
+import { userUpdatePath } from "../../../api/path";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const ProfileBox = () => {
-  const user = useSelector(userState);
+const UserProfileBoxEdit = ({
+  user
+}) => {
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const diallingCodeElement = useRef();
@@ -32,17 +34,18 @@ const ProfileBox = () => {
 
     formData.append("country", country);
     formData.append("dialling_code", diallingCode);
+    formData.append("user_id", user.id);
 
     setLoading(true);
     axios
-      .post(profileUpdatePath, formData)
+      .post(userUpdatePath, formData)
       .then(({ data }) => {
         toast.success("Information updated successfully");
         setLoading(false);
         console.log(data.data.user);
-        dispatch(setUser(data.data.user));
+        // dispatch(setUser(data.data.user));
         setTimeout(() => {
-          navigate("/profile");
+          navigate("/user/"+data.data.user.hash);
         }, 2000);
       })
       .catch(function (error) {
@@ -61,26 +64,31 @@ const ProfileBox = () => {
 
   const updateDiallingCode = (country_code) => {
     let [selectedCountry] = allCountries.filter((x) => x[1] === country_code);
-    if (diallingCodeElement && diallingCodeElement.current) {
-      diallingCodeElement.current.value = "+" + selectedCountry[2];
+
+    if(selectedCountry && selectedCountry.length > 1){
+
+      if (diallingCodeElement && diallingCodeElement.current) {
+        diallingCodeElement.current.value = "+" + selectedCountry[2];
+      }
+      setDiallingCode(selectedCountry[2]);
+      setCountry(selectedCountry[0]);
+
     }
-    setDiallingCode(selectedCountry[2]);
-    setCountry(selectedCountry[0]);
 
     return selectedCountry;
   };
 
   useEffect(() => {
-    if (user.data && user.data.country && user.data.country !== '') { 
-      updateDiallingCode(user.data.country);
+    if (user && user.country && user.country !== '') { 
+      updateDiallingCode(user.country);
     }
   }, []);
 
 
   const initialValues = {
-    name: user.data.name,
-    country_code: user.data.country,
-    phone: user.data.phone,
+    name: user.name,
+    country_code: user.country,
+    phone: user.phone,
   };
 
   return (
@@ -241,4 +249,4 @@ const ProfileBox = () => {
   );
 };
 
-export default ProfileBox;
+export default UserProfileBoxEdit;

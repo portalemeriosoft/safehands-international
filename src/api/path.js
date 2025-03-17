@@ -2,14 +2,14 @@ const originServer = process.env.REACT_APP_ORIGIN;
 
 export const adminPath = originServer + '/api/login';
 export const loginPath = originServer + '/api/login';
-export const registerPath = originServer + '/api/customer/signup';
+export const registerPath = originServer + '/api/user/create';
 export const getUserPath = originServer + '/api/user';
 export const getCustomerUserPath = originServer + '/api/customer/user';
 export const logoutPath = originServer + '/api/logout';
 export const orderPath = originServer + '/api/orders';
 export const dashboardPath = originServer + '/api/dashboard';
 export const customersPath = originServer + '/api/customers';
-export const customerUpdatePath = originServer + '/api/user/update';
+export const userUpdatePath = originServer + '/api/user/update';
 export const profileUpdatePath = originServer + '/api/profile/update';
 export const customerLocationUpdatePath = originServer + '/api/customer/location/update';
 export const paymentsPath = originServer + '/api/payments';

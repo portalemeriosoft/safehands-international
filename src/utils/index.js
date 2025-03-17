@@ -76,9 +76,14 @@ export const displayPhoneNumber = (dialling_code, phone) => {
     return phoneNumber;
 };
 
-export const displayCountry = (country_code) => {
+export const getCountry = (country_code) => {
     const [country] = allCountries.filter((x) => x[1] === country_code);
-    return country[0];
+    return (country && country !== '') ? country[0] : '';
+}
+
+export const getDiallingCode = (country_code) => {
+    const [country] = allCountries.filter((x) => x[1] === country_code);
+    return (country && country !== '') ? country[2] : '';
 }
 
 export const displayBillingAddress = (billing_address) => {

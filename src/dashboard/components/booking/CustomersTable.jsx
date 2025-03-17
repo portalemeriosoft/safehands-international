@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCustomers, customersState } from "../../../store/customersSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { displayPhoneNumber } from '../../../utils'
-import users from '../../../utils/users.json';
 
 
 const CustomersTable = () => {
@@ -20,9 +19,9 @@ const CustomersTable = () => {
 
   useEffect(() => {
     axios
-      .get(customersPath)
+      .get(getAllUsers)
       .then(({ data }) => {
-        dispatch(setCustomers(data.data));
+        dispatch(setCustomers(data.data.users));
       })
       .catch(function (error) {
         if (error.response) {
@@ -31,18 +30,21 @@ const CustomersTable = () => {
       });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(getAllUsers)
-      .then(({ data }) => {
-        setAllUsers(data.data.users);
-      })
-      .catch(function (error) {
-        if (error.response) {
-          console.log(error.response.data.message);
-        }
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(getAllUsers)
+  //     .then(({ data }) => {
+  //       dispatch(setCustomers(data.data));
+  //       setAllUsers(data.data.users);
+  //     })
+  //     .catch(function (error) {
+  //       if (error.response) {
+  //         console.log(error.response.data.message);
+  //       }
+  //     });
+  // }, []);
+
+  console.log(customers)
 
   let customerRow = null;
 
@@ -74,15 +76,18 @@ const CustomersTable = () => {
   };
 
 
-  customerRow = allUsers.map((customer) => ({
-    id: customer.id,
-    name: customer.name,
-    email: customer.email,
-    phone: customer.phone,
-    country: customer.country,
-    role: customer.role,
-    status: customer.status,
-  }));
+  if(customers){
+    customerRow = customers.map((customer) => ({
+      id: customer.hash,
+      name: customer.name,
+      email: customer.email,
+      phone: customer.phone,
+      country: customer.country,
+      role: customer.role,
+      status: customer.status,
+    }));
+
+  }
 
 
   const userLinkRenderer = (props) => {
@@ -95,7 +100,7 @@ const CustomersTable = () => {
       >
         {props.value}
       </Link>
-    );
+    )
   };
 
   const userPhoneRenderer = (props) => (

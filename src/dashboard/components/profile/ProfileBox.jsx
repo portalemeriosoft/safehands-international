@@ -33,7 +33,8 @@ const ProfileBox = ({ userData }) => {
                 <div className="border-white border-2 w-40 h-40 rounded-full shadow flex items-center justify-center">
                   <Link
                     className="text-center"
-                    to={`/profile/edit/${btoa(0)}/photo`}
+                    to={(userData.id === user.data.id) ? `/profile/edit/photo` : '/user/edit/photo/'+userData.hash}
+                    
                   >
                     <CameraIcon
                       className="md:text-white text-gray-800 inline-block h-8 w-8"
@@ -57,7 +58,9 @@ const ProfileBox = ({ userData }) => {
               </button>
             
               {userData.photo && (
-                <Link to={`/profile/edit/${btoa(0)}/photo`}>
+                <Link 
+                  to={(userData.id === user.data.id) ? `/profile/edit/photo` : '/user/edit/photo/'+userData.hash}
+                >
                   <CameraIcon
                     className="md:text-white text-black inline-block h-6 w-6"
                     aria-hidden="true"

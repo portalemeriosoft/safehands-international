@@ -108,8 +108,9 @@ const App = () => {
           <Route element={<Profile />} path="/profile" />
           <Route element={<UserDetail />} path="/user/:id" />
           <Route element={<ProfileEdit />} path="/profile/edit" />
-          <Route element={<ProfileEditPhoto />} path="/profile/edit/:id/:type" />
+          <Route element={<ProfileEditPhoto  type="profile"/>} path="/profile/edit/photo" />
           <Route element={<UserEdit />} path="/user/edit/:id" />
+          <Route element={<ProfileEditPhoto type="user" />} path="/user/edit/photo/:id" />
           <Route element={<Terms />} path="/terms" />
           <Route element={<Logout />} path="/logout" />
           <Route element={<UserRegister />} path="/user/signup" />

@@ -7,13 +7,13 @@ import { toast } from 'react-toastify';
 
 import { setUser } from "../../../store/userSlice";
 import { useDispatch } from "react-redux";
-import { customerPhotoUploadPath } from "../../../api/path";
+import { PhotoUploadPath, getUserPath, UserPhotoUploadPath } from "../../../api/path";
 
 
-export const ProfileBoxEditPic = () => {
+export const ProfileBoxEditPic = ({ type, userProfile }) => {
   
   const [loading, setLoading] = useState(false);
-  const defaultSrc = "";
+  const defaultSrc = getUserPath+ "/image/"+userProfile;
   
   const [image, setImage] = useState(defaultSrc);
   const [cropData, setCropData] = useState("");
@@ -24,18 +24,35 @@ export const ProfileBoxEditPic = () => {
 
   const handlePhotoSubmit = (imageRawData) => {
     const formData = new FormData();
+    let path;
+
     formData.append('image', imageRawData);
+    
+    if(type==='user'){
+      path = UserPhotoUploadPath;
+      formData.append('user_id', userProfile);
+    } else {
+      path = PhotoUploadPath;
+    }
+    
     setLoading(true);
     axios
-      .post(customerPhotoUploadPath, formData)
+      .post(path, formData)
       .then(({ data }) => {
         toast.success("Information updated successfully");
         setLoading(false);
-        console.log(data.data.user);
-        dispatch(setUser(data.data.user));
-        setTimeout( () => {
-          navigate("/profile");
-        },2000)
+
+        if (type==='profile') {
+          dispatch(setUser(data.data.user));
+          setTimeout( () => {
+            navigate("/profile");
+          },2000)
+        } else {
+          setTimeout( () => {
+            navigate("/user/"+userProfile);
+          },2000)
+        }
+
       })
       .catch(function (error) {
         if (error.response) {

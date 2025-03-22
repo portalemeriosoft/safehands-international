@@ -18,6 +18,7 @@ export const orderCancelPath = originServer + '/api/order/cancel';
 export const passwordResetPath = originServer + '/api/password/reset';
 export const passwordUpdatePath = originServer + '/api/password/update';
 export const passwordChangePath = originServer + '/api/password/change';
+export const userPasswordChangePath = originServer + '/api/user/password/change';
 export const PhotoUploadPath = originServer + '/api/profile/uploadphoto';
 export const UserPhotoUploadPath = originServer + '/api/user/uploadphoto';
 export const requestQuotePath = originServer + '/api/quote/request';

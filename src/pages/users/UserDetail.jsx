@@ -45,7 +45,7 @@ export default function Profile() {
             </div>
             {(!user) ? 
               <NotFound title="404!" msg="Sorry, User not found" btn_text="Back to Users" btn_path="/users" /> :
-              <ProfileBox userData={user} />
+              <ProfileBox type="user" userData={user} />
             }
             {/* <ProfileBox userData={user} /> */}
             {/* <UserProfileBox /> */}

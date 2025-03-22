@@ -16,7 +16,7 @@ export default function Profile() {
          <div className="mb-4">
          <Breadcrumb pages={pages} page="Profile"/>
          </div>
-         <ProfileBox userData={user.data} />
+         <ProfileBox type="ptofile" userData={user.data} />
       </>
     } />
   );

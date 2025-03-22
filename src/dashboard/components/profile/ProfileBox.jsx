@@ -9,7 +9,7 @@ import { getCountry, displayPhoneNumber } from "../../../utils";
 import { userState } from "../../../store/userSlice";
 import { useSelector } from "react-redux";
 
-const ProfileBox = ({ userData }) => {
+const ProfileBox = ({ type, userData }) => {
 
   
   const updatePasswordDisplay = useState(false);
@@ -148,6 +148,7 @@ const ProfileBox = ({ userData }) => {
 
       <UpdatePassword
         user_id={userData.id}
+        type={type}
         updatePasswordDisplay={updatePasswordDisplay}
       />
 

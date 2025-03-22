@@ -2,7 +2,7 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 import axios from "axios";
-import { passwordChangePath } from "../../../api/path";
+import { passwordChangePath, userPasswordChangePath } from "../../../api/path";
 import {
   ExclamationTriangleIcon,
   EyeIcon,
@@ -12,7 +12,7 @@ import {
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
-export default function UpdatePassword({ user_id, updatePasswordDisplay }) {
+export default function UpdatePassword({ user_id, type, updatePasswordDisplay}) {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [confirmPasswordVisibility, setConfirmPasswordVisibility] =
     useState(false);
@@ -72,9 +72,9 @@ export default function UpdatePassword({ user_id, updatePasswordDisplay }) {
       setLoading(false);
       return;
     }
-
+    const path = (type==='user') ? userPasswordChangePath : passwordChangePath; 
     axios
-      .post(passwordChangePath, formData)
+      .post(path, formData)
       .then(({ data }) => {
         console.log(data);
         updatePasswordDisplay[1](false);

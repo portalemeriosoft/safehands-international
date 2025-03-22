@@ -12,6 +12,11 @@ export const customersSlice = createSlice({
     setCustomers: (state, action) => {
       state.data = action.payload
     },
+    setCustomer: (state, action) => {
+      state.data = state.data.map(user => 
+        user.id === action.payload.user.id ? { ...user, ...action.payload.user } : user
+      );
+    },
     removeCustomers: (state) => {
       state.data = null
     }
@@ -20,6 +25,7 @@ export const customersSlice = createSlice({
 
 export const {
   setCustomers,
+  setCustomer,
   removeCustomers,
 } = customersSlice.actions;
 

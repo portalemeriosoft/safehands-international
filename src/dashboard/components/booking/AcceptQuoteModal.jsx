@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import {
   useNavigate,
 } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setNotification } from "../../../store/notificationSlice";
 
 const AcceptQuoteModal = ({ 
   isAcceptQuoteOpen, 
@@ -18,6 +20,7 @@ const AcceptQuoteModal = ({
    const [quoteLoading, setQuoteLoading] = useState(false);
   
   //  const navigate = useNavigate();
+  const dispatch = useDispatch();
   //  navigate("/booking-detail/"+request_id);
 
    const handleSubmit = () => {
@@ -29,11 +32,10 @@ const AcceptQuoteModal = ({
         request_id: id,
       })
       .then(({ data }) => {
-        console.log(data);
         setQuoteLoading(false);
         if (data.status === "success") {
-         setIsAcceptQuoteOpen(false);
-          toast.success("Quote accepted successfully");
+          setIsAcceptQuoteOpen(false);
+          dispatch(setNotification(["success", "Quote accepted successfully"]))
           setFetchRequestCount((prevCount) => prevCount + 1);
         } else {
           setIsAcceptQuoteOpen(false);

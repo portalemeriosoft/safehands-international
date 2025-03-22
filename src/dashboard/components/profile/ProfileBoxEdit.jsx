@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-import { setIsAuth, setUser, userState } from "../../../store/userSlice";
+import { setUser, userState } from "../../../store/userSlice";
 import { Formik, Field, Form } from "formik";
 import { allCountries } from "../../../utils/countries";
 import * as Yup from "yup";
@@ -9,7 +9,7 @@ import axios from "axios";
 import { profileUpdatePath } from "../../../api/path";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { setNotification } from "../../../store/notificationSlice";
 
 const ProfileBox = () => {
   const user = useSelector(userState);
@@ -37,13 +37,15 @@ const ProfileBox = () => {
     axios
       .post(profileUpdatePath, formData)
       .then(({ data }) => {
-        toast.success("Information updated successfully");
+        dispatch(setNotification(["success", "Information updated successfully"]))
+        // dispatch(setNotificationCount())
+        // toast.success("Information updated successfully");
         setLoading(false);
-        console.log(data.data.user);
+        // console.log(data.data.user);
         dispatch(setUser(data.data.user));
-        setTimeout(() => {
+        // setTimeout(() => {
           navigate("/profile");
-        }, 2000);
+        // }, 2000);
       })
       .catch(function (error) {
         if (error.response) {

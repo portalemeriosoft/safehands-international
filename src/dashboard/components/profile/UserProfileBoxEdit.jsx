@@ -10,6 +10,8 @@ import { userUpdatePath } from "../../../api/path";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { setNotification } from "../../../store/notificationSlice";
+import { setCustomer } from "../../../store/customersSlice";
 
 const UserProfileBoxEdit = ({
   user
@@ -40,13 +42,10 @@ const UserProfileBoxEdit = ({
     axios
       .post(userUpdatePath, formData)
       .then(({ data }) => {
-        toast.success("Information updated successfully");
+        dispatch(setNotification(["success", "Information updated successfully"]))
         setLoading(false);
-        console.log(data.data.user);
-        // dispatch(setUser(data.data.user));
-        setTimeout(() => {
-          navigate("/user/"+data.data.user.hash);
-        }, 2000);
+        navigate("/user/"+data.data.user.hash);
+        dispatch(setCustomer(data.data))
       })
       .catch(function (error) {
         if (error.response) {

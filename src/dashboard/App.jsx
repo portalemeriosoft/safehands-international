@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 
@@ -46,7 +46,8 @@ import ProfileEditPhoto from "./../pages/profile/ProfileEditPhoto";
 import InvoiceDetail from "../pages/invoices/InvoiceDetail";
 import Invoices from "../pages/invoices/Invoices";
 import UserEdit from "../pages/profile/UserEdit.jsx";
-
+import { toast } from "react-toastify";
+import { notificationState } from "../store/notificationSlice.js";
 
 
 
@@ -54,6 +55,21 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
+  const notification = useSelector(notificationState);
+  const [notificationCount, setNotificationCount] = useState(0);
+  
+  if(notificationCount < notification.count){
+    setTimeout(() => {
+      if(notification.type === 'success'){
+        toast.success(notification.msg);
+      }
+      if(notification.type === 'error'){
+        toast.error(notification.msg);
+      }
+    }, 300);
+    
+    setNotificationCount(notification.count);
+  }
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -70,11 +86,9 @@ const App = () => {
         .catch(function (error) {
           if (error.response) {
             if (error.response.status === 401) {
-              console.log("logged out");
               localStorage.removeItem("token");
             }
             setLoading(false);
-            console.log(error);
           }
         });
     } else {

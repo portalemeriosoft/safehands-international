@@ -7,7 +7,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setCustomers, customersState } from "../../../store/customersSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { displayPhoneNumber } from '../../../utils'
+import { displayPhoneNumber, getCountry } from '../../../utils'
 
 
 const CustomersTable = () => {
@@ -81,10 +81,10 @@ const CustomersTable = () => {
       id: customer.hash,
       name: customer.name,
       email: customer.email,
-      phone: customer.phone,
-      country: customer.country,
-      role: customer.role,
-      status: customer.status,
+      phone: '+'+customer.dialling_code+' '+customer.phone,
+      country: getCountry(customer.country),
+      role: (customer.role === 1) ? 'Admin' : 'Customer',
+      status: (customer.status === 1) ? 'Active' : 'Inactive',
     }));
 
   }

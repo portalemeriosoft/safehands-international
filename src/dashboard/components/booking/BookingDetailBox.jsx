@@ -6,6 +6,8 @@ import axios from "axios";
 import { requestBookingPath, getAllVehicles, getInsurances } from "../../../api/path";
 import UploadFile from "./../layout/UploadFile";
 import { toast } from "react-toastify";
+import { setNotification } from "../../../store/notificationSlice";
+import { useDispatch } from "react-redux";
 
 const BookingDetailBox = ({ request }) => {
 
@@ -13,6 +15,8 @@ const [loading, setLoading] = useState(false);
 const [vehicles, setVehicles] = useState([]);
 const [uploadNew, setUploadNew] = useState(false);
 const [insurances, setInsurances] = useState([]);
+const dispatch = useDispatch();
+
 const navigate = useNavigate()
   console.log(request)
   const initialValues = {
@@ -169,21 +173,19 @@ const navigate = useNavigate()
           }
         })
         .then(({ data }) => {
-          toast.success("Booking sent successfully");
+          dispatch(setNotification(["success", "Request sent successfully"]))
           setLoading(false);
-          console.log(data.data);
-          
-          setTimeout(() => {
-            navigate("/booking/" + data.data.request_id);
-          },1000)
+          navigate("/booking/" + data.data.request_id);
           
         })
         .catch(function (error) {
           if (error.response) {
             setLoading(false);
-            toast.error(error.response.data.message, {
-              position: "bottom-center",
-            });
+            dispatch(setNotification(["error", error.response.data.message]))
+
+            // toast.error(error.response.data.message, {
+            //   position: "bottom-center",
+            // });
           }
         });
     };

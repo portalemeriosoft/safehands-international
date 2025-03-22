@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 import { setUser } from "../../../store/userSlice";
 import { useDispatch } from "react-redux";
 import { PhotoUploadPath, getUserPath, UserPhotoUploadPath } from "../../../api/path";
+import { setNotification } from "../../../store/notificationSlice";
+import { setCustomer } from "../../../store/customersSlice";
 
 
 export const ProfileBoxEditPic = ({ type, userProfile }) => {
@@ -39,18 +41,15 @@ export const ProfileBoxEditPic = ({ type, userProfile }) => {
     axios
       .post(path, formData)
       .then(({ data }) => {
-        toast.success("Information updated successfully");
+        dispatch(setNotification(["success", "Information updated successfully"]))
         setLoading(false);
 
         if (type==='profile') {
-          dispatch(setUser(data.data.user));
-          setTimeout( () => {
+            dispatch(setUser(data.data.user));
             navigate("/profile");
-          },2000)
         } else {
-          setTimeout( () => {
+            dispatch(setCustomer(data.data));
             navigate("/user/"+userProfile);
-          },2000)
         }
 
       })

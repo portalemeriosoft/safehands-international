@@ -3,12 +3,15 @@ import { Dialog, Transition } from "@headlessui/react";
 import axios from "axios";
 import { rejectQuoteRequestPath } from "../../../api/path";
 import { toast } from "react-toastify";
+import { setNotification } from "../../../store/notificationSlice";
+import { useDispatch } from "react-redux";
 
 const RejectQuoteModal = ({ isRejectQuoteOpen, setIsRejectQuoteOpen, request_id, setFetchRequestCount}) => {
   
    const [quoteLoading, setQuoteLoading] = useState(false);
    const [quoteError, setQuoteError] = useState('');
    const [rejectedQuoteMsg, setRejectedQuoteMsg] = useState('');
+   const dispatch = useDispatch();
   
    const handleSubmit = () => {
     
@@ -24,7 +27,7 @@ const RejectQuoteModal = ({ isRejectQuoteOpen, setIsRejectQuoteOpen, request_id,
         setQuoteLoading(false);
         if (data.status === "success") {
          setIsRejectQuoteOpen(false);
-         toast.success("Request updated successfully");
+         dispatch(setNotification(["success", "Request updated successfully"]))
          setFetchRequestCount((prevCount) => prevCount + 1);
         } else {
           setIsRejectQuoteOpen(false);

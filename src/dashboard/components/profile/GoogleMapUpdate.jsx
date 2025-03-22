@@ -7,6 +7,7 @@ import axios from "axios";
 import { setUser, userState } from "../../../store/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { setNotification } from "../../../store/notificationSlice";
 
 const GoogleMapUpdate = ({ userId }) => {
   const user = useSelector(userState);
@@ -116,13 +117,11 @@ const GoogleMapUpdate = ({ userId }) => {
     axios
       .post(customerLocationUpdatePath, formData)
       .then(({ data }) => {
-        toast.success("Information updated successfully");
+        dispatch(setNotification(["success", "Information updated successfully"]))
         e.target.innerText = 'Save';
         console.log(data.data.user);
         dispatch(setUser(data.data.user));
-        setTimeout(() => {
-          navigate("/profile");
-        }, 2000);
+        navigate("/profile");
       })
       .catch(function (error) {
         if (error.response) {

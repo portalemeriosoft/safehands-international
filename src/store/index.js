@@ -5,6 +5,7 @@ import declinedOrdersReducer from "./declinedOrdersSlice";
 import customersReducer from "./customersSlice";
 import paymentsReducer from "./paymentsSlice";
 import bookingsReducer from "./bookingsSlice";
+import notificationReducer from "./notificationSlice";
 
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
     customers: customersReducer,
     payments: paymentsReducer,
     bookings: bookingsReducer,
+    notification: notificationReducer,
   },
 });
 

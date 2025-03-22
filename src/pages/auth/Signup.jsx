@@ -11,6 +11,7 @@ import Footer from "../../dashboard/components/layout/Footer";
 import { Formik, Field, Form } from "formik";
 import { allCountries } from "../../utils/countries";
 import { getCountry, getDiallingCode } from "../../utils";
+import { setNotification } from "../../store/notificationSlice";
 
 export default function Admin() {
   const [error, setError] = useState(null);
@@ -26,6 +27,7 @@ export default function Admin() {
   // let location = useLocation();
 
   const [diallingCode, setDiallingCode] = useState('');
+  const dispatch = useDispatch();
 
   const updateDiallingCode = (country_code) => { 
     
@@ -95,8 +97,9 @@ export default function Admin() {
 
         // dispatch(setUser(data.data.user));
         // dispatch(setIsAuth());
+        dispatch(setNotification(['success', 'User added successfully']))
         setLoading(false);
-        navigate("/");
+        navigate("/users");
       })
       .catch(function (error) {
         if (error.response) {

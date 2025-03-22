@@ -7,12 +7,15 @@ import UploadFile from "./../layout/UploadFile";
 import { toast } from "react-toastify";
 
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setNotification } from "../../../store/notificationSlice";
 
 const QuoteRequestForm = () => {
   const [loading, setLoading] = useState(false);
   const [vehicles, setVehicles] = useState([]);
   // const [error, setError] = useState("Tnvalid Fields");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let initialValues = {
     pick_up_1: "",
@@ -83,7 +86,7 @@ const QuoteRequestForm = () => {
         },
       })
       .then(({ data }) => {
-        toast.success("Request sent successfully");
+        dispatch(setNotification(["success", "Request sent successfully"]))
         setLoading(false);
         console.log(data.data);
         navigate("/request/" + data.data.request_id);

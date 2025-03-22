@@ -2,13 +2,13 @@ import { AgGridReact } from "ag-grid-react"; // React Grid Logic
 import "ag-grid-community/styles/ag-grid.css"; // Core CSS
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Theme
 import { useEffect, useState, useRef } from "react";
-import { paymentsPath } from "../../../api/path";
+import { getBookings } from "../../../api/path";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { setPayments, paymentsState } from "../../../store/paymentsSlice";
+import { setBookings, bookingsState } from "../../../store/bookingsSlice";
+import Moment from "moment";
 import Order from "./Order";
 import { Link } from "react-router-dom";
-import invoices from "../../../utils/invoices.json"
 import { useNavigate } from "react-router-dom";
 
 const ColourCellRenderer = (props) => (
@@ -20,26 +20,38 @@ const ColourCellRenderer = (props) => (
 
 const InvoicesTable = () => {
   const navigate = useNavigate();
-  const orders = useSelector(paymentsState);
+  const bookings = useSelector(bookingsState);
+  const dispatch = useDispatch();
+
   const orderId = useState(null);
   const gridRef = useRef();
 
-  
-  let invoiceRow = null;
+  useEffect(() => {
+    axios
+      .get(getBookings)
+      .then(({ data }) => {
+        dispatch(setBookings(data.data));
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data.message);
+        }
+      });
+  }, []);
 
+  let bookingRow = null;
 
-  if (orders) {
-    invoiceRow = invoices.map((booking) => ({
-      claimReferenceNumber: booking.claimReferenceNumber,
-      insurance: booking.insuranceOrClientReference,
-      Amount: "AED 250",
-      passengerName: booking.leadPassenger.name,
-      passengerEmail: booking.leadPassenger.email,
-      passengerContactNumber: booking.leadPassenger.contactNumber,
-      typeOfTransfer: booking.typeOfTransfer,
-      specialRequirements: booking.specialRequirements,
-      bookerName: booking.bookerDetails.name,
-      bookerContact: booking.bookerDetails.contactDetails,
+  console.log(bookings)
+  if (bookings) {
+    bookingRow = bookings.map((booking) => ({
+      id: booking.booking.request_id,
+      bookerName: booking.booking.booker_name,
+      bookerEmail: booking.booking.booker_email,
+      amount: 'AED '+ booking.amount,
+      passengerName: booking.booking.passenger_name,
+      passengerContact: booking.booking.passenger_contact,
+      claimReference: booking.booking.claim_reference,
+      specialRequirements: (booking.booking.have_special_requirements) ? 'Yes' : 'No',
     }
     )
     );
@@ -49,37 +61,34 @@ const InvoicesTable = () => {
     type: "fitGridWidth",
     defaultMinWidth: 120,
     columnLimits: [
-      // {
-      //   colId: "amount",
-      //   minWidth: 140,
-      // },
+      {
+        colId: "service",
+        minWidth: 290,
+      },
     ],
   };
 
   const [colDefs, setColDefs] = useState([
     { field: "id", hide: true },
-    { field: "claimReferenceNumber" , hide: true},
-    { field: "insurance" },
+    { field: "bookerName" },
+    { field: "bookerEmail" },
     { field: "amount" },
     { field: "passengerName" },
-    { field: "passengerEmail" , hide: true},
-    { field: "passengerContactNumber" },
-    { field: "typeOfTransfer" , hide: true},
+    { field: "passengerContact" },
+    { field: "claimReference" },
     { field: "specialRequirements" },
-    { field: "bookerName" },
-    { field: "bookerContact" },
   ]);
 
-  const onRowClicked = (event) => {
-    const clickedRowData = { ...event.data };
-
-    navigate('/invoice', { state: { data: clickedRowData } });
+  const onRowClicked = (event)=>{
+    const clickedRowData = event.data;
+    console.log(clickedRowData)
+    navigate('/booking/'+clickedRowData.id, { state: {data: clickedRowData}} );
   }
 
   return (
     <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
       <AgGridReact
-        rowData={invoiceRow}
+        rowData={bookingRow}
         columnDefs={colDefs}
         ref={gridRef}
         pagination={true}

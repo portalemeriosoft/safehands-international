@@ -41,17 +41,17 @@ const BookingsTable = () => {
 
   let bookingRow = null;
 
-
+  console.log(bookings)
   if (bookings) {
     bookingRow = bookings.map((booking) => ({
-      id: booking.request_id,
-      bookerName: booking.booker_name,
-      bookerEmail: booking.booker_email,
-      dateOfTransfer: booking.date_of_transfer,
-      passengerName: booking.passenger_name,
-      passengerContact: booking.passenger_contact,
-      claimReference: booking.claim_reference,
-      specialRequirements: (booking.have_special_requirements) ? 'Yes' : 'No',
+      id: booking.booking.request_id,
+      bookerName: booking.booking.booker_name,
+      bookerEmail: booking.booking.booker_email,
+      dateOfTransfer: booking.booking.date_of_transfer,
+      passengerName: booking.booking.passenger_name,
+      passengerContact: booking.booking.passenger_contact,
+      claimReference: booking.booking.claim_reference,
+      specialRequirements: (booking.booking.have_special_requirements) ? 'Yes' : 'No',
     }
     )
     );

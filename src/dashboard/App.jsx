@@ -48,6 +48,8 @@ import Invoices from "../pages/invoices/Invoices";
 import UserEdit from "../pages/profile/UserEdit.jsx";
 import { toast } from "react-toastify";
 import { notificationState } from "../store/notificationSlice.js";
+import CarbonEmission from "../pages/reports/CarbonEmission.jsx";
+import Report from "../pages/reports/Report.jsx";
 
 
 
@@ -137,7 +139,9 @@ const App = () => {
         {/* <Route element={<SignupDriver />} path="/driver/signup" /> */}
         <Route element={<LoginDriver />} path="/driver/login" />
         <Route element={<Invoices />} path="/invoices" />
-        <Route element={<CO2EmissionsCalculator />} path="/co2-emission-calculator" />
+        <Route element={<CO2EmissionsCalculator />} path="/carbon-emission-report/generate" />
+        <Route element={<CarbonEmission />} path="/carbon-emission-report" />
+          <Route element={<Report />} path="/carbon-emission-report/:id" />
       </Routes>
     </Router>
   );

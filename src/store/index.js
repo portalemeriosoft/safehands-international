@@ -5,6 +5,7 @@ import declinedOrdersReducer from "./declinedOrdersSlice";
 import customersReducer from "./customersSlice";
 import paymentsReducer from "./paymentsSlice";
 import bookingsReducer from "./bookingsSlice";
+import reportsReducer from "./reportsSlice";
 import notificationReducer from "./notificationSlice";
 
 
@@ -17,6 +18,7 @@ const store = configureStore({
     payments: paymentsReducer,
     bookings: bookingsReducer,
     notification: notificationReducer,
+    reports: reportsReducer
   },
 });
 

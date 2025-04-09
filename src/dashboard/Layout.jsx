@@ -1,8 +1,6 @@
 import { Menu, MenuButton, MenuItem, MenuItems, Disclosure, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Fragment } from "react";
-import moment from 'moment';
-// import { } from "@headlessui/react";
+
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 
 
@@ -20,7 +18,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 import { userState } from "../store/userSlice";
 
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import Notification from './components/layout/Notification';
 
 let navigation = [];
 
@@ -29,29 +28,7 @@ let userNavigation = [];
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-const notifications = [
-  {
-    id: 1,
-    type: "User", // Type of notification
-    message: "New user registered", // Descriptive message
-    user_name: "John Doe", // User name associated with the notification
-    date: "2024-12-27", // Date of the notification
-  },
-  {
-    id: 2,
-    type: "Booking",
-    message: "New booking received",
-    user_name: "Jane Smith",
-    date: "2024-05-27",
-  },
-  {
-    id: 3,
-    type: "Request",
-    message: "New service request",
-    user_name: "Mike Johnson",
-    date: "2024-08-21",
-  },
-];
+
 
 
 export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
@@ -94,7 +71,7 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
       { name: "Requests", href: "/requests", current: false },
       { name: "Bookings", href: "/bookings", current: false },
       { name: "Invoices", href: "/invoices", current: false },
-      { name: "CO₂ Emission Report", href: "/co2-emission-calculator", current: false },
+      { name: "CO₂ Emission Reports", href: "/carbon-emission-report", current: false },
     ];
   }
 
@@ -182,39 +159,18 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#d1d5db" className="size-7">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
                           </svg>
-                          {/* <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-gray-400" /> */}
                         </MenuButton>
                       </div>
 
                       <MenuItems
                         transition
-                        className="w-64 absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                        className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                       >
                         <div>
                           {/* <MenuItem>
                             
                           </MenuItem> */}
-                          <ul role="list" className="divide-y divide-gray-100 px-3 ">
-                            {notifications.map((person, index) => (
-                              <li key={index} className="flex justify-between gap-x-6 py-2">
-                                <div className="flex min-w-0 gap-x-4">
-                                  {/* <img alt="" src={person.imageUrl} className="size-12 flex-none rounded-full bg-gray-50" /> */}
-                                  <div className="min-w-0 flex-auto">
-                                    <p className="text-sm font-semibold text-gray-900">New {person.type}</p>
-                                    <p className="mt-1 truncate text-xs/5 text-gray-500">{person.user_name}</p>
-                                  </div>
-                                </div>
-                                <div className="hidden shrink-0 sm:flex  sm:items-end">
-                                  <p className="mt-1 text-xs/5 text-gray-500">
-                                  {
-                                  // moment().format()
-                                  moment(person.date).format("MMM Do ")
-                                  }
-                                  </p>
-                                </div>
-                              </li>
-                            ))}
-                          </ul>
+                          <Notification />
 
                         </div>
 
@@ -401,7 +357,7 @@ export default function Layout({ content, title, addBtnTxt, addBtnPath }) {
             </h1>
             {addBtnTxt && addBtnPath ? (
               <button
-                className="rounded-full bg-violet-950 px-3 py-1.5  text-xs font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-full bg-violet-950 px-5 py-1.5  text-xs font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 onClick={() => navigate(addBtnPath)}>{addBtnTxt}</button>
             ) : null}
           </div>

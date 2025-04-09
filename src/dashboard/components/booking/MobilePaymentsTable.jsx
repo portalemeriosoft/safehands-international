@@ -2,10 +2,11 @@ import { useEffect } from "react";
 
 import { FixedSizeList as List } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { paymentsPath } from "../../../api/path";
+import { getBookings } from "../../../api/path";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setPayments, paymentsState } from "../../../store/paymentsSlice";
+import { setBookings, bookingsState } from "../../../store/bookingsSlice";
 import { Link } from "react-router-dom";
 import Moment from "moment";
 
@@ -14,16 +15,17 @@ const PaymentList = ({ payment }) => {
   return (
     <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <h5 className="mb-2 text-2xl font-semi-bold tracking-tight text-gray-600 dark:text-white">
-        {payment.customer}
+      {payment.booker_name}
       </h5>
       <div>
-        <p>Total: {payment.total_amount}</p>
-        <p>Paid: {payment.amount}</p>
-        <p>Transactions: {payment.total_transactions}</p>
-        <p>Date: {Moment(payment.created_at).format("DD-MMM-YY h:mm A")}</p>
-        <p>Description: {payment.description}</p>
+        <p>Booker Email: {payment.booker_email}</p>
+        <p>Date Of Transfer: {payment.date_of_transfer}</p>
+        <p>Passenger Name: {payment.passenger_name}</p>
+        <p>Passenger Contact: {payment.passenger_contact}</p>
+        <p>Claim Reference: {payment.claim_reference}</p>
+        <p>Special Requirements: {payment.have_special_requirements ? 'Yes' : 'No'}</p>
         <Link
-          to={"/payment/" + encodeURI(btoa(payment.id))}
+          to={"/booking/" + payment.request_id}
           className="flex w-full my-3 justify-center rounded-full bg-violet-950 px-3 p-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           View Details
@@ -34,14 +36,14 @@ const PaymentList = ({ payment }) => {
 };
 
 const MobilePaymentsTable = () => {
-  const payments = useSelector(paymentsState);
+  const payments = useSelector(bookingsState);
   const dispatch = useDispatch();
 
   useEffect(() => {
     axios
-      .get(paymentsPath)
+      .get(getBookings)
       .then(({ data }) => {
-        dispatch(setPayments(data.data));
+        dispatch(setBookings(data.data));
       })
       .catch(function (error) {
         if (error.response) {

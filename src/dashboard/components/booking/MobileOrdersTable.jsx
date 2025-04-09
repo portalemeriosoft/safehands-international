@@ -13,16 +13,17 @@ const OrderList = ({ order }) => {
   return (
     <div className="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <h5 className="mb-2 text-2xl font-semi-bold tracking-tight text-gray-600 dark:text-white">
-        {order.customer.name}
+      {order.date_of_transfer}
       </h5>
       <div>
-        {order.service.description}
-        <p>{Moment(order.start_task_datetime).format("DD-MMM-YY h:mm A")}</p>
-        <p>{"£" + order.payment.payable_amount}</p>
-        <p>{"£" + order.payment.amount_paid}</p>
-        <p>{order.status}</p>
+        
+        <p>Pick Up Time: {Moment(order.date_of_transfer+' '+order.pickup_time).format("h:mm A")}</p>
+        <p>Flight Number: {order.flight}</p>
+        <p>From: {order.pickup_locations}</p>
+        <p>To: {order.drop_off_locations}</p>
+        <p>Status: {order.status}</p>
         <Link
-          to={"/order/" + order.id}
+          to={"/request/" + order.request_id}
           className="flex w-full my-3 justify-center rounded-full bg-violet-950 px-3 p-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           View Details

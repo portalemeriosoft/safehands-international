@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { FixedSizeList as List } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { customersPath } from "../../../api/path";
+import { customersPath, getAllUsers } from "../../../api/path";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setCustomers, customersState } from "../../../store/customersSlice";
@@ -17,11 +17,11 @@ const CustomerList = ({ customer }) => {
       <div>
         <p>Email: {customer.email}</p>
         <p>Phone: {customer.phone}</p>
-        <p>Contact priority: {customer.contact_priority}</p>
-        <p>Total order: {customer.orders}</p>
-        <p>Address: {customer.billing_address}</p>
+        <p>Country: {customer.country}</p>
+        <p>Role: {customer.role}</p>
+        <p>Status: {customer.status}</p>
         <Link
-          to={"/customer/" + encodeURI(btoa(customer.id))}
+          to={"/user/" + customer.hash}
           className="flex w-full my-3 justify-center rounded-full bg-violet-950 px-3 p-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           View Details
@@ -37,9 +37,9 @@ const MobileCustomersTable = () => {
 
   useEffect(() => {
     axios
-      .get(customersPath)
+      .get(getAllUsers)
       .then(({ data }) => {
-        dispatch(setCustomers(data.data));
+        dispatch(setCustomers(data.data.users));
       })
       .catch(function (error) {
         if (error.response) {
@@ -62,6 +62,7 @@ const MobileCustomersTable = () => {
                 width={width}
               >
                 {({ data, index, style }) => {
+                  console.log(data, index)
                   return (
                     <div style={style}>
                       <CustomerList customer={data[index]} />

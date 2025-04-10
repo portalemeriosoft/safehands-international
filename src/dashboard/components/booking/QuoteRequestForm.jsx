@@ -106,10 +106,10 @@ const QuoteRequestForm = () => {
     drop_off_1: Yup.string().required("Drop Off Location (1) is required"),
     number_of_suitcase: Yup.number().required(
       "Number Of Suitcases are required"
-    ),
+    ).positive("Number of Suitcases must be a positive number"),
     number_of_passengers: Yup.number().required(
       "Number Of Passengers are required"
-    ),
+    ).positive("Number of Passengers must be a positive number"),
     pick_up_time: Yup.string().required("Pick Up Time is required"),
     flight_number: Yup.string().required("Flight Number is required"),
     date_of_transfer: Yup.string().required("Date Of Transfer is required"),
@@ -214,7 +214,7 @@ const QuoteRequestForm = () => {
                     >
                       {vehicles.map((vehicle, ind) => (
                         <option key={ind} value={ind}>
-                          &nbsp;{vehicle.seats} Seater - {vehicle.type}
+                          &nbsp; {vehicle.type}
                         </option>
                       ))}
                     </Field>

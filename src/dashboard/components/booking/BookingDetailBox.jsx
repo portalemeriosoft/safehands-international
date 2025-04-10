@@ -63,9 +63,9 @@ const navigate = useNavigate()
     passenger_name: Yup.string().required('Passenger Name is required'),
     passenger_contact_number: Yup.number().required('Passenger Contact Number is required'),
     passenger_age: Yup.number().required('Passenger Age is required'),
-    number_of_passengers: Yup.number().required('Number Of Passengers is required'),
+    number_of_passengers: Yup.number().required('Number Of Passengers is required').positive("Number of Passengers must be a positive number"),
     date_of_transfer: Yup.string().required('Date Of Transfer is required'),
-    number_of_suitcase: Yup.number().required('Number Of Suitcase is required'),
+    number_of_suitcase: Yup.number().required('Number Of Suitcase is required').positive("Number of Suitcase must be a positive number"),
     pick_up_time: Yup.string().required('Pick Up Time is required'),
     pick_up_1: Yup.string().required('Pick Up (1) is required'),
     drop_off_1: Yup.string().required('Drop Off (1) is required'),
@@ -1022,7 +1022,7 @@ const navigate = useNavigate()
                       className="block w-full appearance-none bg-transparent border-b-2 border-gray-300 py-2.5 ps-0 pe-4 pr-8 text-sm text-gray-900 focus:outline-none focus:ring-0 focus:border-blue-600"
                     >
                       {vehicles.map((vehicle, ind) => (
-                          <option key={ind} value={ind}>&nbsp;{vehicle.seats} Seater - {vehicle.type}</option>
+                          <option key={ind} value={ind}>&nbsp; {vehicle.type}</option>
                       ))}
                     </Field>
                     <label

@@ -23,10 +23,33 @@ const SpecificRequestBox = ({request, setFetchRequestCount}) => {
     // request.status = 2;
   }
 
-
+  console.log(user);
   return (
     <>
       <div className="booking-details border-5">
+      
+      {(user.data.role === 1) && (
+        <>
+        <div className="booking-item">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>Customer</div>
+            <div>
+              {request.customer.name+' '} 
+              (<a className="text-blue-500" href={"mailto:"+request.customer.email} target="_blank" rel="noreferrer">{request.customer.email}</a>)
+            </div>
+          </div>
+        </div>
+
+        <div className="booking-item">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>Customer Phone</div>
+            <div>
+              {'+'+request.customer.dialling_code +' '+ request.customer.phone}</div>
+          </div>
+        </div>
+        </>
+      )}
+
       {(request.status_code > 0) && (
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -81,7 +104,7 @@ const SpecificRequestBox = ({request, setFetchRequestCount}) => {
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Type Of Vehicle</div>
-            <div>{request.type_of_vehicle.seats} Seater - {request.type_of_vehicle.type}</div>
+            <div>{request.type_of_vehicle.type}</div>
           </div>
         </div>
         <div className="booking-item">

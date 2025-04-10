@@ -138,7 +138,6 @@ const SpecificRequestBox = ({ request, setFetchRequestCount }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Type Of Vehicle</div>
             <div>
-              {request.booking.type_of_vehicle.seats} Seater -{" "}
               {request.booking.type_of_vehicle.type}
             </div>
           </div>

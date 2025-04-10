@@ -26,12 +26,6 @@ const CarbonSummary = ({ report }) => { console.log(report)
         <p className="font-normal text-gray-700 dark:text-gray-400">
           Your trip of {report.distance_value.toLocaleString()} {(report.distance_unit === 'km') ? 'km' : 'miles'} in a {report.vehicle_make} {report.vehicle_model} released approximately { carbonData } of CO₂, contributing to your carbon footprint.
         </p>
-        <button
-          type="button"
-          className="mt-5 inline-flex w-full justify-center rounded-full bg-violet-950 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-800"
-        >
-          Download Report
-        </button>
       </div>
     </div>
   );

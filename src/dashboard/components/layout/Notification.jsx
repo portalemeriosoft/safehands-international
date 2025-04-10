@@ -4,6 +4,7 @@ import { ref, set } from "firebase/database";
 import database from "./../../../utils/firebase";
 import axios from "axios";
 import { notificationPath } from "../../../api/path";
+import { Comment } from 'react-loader-spinner'
 
 
 const Notification = () => {
@@ -27,7 +28,7 @@ const Notification = () => {
     
   }, [])
 
-  console.log(notifications)
+  // console.log(notifications)
 
   // const notifications = [
   //   {
@@ -70,9 +71,20 @@ const Notification = () => {
 
 
   return (
-    <div>
+    <div className={`${notifications.length === 0 ? 'text-center text-gray-500 py-3 flex justify-center' : ''}`}>
 
-      {loading ? 'Loading..' :
+      {loading ?
+         <Comment
+          visible={true}
+          height="24"
+          width="24"
+          ariaLabel="comment-loading"
+          wrapperStyle={{}}
+          wrapperClass="comment-wrapper"
+          color="#fff"
+          backgroundColor="#5e4193"
+          />     
+      :
       notifications.length === 0 ? 'No new record' : 
       (<ul className="divide-y divide-gray-100 px-3 ">
         {notifications.map((notification, index) => (
@@ -85,7 +97,7 @@ const Notification = () => {
                   {notification.title}
                 </p>
                 <p className="mt-1 truncate text-xs/5 text-gray-500">
-                  {notification.description}
+                  {notification.customer.name}
                 </p>
               </div>
             </div>

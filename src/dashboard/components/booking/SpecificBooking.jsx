@@ -1,24 +1,16 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { userState } from "../../../store/userSlice";
-import { useNavigate } from "react-router-dom";
 import moment from "moment";
-import RejectQuoteModal from "./RejectQuoteModal";
-import SendQuoteModal from "./SendQuoteModal";
-import AcceptQuoteModal from "./AcceptQuoteModal";
+import RejectBookingModal from "./RejectBookingModal";
+import AcceptBookingModal from "./AcceptBookingModal";
+import { Link } from "react-router-dom";
 
 const SpecificRequestBox = ({ request, setFetchRequestCount }) => {
   const user = useSelector(userState);
-  const [isOpen, setIsOpen] = useState(false);
   const [isRejectQuoteOpen, setIsRejectQuoteOpen] = useState(false);
   const [isAcceptQuoteOpen, setIsAcceptQuoteOpen] = useState(false);
-  const navigate = useNavigate();
-
-  const acceptQuote = () => {
-    navigate("/booking-detail");
-    // request.status = 2;
-  };
-
+  
   return (
     <>
       <div className="booking-details border-5">
@@ -258,111 +250,86 @@ const SpecificRequestBox = ({ request, setFetchRequestCount }) => {
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Additional Details</div>
-            <div>{(request.booking.additional_details) ? request.booking.additional_details : ''}</div>
+            <div>{(request.booking.additional_details && request.booking.additional_details !== '' && request.booking.additional_details !== 'null') ? request.booking.additional_details : ''}</div>
           </div>
         </div>
+
+        {request.status_code >= 5 && (
+          <div className="booking-item">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>{request.status_code === 6 ? 'Cancelled ' : 'Accepted '} by</div>
+              <div>
+                {(request.booking.accepted_or_cancelled_by_name !== '' && request.booking.accepted_or_cancelled_by_name !== 'null') ? request.booking.accepted_or_cancelled_by_name+' ' : ''}
+                on {moment(request.booking.accepted_or_cancelled_at).format("MMM Do YY")+' '}
+                at {moment(request.booking.accepted_or_cancelled_at).format("hh:mm A")}
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {request.status_code === 6 && (
+          <div className="booking-item">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>Cancellation note</div>
+              <div>
+                {(request.booking.cancellation_comments !== '' && request.booking.cancellation_comments !== 'null') ? request.booking.cancellation_comments+' ' : ''}
+              </div>
+            </div>
+          </div>
+        )}
+
+
       </div>
 
       {user &&
         user.data &&
         user.data.role === 1 &&
-        request.status_code === 0 && (
-          <div>
-            <div className="flex justify-end pt-2">
-              <button
-                className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
-                onClick={() => setIsOpen(true)}
-              >
-                Send Quote
-              </button>
-            </div>
-            <SendQuoteModal
-              request_id={request.id}
-              setFetchRequestCount={setFetchRequestCount}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-            />
-          </div>
-        )}
-
-      {user &&
-        user.data &&
-        user.data.role === 2 &&
-        request.status_code === 2 && (
-          <div>
-            <div className="flex justify-end pt-2">
-              <button
-                className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
-                onClick={() =>
-                  navigate("/booking-detail/" + request.request_id)
-                }
-              >
-                Add Booking Details
-              </button>
-            </div>
-          </div>
-        )}
-
-      {user &&
-        user.data &&
-        user.data.role === 2 &&
-        request.status_code === 1 && (
+        request.status_code === 4 && (
           <div>
             <div className="flex justify-end pt-2">
               <button
                 className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
                 onClick={() => setIsAcceptQuoteOpen(true)}
               >
-                Accept Quotation
+                Accept Booking
               </button>
 
               <button
                 className="rounded-full bg-gray-900 px-5 p-1.5 ml-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
                 onClick={() => setIsRejectQuoteOpen(true)}
               >
-                Reject Quotation
+                Cancel Booking
               </button>
             </div>
-            <AcceptQuoteModal
+            <AcceptBookingModal
               id={request.id}
               request_id={request.request_id}
               setFetchRequestCount={setFetchRequestCount}
               isAcceptQuoteOpen={isAcceptQuoteOpen}
               setIsAcceptQuoteOpen={setIsAcceptQuoteOpen}
             />
-            <RejectQuoteModal
+            <RejectBookingModal
               request_id={request.id}
               setFetchRequestCount={setFetchRequestCount}
               isRejectQuoteOpen={isRejectQuoteOpen}
               setIsRejectQuoteOpen={setIsRejectQuoteOpen}
             />
           </div>
-        )}
+        )
+      }
 
-      {user && user.data && user.data.role === 3 && request.amount !== null && (
-        <div>
-          <div className="flex justify-end pt-2">
-            <button
-              className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
-              onClick={acceptQuote}
-            >
-              Accept Quote
-            </button>
-          </div>
+      {(request.status_code >= 5 && request.status_code !== 6) && (
+        <div className="flex justify-end pt-2">
+          <Link
+            to={'/invoice/'+request.request_id}
+            className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
+          >
+            View Invoice
+          </Link>
         </div>
       )}
-      {user && user.data && user.data.role === 3 && request.status === 2 && (
-        <div>
-          <div className="flex justify-end pt-2">
-            <button
-              className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
-              // onClick={acceptQuote}
-            >
-              Add Booking Details
-            </button>
-          </div>
-        </div>
-      )}
+
+      
     </>
   );
 };

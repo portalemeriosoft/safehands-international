@@ -32,5 +32,7 @@ export const getAllVehicles = originServer + '/api/vehicles';
 export const getInsurances = originServer + '/api/insurances';
 export const getBookings = originServer + '/api/bookings';
 export const getBookingPath = originServer + '/api/booking';
+export const getBookingCancelPath = originServer + '/api/booking/cancel';
+export const getBookingAcceptPath = originServer + '/api/booking/accept';
 export const CO2ReportPath = originServer + '/api/carbon-emission-report';
 export const notificationPath = originServer + '/api/notification';

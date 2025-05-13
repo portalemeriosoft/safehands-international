@@ -35,7 +35,7 @@ const PaymentList = ({ payment }) => {
   );
 };
 
-const MobilePaymentsTable = () => {
+const MobileInvoicesTable = () => {
   const payments = useSelector(bookingsState);
   const dispatch = useDispatch();
 
@@ -81,4 +81,4 @@ const MobilePaymentsTable = () => {
   );
 };
 
-export default MobilePaymentsTable;
+export default MobileInvoicesTable;

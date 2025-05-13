@@ -18,7 +18,7 @@ const InvoiceDetailBox = (rowData) => {
       <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Booking Amount</div>
-            <div>AED 250</div>
+            <div>GBP 250</div>
           </div>
         </div>
         <div className="booking-item">

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../dashboard/Layout";
 import BookingsTable from "../../dashboard/components/booking/BookingsTable";
 import Breadcrumb from "../../dashboard/components/layout/Breadcrumb";
-import MobilePaymentsTable from "../../dashboard/components/booking/MobilePaymentsTable";
+import MobilePaymentsTable from "../../dashboard/components/booking/MobileInvoicesTable";
 
 const MyBookings = () => {
   const [isMobile, setIsMobile] = useState(false);

@@ -21,6 +21,7 @@ export default function Login() {
   const [error, seteErorr] = useState("");
   const [loading, setLoading] = useState(false);
 
+  let redirectPath = '/';
   const user = useSelector(userState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,9 +46,12 @@ export default function Login() {
         dispatch(setUser(data.data.user));
         dispatch(setIsAuth());
         setLoading(false);
+        if(data && data.data && data.data.user && data.data.user.role === 2){
+          redirectPath = "/my-requests";
+        }
 
-        navigate("/my-requests");
-
+        navigate(redirectPath);
+        
       })
       .catch(function (error) {
         if (error.response) {
@@ -57,8 +61,12 @@ export default function Login() {
       });
   };
 
+  if(user && user.data && user.data.role === 2){
+    redirectPath = "/my-requests";
+  }
+
   return user.isAuth ? (
-    <Navigate to="/my-requests" state={{ from: location }} replace />
+    <Navigate to={redirectPath} state={{ from: location }} replace />
   ) : (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">

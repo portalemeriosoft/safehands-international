@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../dashboard/Layout";
 import InvoiceTable from "../../dashboard/components/booking/InvoicesTable";
 import Breadcrumb from "../../dashboard/components/layout/Breadcrumb";
-import MobilePaymentsTable from "../../dashboard/components/booking/MobilePaymentsTable";
+import MobileInvoicesTable from "../../dashboard/components/booking/MobileInvoicesTable";
 
 const HomePage = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -34,7 +34,7 @@ const HomePage = () => {
           <div className="mb-4">
             <Breadcrumb pages={[]} page="Invoices" />
           </div>
-          {isMobile ? <MobilePaymentsTable /> : <InvoiceTable />}
+          {isMobile ? <MobileInvoicesTable /> : <InvoiceTable />}
         </div>
       }
     />

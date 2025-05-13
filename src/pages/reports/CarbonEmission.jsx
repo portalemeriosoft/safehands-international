@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../dashboard/Layout";
 import ReportsTable from "../../dashboard/components/reports/ReportsTable";
 import Breadcrumb from "../../dashboard/components/layout/Breadcrumb";
-import MobilePaymentsTable from "../../dashboard/components/booking/MobilePaymentsTable";
+import MobilePaymentsTable from "../../dashboard/components/booking/MobileInvoicesTable";
 
 const CarbonEmission = () => {
   const [isMobile, setIsMobile] = useState(false);

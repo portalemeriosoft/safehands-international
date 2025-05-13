@@ -10,6 +10,7 @@ import Moment from "moment";
 import Order from "./Order";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const ColourCellRenderer = (props) => (
   <Link className="text-blue-600 py-5"
@@ -50,8 +51,8 @@ const BookingsTable = () => {
       dateOfTransfer: booking.booking.date_of_transfer,
       passengerName: booking.booking.passenger_name,
       passengerContact: booking.booking.passenger_contact,
-      claimReference: booking.booking.claim_reference,
-      specialRequirements: (booking.booking.have_special_requirements) ? 'Yes' : 'No',
+      Status: booking.request_status,
+      bookingReceivedOn: moment(booking.booking.created_at).format('DD-MMM-YY hh:mm A'),
     }
     )
     );
@@ -75,8 +76,8 @@ const BookingsTable = () => {
     { field: "dateOfTransfer" },
     { field: "passengerName" },
     { field: "passengerContact" },
-    { field: "claimReference" },
-    { field: "specialRequirements" },
+    { field: "Status" },
+    { field: "bookingReceivedOn" },
   ]);
 
   const onRowClicked = (event)=>{

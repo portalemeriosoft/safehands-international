@@ -20,6 +20,7 @@ import DeclinedOrders from "../pages/bookings/DeclinedOrders";
 import NewBookingDetail from "../pages/bookings/NewBookingDetail";
 import BookingDetail from "../pages/bookings/BookingDetail";
 import Booking from "../pages/bookings/Booking";
+import Invoice from "../pages/bookings/Invoice";
 import CO2EmissionsCalculator from "../pages/bookings/CO2EmissionsCalculator";
 import Order from "../pages/bookings/Order";
 
@@ -117,6 +118,7 @@ const App = () => {
           <Route element={<Bookings />} path="/bookings" />
           <Route element={<MyBookings />} path="/my-bookings" />
           <Route element={<Booking />} path="/booking/:request_id" />
+          <Route element={<Invoice />} path="/invoice/:request_id" />
           <Route element={<BookingDetail />} path="/booking-detail" />
           <Route element={<BookingDetail />} path="/booking-detail/:request_id" />
           <Route element={<Users />} path="/users" />

@@ -1,119 +1,63 @@
 import React, { useEffect, useState } from "react";
-import moment from "moment";
-import { ref, set } from "firebase/database";
+import { ref, set, onValue } from "firebase/database";
 import database from "./../../../utils/firebase";
-import axios from "axios";
-import { notificationPath } from "../../../api/path";
-import { Comment } from 'react-loader-spinner'
+import { Menu, MenuButton, MenuItems } from "@headlessui/react";
+import NotificationsList from "./NotificationsList";
 
-
-const Notification = () => {
-
-  const [notifications, setNotifications] = useState([]);
-  const [loading, setLoading] = useState(false);
+const Notification = ({ user }) => {
+  
+  const [alert, setAlert] = useState(false);
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    setLoading(true);
-    axios.get(notificationPath)
-    .then(({ data }) => { 
-      setNotifications(data)
-      setLoading(false);
-    })
-    .catch(function (error) {
-      if (error.response) {
-        console.log(error.response.data.message);
-      }
-      setLoading(false);
+    const userRef = ref(database, "notifications/" + user.data.id);
+    const unsubscribe = onValue(userRef, (snapshot) => {
+      setAlert(snapshot.val());
+      setCounter(counter => counter + 1);
     });
-    
-  }, [])
 
-  // console.log(notifications)
+    return () => unsubscribe();
+  }, [user.data.id]);
 
-  // const notifications = [
-  //   {
-  //     id: 1,
-  //     type: "User",
-  //     message: "New user registered",
-  //     user_name: "John Doe", 
-  //     date: "2024-12-27",
-  //   },
-  //   {
-  //     id: 2,
-  //     type: "Booking",
-  //     message: "New booking received",
-  //     user_name: "Jane Smith",
-  //     date: "2024-05-27",
-  //   },
-  //   {
-  //     id: 3,
-  //     type: "Request",
-  //     message: "New service request",
-  //     user_name: "Mike Johnson",
-  //     date: "2024-08-21",
-  //   },
-  // ];
+  function writeUserData() {
+    const userRef = ref(database, "notifications/" + user.data.id);
+    set(userRef, false);
+  }
 
-
-
-  function writeUserData(userId) {
-   const userRef = ref(database, 'notifications/' + userId);
-   
-      // onValue(userRef, (snapshot) => {
-      //    const data = snapshot.val();
-      //    setUsers(data || {});
-      // });
-   
-   set(userRef, 123);
- }
 
 
 
 
   return (
-    <div className={`${notifications.length === 0 ? 'text-center text-gray-500 py-3 flex justify-center' : ''}`}>
+    <Menu as="div" className="relative inline-block text-left ">
+      <div className="mt-1">
+        <MenuButton onClick={writeUserData} className={'notification-bell' + (alert ? ' active' : '')}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="#d1d5db"
+            className="size-7"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+            />
+          </svg>
+        </MenuButton>
+      </div>
 
-      {loading ?
-         <Comment
-          visible={true}
-          height="24"
-          width="24"
-          ariaLabel="comment-loading"
-          wrapperStyle={{}}
-          wrapperClass="comment-wrapper"
-          color="#fff"
-          backgroundColor="#5e4193"
-          />     
-      :
-      notifications.length === 0 ? 'No new record' : 
-      (<ul className="divide-y divide-gray-100 px-3 ">
-        {notifications.map((notification, index) => (
-           <li key={index} className="flex justify-between gap-x-6 py-2">
-            <div className="flex min-w-0 gap-x-4">
-              {/* <img alt="" src={notification.imageUrl} className="size-12 flex-none rounded-full bg-gray-50" /> */}
-              <div className="min-w-0 flex-auto">
-             {/* <p onClick={() => writeUserData(9,'Farukh', 13)}>Set User</p> */}
-                <p className="text-sm font-semibold text-gray-900">
-                  {notification.title}
-                </p>
-                <p className="mt-1 truncate text-xs/5 text-gray-500">
-                  {notification.customer.name}
-                </p>
-              </div>
-            </div>
-            <div className="hidden shrink-0 sm:flex  sm:items-end">
-              <p className="mt-1 text-xs/5 text-gray-500">
-                {
-                  // moment().format()
-                  moment(notification.date).format("MMM Do ")
-                }
-              </p>
-            </div>
-          </li>
-        ))}
-      </ul>)}
-
-    </div>
+      <MenuItems
+        transition
+        className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+      >
+        <div>
+          <NotificationsList alert={counter} />
+        </div>
+      </MenuItems>
+    </Menu>
   );
 };
 

@@ -3,15 +3,14 @@ import { useSelector } from "react-redux";
 import { userState } from "../../../store/userSlice";
 import moment from "moment";
 import RejectBookingModal from "./RejectBookingModal";
-import AcceptBookingModal from "./AcceptBookingModal";
-import MarkCompletedModal from "./MarkCompletedModal";
+import InvoicePaidMarkModal from "./InvoicePaidMarkModal";
 import { Link } from "react-router-dom";
+import PaymentStatus from "../layout/PaymentStatus";
 
-const SpecificRequestBox = ({ request, setFetchRequestCount }) => {
+const SpecificInvoiceBox = ({ request, setFetchRequestCount }) => {
   const user = useSelector(userState);
   const [isRejectQuoteOpen, setIsRejectQuoteOpen] = useState(false);
   const [isAcceptQuoteOpen, setIsAcceptQuoteOpen] = useState(false);
-  const [isMarkCompletedOpen, setIsMarkCompletedOpen] = useState(false);
 
   return (
     <>
@@ -24,6 +23,18 @@ const SpecificRequestBox = ({ request, setFetchRequestCount }) => {
             </div>
           </div>
         )}
+
+        <div className="booking-item">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>Payment Status</div>
+            <div>
+              <PaymentStatus
+                date_of_transfer={request.booking.date_of_transfer}
+                status={request.invoice.status}
+              />
+            </div>
+          </div>
+        </div>
 
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -169,36 +180,34 @@ const SpecificRequestBox = ({ request, setFetchRequestCount }) => {
               <div>Special Requirements</div>
               <div>
                 {request.booking.medical_requirement &&
-                request.booking.medical_requirement !== "" ? (
+                request.booking.medical_requirement === "Other" ? (
                   <div>
-                    Medical requirement:
+                    Medical requirements:
+                    {" " + request.booking.requirements_medical_other}
+                  </div>
+                ) : request.booking.medical_requirement ? (
+                  <div>
+                    Medical requirements:
                     {" " + request.booking.medical_requirement}
                   </div>
                 ) : (
                   ""
-                )} 
-                {request.booking.requirements_medical_other && (
-                  <div>
-                    Medical requirement details:
-                    {" " + request.booking.requirements_medical_other}
-                  </div>
                 )}
 
                 {request.booking.luggage_requirement &&
-                request.booking.luggage_requirement !== "" ? (
+                request.booking.luggage_requirement === "Other" ? (
                   <div>
-                    Specialist luggage requirement:
+                    Specialist luggage:
                     {" " +
-                      request.booking.luggage_requirement}
+                      request.booking.requirements_specialist_luggage_other}
+                  </div>
+                ) : request.booking.luggage_requirement ? (
+                  <div>
+                    Specialist luggage:
+                    {" " + request.booking.luggage_requirement}
                   </div>
                 ) : (
                   ""
-                )}
-                {request.booking.requirements_specialist_luggage_other && (
-                  <div>
-                    Specialist luggage requirement details:
-                    {" " + request.booking.requirements_specialist_luggage_other}
-                  </div>
                 )}
               </div>
             </div>
@@ -212,49 +221,43 @@ const SpecificRequestBox = ({ request, setFetchRequestCount }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>Type of transfer</div>
               <div>
-                {/* {request.booking.tt_medical === "Other" ? ( */}
-                  {request.booking.type_of_transfer_medical_other && (
+                {request.booking.tt_medical === "Other" ? (
                   <div>
                     Medical:{" "}
                     {" " + request.booking.type_of_transfer_medical_other}
                   </div>
-                  )}
-                {/* ) : request.booking.tt_medical ? (
+                ) : request.booking.tt_medical ? (
                   <div>Medical: {" " + request.booking.tt_medical}</div>
                 ) : (
-                  "" */}
-                {/* )} */}
+                  ""
+                )}
 
-                {/* {request.booking.tt_non_medical === "Other" ? ( */}
-                  {request.booking.type_of_transfer_non_medical_other && (
+                {request.booking.tt_non_medical === "Other" ? (
                   <div>
                     Non medical:{" "}
                     {" " + request.booking.type_of_transfer_non_medical_other}{" "}
                   </div>
-                  )}
-                {/* ) : request.booking.tt_non_medical ? (
+                ) : request.booking.tt_non_medical ? (
                   <div>
                     Non medical:
                     {" " + request.booking.tt_non_medical}
                   </div>
                 ) : (
                   ""
-                )} */}
-                {/* {request.booking.tt_curtailment === "Other" ? ( */}
-                  {request.booking.type_of_transfer_curtailment_other && (
+                )}
+                {request.booking.tt_curtailment === "Other" ? (
                   <div>
                     Curtailment:{" "}
                     {" " + request.booking.type_of_transfer_curtailment_other}{" "}
                   </div>
-                  )}
-                {/* ) : request.booking.tt_curtailment ? (
+                ) : request.booking.tt_curtailment ? (
                   <div>
                     Curtailment:
                     {" " + request.booking.tt_curtailment}
                   </div>
                 ) : (
                   ""
-                )} */}
+                )}
               </div>
             </div>
           </div>
@@ -360,7 +363,7 @@ const SpecificRequestBox = ({ request, setFetchRequestCount }) => {
                 Cancel Booking
               </button>
             </div>
-            <AcceptBookingModal
+            <InvoicePaidMarkModal
               id={request.id}
               request_id={request.request_id}
               setFetchRequestCount={setFetchRequestCount}
@@ -376,35 +379,60 @@ const SpecificRequestBox = ({ request, setFetchRequestCount }) => {
           </div>
         )}
 
-      {request.status_code >= 5 && request.status_code !== 6 && (
-        <div className="flex justify-end pt-2 gap-1">
-          <Link
-            to={"/invoice/" + request.request_id}
-            className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
-          >
-            View invoice
-          </Link>
-          {request.status_code === 7 && (
-            <>
-              <button
-                className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
-                onClick={() => setIsMarkCompletedOpen(true)}
-              >
-                Mark completed
-              </button>
-              <MarkCompletedModal
-                id={request.id}
-                request_id={request.request_id}
-                setFetchRequestCount={setFetchRequestCount}
-                isMarkCompletedOpen={isMarkCompletedOpen}
-                setIsMarkCompletedOpen={setIsMarkCompletedOpen}
-              />
-            </>
-          )}
-        </div>
-      )}
+      <div className="flex justify-end pt-2">
+        {request.invoice.status >= 0 && (
+          <>
+            <a
+              rel="noopener noreferrer"
+              target="_blank" 
+              href={
+                process.env.REACT_APP_ORIGIN +
+                "/download-invoice/" +
+                request.request_id +
+                "/pdf"
+              }
+              className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
+            >
+              Download invoice
+            </a>
+
+            {/* <a
+              rel="noopener noreferrer"
+              target="_blank"
+              href={
+                process.env.REACT_APP_ORIGIN +
+                "/invoice/" +
+                request.request_id +
+                "/pdf"
+              }
+              className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
+            >
+              Print invoice
+            </a> */}
+          </>
+        )}
+        {user &&
+        user.data &&
+        user.data.role === 1 && request.invoice.status === 0 && (
+          <>
+            <button
+              onClick={() => setIsAcceptQuoteOpen(true)}
+              className="ml-0 sm:ml-2 rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
+            >
+              Update payment status
+            </button>
+            <InvoicePaidMarkModal
+              id={request.id}
+              request_id={request.request_id}
+              setFetchRequestCount={setFetchRequestCount}
+              isAcceptQuoteOpen={isAcceptQuoteOpen}
+              setIsAcceptQuoteOpen={setIsAcceptQuoteOpen}
+            />
+          </>
+        )}
+      </div>
     </>
   );
 };
 
-export default SpecificRequestBox;
+export default SpecificInvoiceBox;

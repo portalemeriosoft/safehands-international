@@ -31,8 +31,14 @@ export const getAllUsers = originServer + '/api/users';
 export const getAllVehicles = originServer + '/api/vehicles';
 export const getInsurances = originServer + '/api/insurances';
 export const getBookings = originServer + '/api/bookings';
+export const getInvoices = originServer + '/api/invoices';
 export const getBookingPath = originServer + '/api/booking';
+export const getInvoicePath = originServer + '/api/invoice';
 export const getBookingCancelPath = originServer + '/api/booking/cancel';
 export const getBookingAcceptPath = originServer + '/api/booking/accept';
 export const CO2ReportPath = originServer + '/api/carbon-emission-report';
 export const notificationPath = originServer + '/api/notification';
+export const removeNotificationPath = originServer + '/api/notification/remove';
+export const paymentUpdatePath = originServer + '/api/payment/update';
+export const markBookingCompletedPath = originServer + '/api/booking/update/complete';
+

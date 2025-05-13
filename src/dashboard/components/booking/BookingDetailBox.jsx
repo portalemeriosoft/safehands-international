@@ -62,10 +62,16 @@ const navigate = useNavigate()
     booker_email: Yup.string().email("Invalid Email").required('Booker Email is required'),
     passenger_name: Yup.string().required('Passenger Name is required'),
     passenger_contact_number: Yup.number().required('Passenger Contact Number is required'),
-    passenger_age: Yup.number().required('Passenger Age is required'),
-    number_of_passengers: Yup.number().required('Number Of Passengers is required').positive("Number of Passengers must be a positive number"),
+    passenger_age: Yup.number().required('Passenger Age is required')
+    .min(18, "Age must be at least 18")
+    .max(100, "Age cannot be greater than 100"),
+    number_of_passengers: Yup.number().required('Number Of Passengers is required')
+    .positive("Number of Passengers must be a positive number")
+    .max(20, "Number of Passengers cannot be more than 20"),
     date_of_transfer: Yup.string().required('Date Of Transfer is required'),
-    number_of_suitcase: Yup.number().required('Number Of Suitcase is required').positive("Number of Suitcase must be a positive number"),
+    number_of_suitcase: Yup.number().required('Number Of Suitcase is required')
+    .positive("Number of Suitcase must be a positive number")
+    .max(20, "Number of Suitcases cannot be more than 20"),
     pick_up_time: Yup.string().required('Pick Up Time is required'),
     pick_up_1: Yup.string().required('Pick Up (1) is required'),
     drop_off_1: Yup.string().required('Drop Off (1) is required'),
@@ -173,7 +179,7 @@ const navigate = useNavigate()
           }
         })
         .then(({ data }) => {
-          dispatch(setNotification(["success", "Request sent successfully"]))
+          dispatch(setNotification(["success", "Booking details sent successfully"]))
           setLoading(false);
           navigate("/booking/" + data.data.request_id);
           
@@ -291,6 +297,11 @@ const navigate = useNavigate()
                     name="passenger_age"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=""
+                    min="18"
+                    max="100"
+                    step="1"
+                    autocomplete="off"
+                    autocorrect="off"
                   />
                   <label
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -306,10 +317,15 @@ const navigate = useNavigate()
 
                 <div className="relative z-0 w-full mb-5 group">
                   <Field
-                    type="text"
+                    type="number"
                     name="number_of_passengers"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
+                    min="1"
+                    max="20"
+                    step="1"
+                    autocomplete="off"
+                    autocorrect="off"
                   />
                   <label
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -527,10 +543,10 @@ const navigate = useNavigate()
                               </div>
                             </fieldset>
 
-                            {(values && values.requirement_options && values.luggage_requirement.includes('other')) && (
+                            {(values && values.requirement_options && values.luggage_requirement.length > 0) && (
                               <>
                                 <div className="col-span-full mt-3">
-                                  <label htmlFor="other_specialist_luggage_requirement" className="block text-sm/6  text-gray-500">Other specialist luggage requirements</label>
+                                  <label htmlFor="other_specialist_luggage_requirement" className="block text-sm/6  text-gray-500">Description for Specialist luggage requirements <i>(Optional)</i></label>
                                   <div className="">
                                     <textarea
                                       name="other_specialist_luggage_requirement"
@@ -603,10 +619,10 @@ const navigate = useNavigate()
                             </div>
                           </fieldset>
 
-                          {(values && values.medical_requirement.includes("other") && (
+                          {(values && values.medical_requirement.length > 0 && (
                             <>
                               <div className="col-span-full mt-3">
-                                <label htmlFor="other_medical_requirement" className="block text-sm/6  text-gray-500">Other medical requirements</label>
+                                <label htmlFor="other_medical_requirement" className="block text-sm/6  text-gray-500">Description for medical requirements <i>(Optional)</i></label>
                                 <div className="">
                                   <textarea
                                     name="other_medical_requirement"
@@ -713,7 +729,7 @@ const navigate = useNavigate()
                     {(values && values.type_of_transfer.includes("medical")) && (
                       <>
                         <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
-                          <fieldset className="mb-3">
+                          {/* <fieldset className="mb-3">
                             <h4 className="text-sm text-black mb-2">Medical</h4>
                             <div className=" flex items-center gap-x-6">
                               <div className="flex items-center gap-x-2">
@@ -765,11 +781,11 @@ const navigate = useNavigate()
                                 </label>
                               </div>
                             </div>
-                          </fieldset>
-                          {values && values.tt_medical.includes("other") && (
+                          </fieldset> */}
+                          {/* {values && values.tt_medical.includes("other") && ( */}
                             <>
-                              <div className="col-span-full mt-3">
-                                <label htmlFor="other_medical_tot" className="block text-sm/6  text-gray-500">Other Medical requirements</label>
+                              <div className="col-span-full">
+                                <label htmlFor="other_medical_tot" className="block text-sm/6  text-gray-500">Medical requirements</label>
                                 <div className="">
                                   <textarea
                                     name="other_medical_tot"
@@ -780,14 +796,14 @@ const navigate = useNavigate()
                                   /></div>
                               </div>
                             </>
-                          )}
+                          {/* )} */}
                         </div>
                       </>
                     )}
                     {(values && values.type_of_transfer.includes("non medical")) && (
                       <>
                         <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
-                          <fieldset className="mb-3">
+                          {/* <fieldset className="mb-3">
                             <h4 className="text-sm text-black mb-2">Non Medical</h4>
                             <div className=" flex items-center gap-x-6">
                               <div className="flex items-center gap-x-2">
@@ -840,10 +856,10 @@ const navigate = useNavigate()
                               </div>
                             </div>
                           </fieldset>
-                          {values && values.tt_non_medical.includes("other") && (
+                          {values && values.tt_non_medical.includes("other") && ( */}
                             <>
-                              <div className="col-span-full mt-3">
-                                <label htmlFor="other_non_medical_tot" className="block text-sm/6  text-gray-500">Other Non medical requirements</label>
+                              <div className="col-span-full">
+                                <label htmlFor="other_non_medical_tot" className="block text-sm/6  text-gray-500">Non medical requirements</label>
                                 <div className="">
                                   <textarea
                                     name="other_non_medical_tot"
@@ -854,14 +870,14 @@ const navigate = useNavigate()
                                   /></div>
                               </div>
                             </>
-                          )}
+                          {/* )} */}
                         </div>
                       </>
                     )}
                     {(values && values.type_of_transfer.includes("curtailment")) && (
                       <>
                         <div className="bg-[#f1f1f5] p-[11px] px-[9px] rounded-[5px]">
-                          <fieldset className="mb-3">
+                          {/* <fieldset className="mb-3">
                             <h4 className="text-sm text-black mb-2">Curtailment</h4>
                             <div className=" flex items-center gap-x-6">
                               <div className="flex items-center gap-x-2">
@@ -914,10 +930,10 @@ const navigate = useNavigate()
                               </div>
                             </div>
                           </fieldset>
-                          {values && values.tt_curtailment.includes("other") && (
+                          {values && values.tt_curtailment.includes("other") && ( */}
                             <>
-                              <div className="col-span-full mt-3">
-                                <label htmlFor="other_curtailment_tot" className="block text-sm/6  text-gray-500">Other Curtailment requirements</label>
+                              <div className="col-span-full">
+                                <label htmlFor="other_curtailment_tot" className="block text-sm/6  text-gray-500">Curtailment requirements</label>
                                 <div className="">
                                   <textarea
                                     name="other_curtailment_tot"
@@ -928,7 +944,7 @@ const navigate = useNavigate()
                                   /></div>
                               </div>
                             </>
-                          )}
+                          {/* )} */}
                         </div>
                       </>
                     )}
@@ -1177,10 +1193,15 @@ const navigate = useNavigate()
               </div> */}
                 <div className="relative z-0 w-full mb-5 group">
                   <Field
-                    type="text"
+                    type="number"
                     name="number_of_suitcase"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=""
+                    min="1"
+                    max="20"
+                    step="1"
+                    autocomplete="off"
+                    autocorrect="off"
                   />
 
                   <label

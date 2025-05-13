@@ -2,25 +2,23 @@ import { AgGridReact } from "ag-grid-react"; // React Grid Logic
 import "ag-grid-community/styles/ag-grid.css"; // Core CSS
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Theme
 import { useEffect, useState, useRef } from "react";
-import { getBookings } from "../../../api/path";
+import { getInvoices } from "../../../api/path";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { setBookings, bookingsState } from "../../../store/bookingsSlice";
-import Moment from "moment";
+import { setInvoices, invoicesState } from "../../../store/invoicesSlice";
 import Order from "./Order";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import PaymentStatus from "../layout/PaymentStatus";
 
-const ColourCellRenderer = (props) => (
-  <Link className="text-blue-600 py-5"
-    to={"/order/" + props.data.id}
-  >{props.value}</Link>
-);
 
+const PaymentInoiceCell = (props) => {
+  return props.value;
+}
 
 const InvoicesTable = () => {
   const navigate = useNavigate();
-  const bookings = useSelector(bookingsState);
+  const invoices = useSelector(invoicesState);
   const dispatch = useDispatch();
 
   const orderId = useState(null);
@@ -28,9 +26,9 @@ const InvoicesTable = () => {
 
   useEffect(() => {
     axios
-      .get(getBookings)
+      .get(getInvoices)
       .then(({ data }) => {
-        dispatch(setBookings(data.data));
+        dispatch(setInvoices(data.data));
       })
       .catch(function (error) {
         if (error.response) {
@@ -39,22 +37,19 @@ const InvoicesTable = () => {
       });
   }, []);
 
-  let bookingRow = null;
+  let invoiceRow = null;
 
-  console.log(bookings)
-  if (bookings) {
-    bookingRow = bookings.map((booking) => ({
-      id: booking.booking.request_id,
-      bookerName: booking.booking.booker_name,
-      bookerEmail: booking.booking.booker_email,
-      amount: 'AED '+ booking.amount,
-      passengerName: booking.booking.passenger_name,
-      passengerContact: booking.booking.passenger_contact,
-      claimReference: booking.booking.claim_reference,
-      specialRequirements: (booking.booking.have_special_requirements) ? 'Yes' : 'No',
-    }
-    )
-    );
+  if (invoices) {
+    invoiceRow = invoices.map((invoice) => ({
+      id: invoice.booking.request_id,
+      bookerName: invoice.booking.booker_name,
+      bookerEmail: invoice.booking.booker_email,
+      amount: "GBP " + invoice.quote_request.amount,
+      passengerName: invoice.booking.passenger_name,
+      passengerContact: invoice.booking.passenger_contact,
+      invoiceStatus: <PaymentStatus date_of_transfer={invoice.booking.date_of_transfer} status={invoice.status} />,
+      createdAt: moment(invoice.created_at).format("DD-MMM-YY hh:mm A"),
+    }));
   }
 
   const autoSizeStrategy = {
@@ -68,27 +63,26 @@ const InvoicesTable = () => {
     ],
   };
 
-  const [colDefs, setColDefs] = useState([
+  const [colDefs] = useState([
     { field: "id", hide: true },
     { field: "bookerName" },
     { field: "bookerEmail" },
     { field: "amount" },
     { field: "passengerName" },
     { field: "passengerContact" },
-    { field: "claimReference" },
-    { field: "specialRequirements" },
+    { field: "invoiceStatus", cellRenderer: PaymentInoiceCell },
+    { field: "createdAt" },
   ]);
 
-  const onRowClicked = (event)=>{
+  const onRowClicked = (event) => {
     const clickedRowData = event.data;
-    console.log(clickedRowData)
-    navigate('/booking/'+clickedRowData.id, { state: {data: clickedRowData}} );
-  }
+    navigate("/invoice/" + clickedRowData.id);
+  };
 
   return (
-    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
+    <div className="ag-theme-quartz" style={{ height: "calc(100vh - 268px)" }}>
       <AgGridReact
-        rowData={bookingRow}
+        rowData={invoiceRow}
         columnDefs={colDefs}
         ref={gridRef}
         pagination={true}

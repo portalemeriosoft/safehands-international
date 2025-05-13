@@ -26,6 +26,14 @@ const CarbonSummary = ({ report }) => { console.log(report)
         <p className="font-normal text-gray-700 dark:text-gray-400">
           Your trip of {report.distance_value.toLocaleString()} {(report.distance_unit === 'km') ? 'km' : 'miles'} in a {report.vehicle_make} {report.vehicle_model} released approximately { carbonData } of CO₂, contributing to your carbon footprint.
         </p>
+        <a 
+          href={process.env.REACT_APP_ORIGIN + '/report/'+ report.report_id +'/pdf'}  
+          rel="noopener noreferrer"
+          target="_blank" 
+          className="block mt-4 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Download Report
+        </a>
       </div>
     </div>
   );

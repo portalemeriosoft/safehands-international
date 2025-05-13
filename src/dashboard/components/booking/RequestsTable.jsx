@@ -49,7 +49,7 @@ const RequestsTable = () => {
       flightNumber: request.flight,
       from: request.pickup_locations,
       to: request.drop_off_locations,
-      status: request.status,
+      status: request.request_status,
       numberOfSuitcase: request.no_of_suitcases,
       numberOfPassengers: request.no_of_passengers,
       typeOfVehicle: request.type_of_vehicle,

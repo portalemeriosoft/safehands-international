@@ -54,7 +54,7 @@ const SpecificRequestBox = ({request, setFetchRequestCount}) => {
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Quote Amount</div>
-            <div>AED {request.amount}</div>
+            <div>GBP {request.amount}</div>
           </div>
         </div>
       )}
@@ -62,7 +62,7 @@ const SpecificRequestBox = ({request, setFetchRequestCount}) => {
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Status</div>
-            <div>{request.status}</div>
+            <div>{request.request_status}</div>
           </div>
         </div>
 
@@ -238,18 +238,7 @@ const SpecificRequestBox = ({request, setFetchRequestCount}) => {
           </div>
         </div>
       )}
-      {(user && user.data && user.data.role === 3 && request.status === 2) && (
-        <div>
-          <div className="flex justify-end pt-2">
-            <button
-              className="rounded-full bg-violet-950 px-5 p-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-violet-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-full md:w-auto text-center"
-              // onClick={acceptQuote}
-            >
-              Add Booking Details
-            </button>
-          </div>
-        </div>
-      )}
+     
     </>
   );
 };

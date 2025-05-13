@@ -1,56 +1,53 @@
 import { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import axios from "axios";
-import { updateQuoteRequestPath } from "../../../api/path";
+import { markBookingCompletedPath } from "../../../api/path";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setNotification } from "../../../store/notificationSlice";
 
-const SendQuoteModal = ({
-   request_id, 
-   setFetchRequestCount,
-   isOpen,
-   setIsOpen
+const MarkCompletedModal = ({ 
+  isMarkCompletedOpen, 
+  setIsMarkCompletedOpen, 
+  id, 
+  request_id, 
+  setFetchRequestCount
 }) => {
 
-   const [quote, setQuote] = useState("");
   const [quoteLoading, setQuoteLoading] = useState(false);
-  const [quoteError, setQuoteError] = useState('');
+  const dispatch = useDispatch();
   
    const handleSubmit = () => {
-      const formattedAmount = Number(quote);
-  
-      if (isNaN(formattedAmount) || formattedAmount <= 0) {
-        setQuoteError("Invalid amount entered");
-        return;
-      }
-      setQuoteLoading(true);
-  
-      axios
-        .post(updateQuoteRequestPath, { amount: formattedAmount, request_id: request_id })
-        .then(({ data }) => {
-          console.log(data);
-          setQuoteLoading(false);
-          if(data.status === 'success'){
-            
-            setIsOpen(false);
-            toast.success("Quote amount sent successfully");
-            setFetchRequestCount((prevCount) => prevCount + 1)
-          } else {
-            // toast.error();
-          }
-  
-        })
-        .catch((error) => {
-          console.error("API Error:", error.response?.data || error.message);
-        });
-    };
+    
+    setQuoteLoading(true);
 
+    axios
+      .post(markBookingCompletedPath, {
+        request_id: request_id,
+      })
+      .then(({ data }) => {
+        setQuoteLoading(false);
+        if (data.status === "success") {
+          setIsMarkCompletedOpen(false);
+          dispatch(setNotification(["success", "Booking completed successfully"]))
+          setFetchRequestCount((prevCount) => prevCount + 1);
+        } else {
+          setIsMarkCompletedOpen(false);
+          toast.error(data.message);
+          setFetchRequestCount((prevCount) => prevCount + 1);
+        }
+      })
+      .catch((error) => {
+        console.error("API Error:", error.response?.data || error.message);
+      });
+  };
 
   return (
-    <Transition.Root show={isOpen}>
+    <Transition.Root show={isMarkCompletedOpen}>
       <Dialog
         as="div"
         className="relative z-10"
-        onClose={() => setIsOpen(false)}
+        onClose={() => setIsMarkCompletedOpen(false)}
       >
         <Transition.Child
           enter="ease-out duration-300"
@@ -81,38 +78,20 @@ const SendQuoteModal = ({
                         as="h2"
                         className="text-xl mb-2 font-semibold leading-6 text-gray-900"
                       >
-                        Send Quote
+                        Mark Booking as Completed?
                       </Dialog.Title>
 
                       <div className="mt-2">
                         <div className="mt-4">
                           <div className="relative">
-                            <input
-                              type="number"
-                              id="quote_input"
-                              value={quote}
-                              onChange={(e) => {
-                                setQuote(e.target.value);
-                                setQuoteError("");
-                              }}
-                              placeholder="Enter quote amount"
-                              autoComplete="off"
-                              min="1"
-                              max="999999999"
-                              step="1"
-                              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            />
-                            <span className="quote-currency">GBP</span>
+                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400"> 
+                            Are you sure you want to mark this booking as completed? This action cannot be undone.  
+                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  {quoteError && quoteError !== "" && (
-                    <div className="mt-1 text-xs text-red-600 dark:text-red-500">
-                      {quoteError}
-                    </div>
-                  )}
                 </div>
 
                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
@@ -121,12 +100,12 @@ const SendQuoteModal = ({
                     onClick={handleSubmit}
                     className="inline-flex w-full justify-center rounded-full bg-violet-950 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-800 sm:ml-3 sm:w-auto"
                   >
-                    {quoteLoading ? "Sending.." : "Submit"}
+                    {quoteLoading ? "Sending.." : "Yes, Mark as Completed"}
                   </button>
                   <button
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => setIsMarkCompletedOpen(false)}
                   >
                     Leave
                   </button>
@@ -140,4 +119,4 @@ const SendQuoteModal = ({
   );
 };
 
-export default SendQuoteModal;
+export default MarkCompletedModal;

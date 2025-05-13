@@ -106,10 +106,12 @@ const QuoteRequestForm = () => {
     drop_off_1: Yup.string().required("Drop Off Location (1) is required"),
     number_of_suitcase: Yup.number().required(
       "Number Of Suitcases are required"
-    ).positive("Number of Suitcases must be a positive number"),
+    ).positive("Number of Suitcases must be a positive number")
+    .max(20, "Number of Suitcases cannot be more than 20"),
     number_of_passengers: Yup.number().required(
       "Number Of Passengers are required"
-    ).positive("Number of Passengers must be a positive number"),
+    ).positive("Number of Passengers must be a positive number")
+    .max(20, "Number of Passengers cannot be more than 20"),
     pick_up_time: Yup.string().required("Pick Up Time is required"),
     flight_number: Yup.string().required("Flight Number is required"),
     date_of_transfer: Yup.string().required("Date Of Transfer is required"),
@@ -364,6 +366,11 @@ const QuoteRequestForm = () => {
                     name="number_of_passengers"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
+                    min="1"
+                    max="20"
+                    step="1"
+                    autocomplete="off"
+                    autocorrect="off"
                   />
                   <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     Number Of Passengers
@@ -380,6 +387,11 @@ const QuoteRequestForm = () => {
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=""
                     name="number_of_suitcase"
+                    min="1"
+                    max="20"
+                    step="1"
+                    autocomplete="off"
+                    autocorrect="off"
                   />
                   <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     Number Of Suitcase

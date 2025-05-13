@@ -1,9 +1,9 @@
 // Bookings.js
 import React, { useEffect, useState } from "react";
 import Layout from "../../dashboard/Layout";
-import PaymentsTable from "../../dashboard/components/booking/BookingsTable";
+import BookingsTable from "../../dashboard/components/booking/BookingsTable";
 import Breadcrumb from "../../dashboard/components/layout/Breadcrumb";
-import MobilePaymentsTable from "../../dashboard/components/booking/MobilePaymentsTable";
+import MobileBookingsTable from "../../dashboard/components/booking/MobileBookingsTable";
 
 const Bookings = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -36,7 +36,7 @@ const Bookings = () => {
           <div className="mb-4">
             <Breadcrumb pages={[]} page="Bookings" />
           </div>
-          {isMobile ? <MobilePaymentsTable /> : <PaymentsTable />}
+          {isMobile ? <MobileBookingsTable /> : <BookingsTable />}
         </div>
       }
     />

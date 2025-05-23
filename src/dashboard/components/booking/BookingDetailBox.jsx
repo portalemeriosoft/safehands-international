@@ -45,7 +45,7 @@ const navigate = useNavigate()
     drop_off_2: request.drop_off_locations[1],
     drop_off_3: request.drop_off_locations[2],
     type_of_vehicle: request.type_of_vehicle_code,
-    claim_reference: '',
+    claim_reference: request.claim_reference,
     flight_number: request.flight,
     other_specialist_luggage_requirement: '',
     other_medical_requirement: '',

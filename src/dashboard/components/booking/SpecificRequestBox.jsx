@@ -88,6 +88,12 @@ const SpecificRequestBox = ({request, setFetchRequestCount}) => {
         </div>
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>Claim Reference</div>
+            <div>{request.claim_reference}</div>
+          </div>
+        </div>
+        <div className="booking-item">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Locations</div>
             <div>
             

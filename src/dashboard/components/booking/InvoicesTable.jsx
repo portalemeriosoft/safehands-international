@@ -44,7 +44,7 @@ const InvoicesTable = () => {
       id: invoice.booking.request_id,
       bookerName: invoice.booking.booker_name,
       bookerEmail: invoice.booking.booker_email,
-      amount: "GBP " + invoice.quote_request.amount,
+      amount: invoice.quote_request.currency.toUpperCase() +' '+ invoice.quote_request.amount,
       passengerName: invoice.booking.passenger_name,
       passengerContact: invoice.booking.passenger_contact,
       invoiceStatus: <PaymentStatus date_of_transfer={invoice.booking.date_of_transfer} status={invoice.status} />,

@@ -54,7 +54,7 @@ const SpecificRequestBox = ({request, setFetchRequestCount}) => {
         <div className="booking-item">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>Quote Amount</div>
-            <div>GBP {request.amount}</div>
+            <div>{request.currency.toUpperCase()} {request.amount}</div>
           </div>
         </div>
       )}

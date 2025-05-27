@@ -5,45 +5,51 @@ import { updateQuoteRequestPath } from "../../../api/path";
 import { toast } from "react-toastify";
 
 const SendQuoteModal = ({
-   request_id, 
-   setFetchRequestCount,
-   isOpen,
-   setIsOpen
+  request_id,
+  setFetchRequestCount,
+  isOpen,
+  setIsOpen
 }) => {
-
-   const [quote, setQuote] = useState("");
+  const [quote, setQuote] = useState("");
   const [quoteLoading, setQuoteLoading] = useState(false);
-  const [quoteError, setQuoteError] = useState('');
-  
-   const handleSubmit = () => {
-      const formattedAmount = Number(quote);
-  
-      if (isNaN(formattedAmount) || formattedAmount <= 0) {
-        setQuoteError("Invalid amount entered");
-        return;
-      }
-      setQuoteLoading(true);
-  
-      axios
-        .post(updateQuoteRequestPath, { amount: formattedAmount, request_id: request_id })
-        .then(({ data }) => {
-          console.log(data);
-          setQuoteLoading(false);
-          if(data.status === 'success'){
-            
-            setIsOpen(false);
-            toast.success("Quote amount sent successfully");
-            setFetchRequestCount((prevCount) => prevCount + 1)
-          } else {
-            // toast.error();
-          }
-  
-        })
-        .catch((error) => {
-          console.error("API Error:", error.response?.data || error.message);
-        });
-    };
+  const [quoteError, setQuoteError] = useState("");
+  const [currency, setCurrency] = useState("");
 
+  const handleSubmit = () => {
+    const formattedAmount = Number(quote);
+
+    if (currency === '') {
+      setQuoteError("* Please select a currency");
+      return;
+    }
+    
+    if (isNaN(formattedAmount) || formattedAmount <= 0) {
+      setQuoteError("* Invalid amount entered");
+      return;
+    }
+    setQuoteLoading(true);
+
+    axios
+      .post(updateQuoteRequestPath, {
+        amount: formattedAmount,
+        currency: currency,
+        request_id: request_id,
+      })
+      .then(({ data }) => {
+        console.log(data);
+        setQuoteLoading(false);
+        if (data.status === "success") {
+          setIsOpen(false);
+          toast.success("Quote amount sent successfully");
+          setFetchRequestCount((prevCount) => prevCount + 1);
+        } else {
+          // toast.error();
+        }
+      })
+      .catch((error) => {
+        console.error("API Error:", error.response?.data || error.message);
+      });
+  };
 
   return (
     <Transition.Root show={isOpen}>
@@ -86,7 +92,23 @@ const SendQuoteModal = ({
 
                       <div className="mt-2">
                         <div className="mt-4">
-                          <div className="relative">
+                          <div className="flex items-center justify-between gap-2">
+                            <select
+                              id="currency"
+                              className="w-1/3 inline-block p-2.5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              value={currency}
+                              onChange={(e) => {
+                                setCurrency(e.target.value)
+                                setQuoteError("");
+                              }}
+                            >
+                              <option value="" disabled>
+                                Choose currency
+                              </option>
+                              <option value="aed">AED</option>
+                              <option value="gbp">GBP</option>
+                              <option value="usd">USD</option>
+                            </select>
                             <input
                               type="number"
                               id="quote_input"
@@ -100,9 +122,8 @@ const SendQuoteModal = ({
                               min="1"
                               max="999999999"
                               step="1"
-                              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              className="w-2/3 inline-block p-2.5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             />
-                            <span className="quote-currency">GBP</span>
                           </div>
                         </div>
                       </div>

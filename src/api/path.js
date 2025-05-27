@@ -41,4 +41,6 @@ export const notificationPath = originServer + '/api/notification';
 export const removeNotificationPath = originServer + '/api/notification/remove';
 export const paymentUpdatePath = originServer + '/api/payment/update';
 export const markBookingCompletedPath = originServer + '/api/booking/update/complete';
+export const generalSettingsPath = originServer + '/api/app-settings';
+export const generalSettingsUpdatePath = originServer + '/api/app-settings/update';
 

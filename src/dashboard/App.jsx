@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/layout/PrivateRoutes";
 import Home from "../pages/Home";
 import Terms from "../pages/Terms";
 import Error from "../pages/NotFound";
+import AppSettings from "../pages/AppSettings";
 
 import Bookings from "../pages/bookings/Bookings";
 import MyBookings from "../pages/bookings/MyBookings";
@@ -132,6 +133,7 @@ const App = () => {
           <Route element={<Terms />} path="/terms" />
           <Route element={<Logout />} path="/logout" />
           <Route element={<UserRegister />} path="/user/signup" />
+          <Route element={<AppSettings />} path="/settings" />
           <Route element={<Error />} path="*" /></Route>
         <Route element={<ForgotPassword />} path="/password/reset" />
         <Route element={<ResetPassword />} path="/password/update/:token" />

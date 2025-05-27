@@ -32,7 +32,6 @@ const ReportsTable = () => {
 
   let reportRow = null;
 
-  console.log(reports)
   if (reports) {
     reportRow = reports.map((report) => ({
       id: report.id,
@@ -77,17 +76,27 @@ const ReportsTable = () => {
   }
 
   return (
-    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
-      <AgGridReact
-        rowData={reportRow}
-        columnDefs={colDefs}
-        ref={gridRef}
-        pagination={true}
-        rowSelection={"single"}
-        autoSizeStrategy={autoSizeStrategy}
-        onRowClicked={onRowClicked}
+    <>
+      <input
+        type="text"
+        placeholder="Search carbon emission reports..."
+        onChange={(e) =>
+          gridRef.current?.api?.setGridOption('quickFilterText', e.target.value)
+        }
+        className="mb-4 p-2 border border-gray-300 rounded w-full"
       />
-    </div>
+      <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
+        <AgGridReact
+          rowData={reportRow}
+          columnDefs={colDefs}
+          ref={gridRef}
+          pagination={true}
+          rowSelection={"single"}
+          autoSizeStrategy={autoSizeStrategy}
+          onRowClicked={onRowClicked}
+        />
+      </div>
+    </>
   );
 };
 

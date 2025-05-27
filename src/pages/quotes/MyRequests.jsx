@@ -1,6 +1,6 @@
 import Layout from "../../dashboard/Layout";
 import RequestsTable from "../../dashboard/components/booking/RequestsTable";
-import MobileOrdersTable from "../../dashboard/components/booking/MobileOrdersTable";
+import MobileOrdersTable from "../../dashboard/components/booking/MobileRequestsTable";
 import Breadcrumb from "../../dashboard/components/layout/Breadcrumb";
 import React, { useEffect, useState } from "react";
 

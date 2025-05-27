@@ -1,6 +1,6 @@
 import Layout from "../../dashboard/Layout";
-import OrdersTable from "../../dashboard/components/booking/RequestsTable";
-import MobileOrdersTable from "../../dashboard/components/booking/MobileOrdersTable";
+import RequestsTable from "../../dashboard/components/booking/RequestsTable";
+import MobileRequestsTable from "../../dashboard/components/booking/MobileRequestsTable";
 import Breadcrumb from "../../dashboard/components/layout/Breadcrumb";
 import React, { useEffect, useState } from "react";
 
@@ -33,7 +33,7 @@ const Requests = () => {
           <div className="mb-4">
             <Breadcrumb pages={[]} page="Requests" />
           </div>
-          {isMobile ? <MobileOrdersTable /> : <OrdersTable />}
+          {isMobile ? <MobileRequestsTable /> : <RequestsTable />}
         </div>
       }
     />

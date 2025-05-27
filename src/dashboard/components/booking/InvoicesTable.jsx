@@ -80,6 +80,15 @@ const InvoicesTable = () => {
   };
 
   return (
+    <>
+    <input
+      type="text"
+      placeholder="Search invoices..."
+      onChange={(e) =>
+        gridRef.current?.api?.setGridOption('quickFilterText', e.target.value)
+      }
+      className="mb-4 p-2 border border-gray-300 rounded w-full"
+    />
     <div className="ag-theme-quartz" style={{ height: "calc(100vh - 268px)" }}>
       <AgGridReact
         rowData={invoiceRow}
@@ -92,6 +101,7 @@ const InvoicesTable = () => {
       />
       {orderId[0] && <Order orderId={orderId} />}
     </div>
+    </>
   );
 };
 

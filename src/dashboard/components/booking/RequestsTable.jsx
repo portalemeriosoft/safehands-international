@@ -90,18 +90,28 @@ const RequestsTable = () => {
   }
 
   return (
-    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
-      <AgGridReact
-        rowData={requestRow}
-        columnDefs={colDefs}
-        ref={gridRef}
-        pagination={true}
-        rowSelection={"single"}
-        autoSizeStrategy={autoSizeStrategy}
-        onRowClicked={onRowClicked}
+    <>
+      <input
+        type="text"
+        placeholder="Search requests..."
+        onChange={(e) =>
+          gridRef.current?.api?.setGridOption('quickFilterText', e.target.value)
+        }
+        className="mb-4 p-2 border border-gray-300 rounded w-full"
       />
-      {orderId[0] && <Order orderId={orderId} />}
-    </div>
+      <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
+        <AgGridReact
+          rowData={requestRow}
+          columnDefs={colDefs}
+          ref={gridRef}
+          pagination={true}
+          rowSelection={"single"}
+          autoSizeStrategy={autoSizeStrategy}
+          onRowClicked={onRowClicked}
+        />
+        {orderId[0] && <Order orderId={orderId} />}
+      </div>
+    </>
   );
 };
 

@@ -30,21 +30,6 @@ const CustomersTable = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(getAllUsers)
-  //     .then(({ data }) => {
-  //       dispatch(setCustomers(data.data));
-  //       setAllUsers(data.data.users);
-  //     })
-  //     .catch(function (error) {
-  //       if (error.response) {
-  //         console.log(error.response.data.message);
-  //       }
-  //     });
-  // }, []);
-
-  console.log(customers)
 
   let customerRow = null;
 
@@ -122,16 +107,26 @@ const CustomersTable = () => {
   ]);
 
   return (
-    <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
-      <AgGridReact
-        rowData={customerRow}
-        columnDefs={colDefs}
-        ref={gridRef}
-        pagination={true}
-        rowSelection={"single"}
-        autoSizeStrategy={autoSizeStrategy}
+    <>
+      <input
+        type="text"
+        placeholder="Search users..."
+        onChange={(e) =>
+          gridRef.current?.api?.setGridOption('quickFilterText', e.target.value)
+        }
+        className="mb-4 p-2 border border-gray-300 rounded w-full"
       />
-    </div>
+      <div className="ag-theme-quartz" style={{ height: 'calc(100vh - 268px)' }}>
+        <AgGridReact
+          rowData={customerRow}
+          columnDefs={colDefs}
+          ref={gridRef}
+          pagination={true}
+          rowSelection={"single"}
+          autoSizeStrategy={autoSizeStrategy}
+        />
+      </div>
+    </>
   );
 };
 

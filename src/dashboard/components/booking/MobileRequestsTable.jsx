@@ -33,7 +33,7 @@ const OrderList = ({ order }) => {
   );
 };
 
-const MobileOrdersTable = () => {
+const MobileRequestsTable = () => {
   const orders = useSelector(ordersState);
   const dispatch = useDispatch();
 
@@ -79,4 +79,4 @@ const MobileOrdersTable = () => {
   );
 };
 
-export default MobileOrdersTable;
+export default MobileRequestsTable;
